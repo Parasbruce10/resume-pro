@@ -1,0 +1,29 @@
+:root {
+    --bg: #0f172a; --text: #f8fafc; --card: #1e293b; --border: #334155; --accent: #38bdf8;
+}
+
+body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); }
+
+.header { display: flex; justify-content: space-between; padding: 15px 30px; background: var(--card); border-bottom: 1px solid var(--border); }
+
+.main-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; height: calc(100vh - 80px); }
+
+.form-side { background: var(--card); padding: 20px; border-radius: 10px; border: 1px solid var(--border); overflow-y: auto; }
+
+.preview-side { background: white; color: black; padding: 40px; border-radius: 10px; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+.section-title { color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 20px 0 10px; font-size: 14px; text-transform: uppercase; }
+
+input, textarea { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid var(--border); background: #0f172a; color: white; box-sizing: border-box; }
+
+.btn { padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; font-weight: bold; background: #10b981; color: white; }
+
+.resume-header { border-left: 10px solid #0f172a; padding-left: 15px; margin-bottom: 20px; }
+
+@media print {
+    .header, .form-side { display: none !important; }
+    .main-layout { display: block; padding: 0; }
+    .preview-side { box-shadow: none; width: 100%; height: 100%; border-radius: 0; }
+}
+
+@media (max-width: 800px) { .main-layout { grid-template-columns: 1fr; } }
