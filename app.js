@@ -200,7 +200,7 @@ const App = () => {
     /* Resume Preview Section */
     .preview-side { 
         order: 2 !important; 
-        width: 100% !important; 
+        width: 103% !important; 
         position: relative !important; 
         top: 0 !important;
         margin-top: 20px !important;
