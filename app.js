@@ -3,7 +3,8 @@ const { useState, useEffect } = React;
 
 const App = () => {
     const [currentPage, setCurrentPage] = useState('home'); 
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // Mobile menu state
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [selectedTemplate, setSelectedTemplate] = useState('modern'); // Template state
     
     const initialState = {
         name: '', title: '', email: '', phone: '', city: '', address: '',
@@ -113,7 +114,6 @@ const App = () => {
         }
         .hamburger span { width: 20px; height: 2px; background: var(--text); transition: 0.3s; }
 
-        /* Mobile Menu */
         .mobile-menu {
             position: fixed; top: 0; right: ${isMenuOpen ? '0' : '-100%'};
             width: 80%; max-width: 300px; height: 100vh; background: var(--card-bg);
@@ -129,7 +129,6 @@ const App = () => {
             flex: 1; width: 100%; box-sizing: border-box;
         }
         
-        /* 1. Laptop View: Form chota (0.8) aur Resume bada (1.2) */
         .main-layout { 
             display: grid; 
             grid-template-columns: 0.8fr 1.2fr; 
@@ -160,56 +159,76 @@ const App = () => {
             box-sizing: border-box;
         }
 
-        /* 2. Mobile View: Pehle Form aayega, phir Resume Preview */
-        @media (max-width: 900px) {
-            .nav-links, .btn-theme { display: none; }
-            .hamburger { display: flex; }
-
-            .main-layout { 
-                display: flex; 
-                flex-direction: column; /* Items ko upar-neeche karne ke liye */
-                gap: 20px; 
-            }
-
-            .form-side { 
-                order: 1; /* Form ko pehle number par kar diya */
-                width: 90%; 
-                max-height: none; 
-            }
-
-            .preview-side { 
-                order: 2; /* Resume ko dusre number par kar diya */
-                position: relative !important; 
-                top: 0 !important; 
-                width: 100% !important; 
-                margin-top: 10px; 
-                padding: 20px; 
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                min-height: 1000px; 
-        height: auto;
-            }
+        /* Template Switcher Buttons */
+        .template-selector {
+            display: flex; gap: 10px; margin-bottom: 15px; justify-content: center;
         }
+        .t-btn { 
+            padding: 5px 12px; font-size: 11px; border-radius: 20px; border: 1px solid #ddd;
+            cursor: pointer; background: #fff; color: #333; transition: 0.3s;
+        }
+        .t-btn.active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+
+        /* Template Styles */
+        .resume-content.classic { text-align: center; }
+        .resume-content.classic .resume-header { flex-direction: column; text-align: center; }
+        .resume-content.minimalist { font-family: 'Georgia', serif; }
+        .resume-content.minimalist .resume-header { border-bottom: 4px solid #000; }
+
+ @media (max-width: 900px) {
+    .nav-links, .btn-theme { display: none; }
+    .hamburger { display: flex; }
+
+    /* Layout ko control karne ke liye - Simple vertical stack */
+    .main-layout { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        gap: 20px !important;
+        height: auto !important;
+    }
+
+    /* Form Section */
+    .form-side { 
+        order: 1 !important; 
+        width: 93% !important; 
+        max-height: none !important; 
+        position: relative !important;
+        overflow: visible !important;
+        margin-bottom: 20px;
+    }
+
+    /* Resume Preview Section */
+    .preview-side { 
+        order: 2 !important; 
+        width: 100% !important; 
+        position: relative !important; 
+        top: 0 !important;
+        margin-top: 20px !important;
+        margin-bottom: 40px !important; /* Taake Download button aur Footer se gap rahe */
+        min-height: 500px !important; 
+        height: auto !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        display: block !important;
+    }
+
+    /* Footer Fix - Isay hamesha niche rakhne ke liye */
+    .footer {
+        position: relative !important;
+        clear: both !important;
+        margin-top: 60px !important;
+        z-index: 100;
+    }
+}
 
         .section-title { color: #64748b; font-size: 11px; text-transform: uppercase; margin: 20px 0 10px; font-weight: 700; border-left: 3px solid var(--accent); padding-left: 10px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        
         .file-upload-wrapper { border: 2px dashed var(--border); border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 20px; cursor: pointer; position: relative; }
-
         input, textarea { width: 100%; padding: 12px; background: var(--input-bg); border: 1px solid var(--border); color: var(--text); border-radius: 8px; margin-bottom: 10px; box-sizing: border-box; font-size: 14px; }
-
         .profile-img { width: 80px; height: 80px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
         .resume-header { display: flex; gap: 20px; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
 
-        @media (max-width: 900px) {
-            .nav-links, .btn-theme { display: none; }
-            .hamburger { display: flex; }
-            .main-layout { grid-template-columns: 1fr; }
-            .preview-side { position: relative; top: 0; min-height: auto; margin-top: 20px; padding: 15px; }
-            .form-side { max-height: none; }
-        }
-
         @media print {
-            .header-wrapper, .form-side, .footer, .hamburger, .mobile-menu { display: none !important; }
+            .header-wrapper, .form-side, .footer, .hamburger, .mobile-menu, .template-selector, .btn-primary { display: none !important; }
             .preview-side { width: 100%; border: none; box-shadow: none; padding: 0; position: static; margin: 0; }
             .main-layout { display: block; }
             body { background: white; }
@@ -227,7 +246,6 @@ const App = () => {
     return e('div', { style: { display: 'flex', flexDirection: 'column', minHeight: '100vh' } },
         e('style', null, styles),
         
-        // MOBILE MENU
         e('div', { className: 'mobile-menu' },
             e('div', { className: 'close-menu', onClick: () => setIsMenuOpen(false) }, '✕'),
             e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, style: {fontSize: '18px'}, onClick: () => navigate('home') }, 'Resume Maker'),
@@ -236,20 +254,16 @@ const App = () => {
             e('button', { className: 'btn btn-theme', style: {marginTop: '20px', display: 'flex', justifyContent: 'center'}, onClick: () => setIsDarkMode(!isDarkMode) }, isDarkMode ? '☀️ Light' : '🌙 Dark')
         ),
 
-        // HEADER
         e('div', { className: 'header-wrapper' },
             e('div', { className: 'header-content' },
                 e('div', { className: 'logo', onClick: () => navigate('home') }, 'RESUME.PRO'),
-                
                 e('div', { className: 'nav-links' },
                     e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, onClick: () => navigate('home') }, 'Resume Maker'),
                     e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
                     e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, onClick: () => navigate('about') }, 'About')
                 ),
-                
                 e('div', { className: 'nav-btns' },
                     e('button', { className: 'btn btn-theme', onClick: () => setIsDarkMode(!isDarkMode) }, isDarkMode ? '☀️' : '🌙'),
-                    
                     e('div', { className: 'hamburger', onClick: () => setIsMenuOpen(true) },
                         e('span', null), e('span', null), e('span', null)
                     )
@@ -287,33 +301,42 @@ const App = () => {
                 ), 
 
                 e('div', { className: 'preview-side' },
-                    e('div', { className: 'resume-header' },
-                        data.image && e('img', { src: data.image, className: 'profile-img' }),
-                        e('div', null,
-                            e('h1', { style: { margin: 0, fontSize: '24px' } }, data.name || 'YOUR NAME'),
-                            e('p', { style: { margin: '2px 0', color: '#334155', fontWeight: '600', fontSize: '14px' } }, data.title || 'Title'),
-                            e('div', { style: { fontSize: '10px', color: '#64748b', marginTop: '5px' } }, 
-                                data.email && `${data.email} | `,
-                                data.phone && `${data.phone} | `,
-                                (data.city || data.address) && `${data.city} ${data.address}`
+                    // TEMPLATE SWITCHER
+                    e('div', { className: 'template-selector' },
+                        e('button', { className: `t-btn ${selectedTemplate === 'modern' ? 'active' : ''}`, onClick: () => setSelectedTemplate('modern') }, 'Modern'),
+                        e('button', { className: `t-btn ${selectedTemplate === 'classic' ? 'active' : ''}`, onClick: () => setSelectedTemplate('classic') }, 'Classic'),
+                        e('button', { className: `t-btn ${selectedTemplate === 'minimalist' ? 'active' : ''}`, onClick: () => setSelectedTemplate('minimalist') }, 'Minimalist')
+                    ),
+
+                    e('div', { className: `resume-content ${selectedTemplate}` },
+                        e('div', { className: 'resume-header' },
+                            data.image && e('img', { src: data.image, className: 'profile-img' }),
+                            e('div', null,
+                                e('h1', { style: { margin: 0, fontSize: '24px' } }, data.name || 'YOUR NAME'),
+                                e('p', { style: { margin: '2px 0', color: '#334155', fontWeight: '600', fontSize: '14px' } }, data.title || 'Title'),
+                                e('div', { style: { fontSize: '10px', color: '#64748b', marginTop: '5px' } }, 
+                                    data.email && `${data.email} | `,
+                                    data.phone && `${data.phone} | `,
+                                    (data.city || data.address) && `${data.city} ${data.address}`
+                                )
                             )
+                        ),
+                        data.summary && e('div', { style: { marginBottom: '15px' } },
+                            e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'SUMMARY'),
+                            e('p', { style: { fontSize: '12px', lineHeight: '1.4' } }, data.summary)
+                        ),
+                        data.experience && e('div', { style: { marginBottom: '15px' } },
+                            e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'EXPERIENCE'),
+                            e('p', { style: { fontSize: '12px', whiteSpace: 'pre-line' } }, data.experience)
+                        ),
+                        data.education && e('div', { style: { marginBottom: '15px' } },
+                            e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'EDUCATION'),
+                            e('p', { style: { fontSize: '12px' } }, data.education)
+                        ),
+                        data.skills && e('div', null,
+                            e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'SKILLS'),
+                            e('p', { style: { fontSize: '12px' } }, data.skills)
                         )
-                    ),
-                    data.summary && e('div', { style: { marginBottom: '15px' } },
-                        e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'SUMMARY'),
-                        e('p', { style: { fontSize: '12px', lineHeight: '1.4' } }, data.summary)
-                    ),
-                    data.experience && e('div', { style: { marginBottom: '15px' } },
-                        e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'EXPERIENCE'),
-                        e('p', { style: { fontSize: '12px', whiteSpace: 'pre-line' } }, data.experience)
-                    ),
-                    data.education && e('div', { style: { marginBottom: '15px' } },
-                        e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'EDUCATION'),
-                        e('p', { style: { fontSize: '12px' } }, data.education)
-                    ),
-                    data.skills && e('div', null,
-                        e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'SKILLS'),
-                        e('p', { style: { fontSize: '12px' } }, data.skills)
                     )
                 )
             ),
@@ -321,76 +344,41 @@ const App = () => {
             currentPage === 'wordToPdf' && e('div', { style: {textAlign:'center', padding:'50px 20px', minHeight: '60vh'} },
                 e('h2', null, 'Convert Word to PDF'),
                 e('div', { className: 'file-upload-wrapper', style: { maxWidth: '400px', margin: '20px auto' } },
-                    e('div', null, isConverting ? '⌛ Converting...' : '📂 Choose Word File'),
+                    e('div', null, isConverting ? '⏳ Converting...' : '📂 Choose Word File'),
                     e('input', { type: 'file', accept: '.docx', onChange: handleWordToPdf, style: { opacity: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', cursor: 'pointer' } })
                 )
             ),
 
-          currentPage === 'about' && e('div', { style: {textAlign:'left', maxWidth:'800px', margin:'0 auto', padding:'50px 20px', minHeight: '60vh', lineHeight:'1.6'} },
-    e('h1', { style: {textAlign:'center', color:'var(--accent)'} }, 'Welcome to Resume Pro'),
-    e('p', null, 'Your all-in-one solution for professional career branding. We believe that a great career starts with a great first impression, and we are here to help you make it count.'),
-    
-    e('h3', { style: {marginTop:'30px', color:'var(--accent)'} }, 'What We Offer:'),
-    e('ul', null, 
-        e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Instant Resume Builder: '), 'No more struggling with formatting. Simply fill out our intuitive form, and our system will generate a polished, professional CV tailored to industry standards.'),
-        e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Seamless File Conversion: '), 'We provide a built-in Word-to-PDF converter, ensuring your documents are always in the right format for any job application.'),
-        e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Professional Templates: '), 'Choose from a variety of layouts designed to catch the eye of recruiters and hiring managers.')
-    ),
-
-    e('h3', { style: {marginTop:'30px', color:'var(--accent)'} }, 'Our Vision:'),
-    e('p', null, 'At Resume Pro, we are constantly evolving. While we currently focus on making resume creation easy and efficient, we are committed to adding more advanced features in the future to help you navigate your professional journey with confidence.')
-)
+            currentPage === 'about' && e('div', { style: {textAlign:'left', maxWidth:'800px', margin:'0 auto', padding:'50px 20px', minHeight: '60vh', lineHeight:'1.6'} },
+                e('h1', { style: {textAlign:'center', color:'var(--accent)'} }, 'Welcome to Resume Pro'),
+                e('p', null, 'Your all-in-one solution for professional career branding. We believe that a great career starts with a great first impression, and we are here to help you make it count.'),
+                e('h3', { style: {marginTop:'30px', color:'var(--accent)'} }, 'What We Offer:'),
+                e('ul', null, 
+                    e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Instant Resume Builder: '), 'No more struggling with formatting. Simply fill out our intuitive form, and our system will generate a polished, professional CV tailored to industry standards.'),
+                    e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Seamless File Conversion: '), 'We provide a built-in Word-to-PDF converter, ensuring your documents are always in the right format for any job application.'),
+                    e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Professional Templates: '), 'Choose from a variety of layouts designed to catch the eye of recruiters and hiring managers.')
+                ),
+                e('h3', { style: {marginTop:'30px', color:'var(--accent)'} }, 'Our Vision:'),
+                e('p', null, 'At Resume Pro, we are constantly evolving. While we currently focus on making resume creation easy and efficient, we are committed to adding more advanced features in the future to help you navigate your professional journey with confidence.')
+            )
         ),
-        // --- Ye block Footer se pehle copy-paste karein ---
-currentPage === 'home' && e('div', { 
-    style: { 
-        textAlign: 'center', 
-        padding: '30px 20px', 
-        background: 'var(--card-bg)', 
-        borderTop: '1px solid var(--border)',
-        marginTop: '20px'
-    } 
-},
-    e('button', { 
-        className: 'btn btn-primary', 
-        onClick: () => window.print(),
-        style: { 
-            padding: '15px 50px', 
-            fontSize: '14px', 
-            borderRadius: '50px',
-            margin: '0 auto',
-            display: 'block',
-            background: '#3b82f6',
-            color: '#fff',
-            cursor: 'pointer',
-            border: 'none',
-            fontWeight: 'bold'
-        } 
-    }, '💾 Download My Resume')
-),
-// --- Iske niche aapka purana e('footer', ...) shuru hoga ---
+
+        currentPage === 'home' && e('div', { 
+            style: { textAlign: 'center', padding: '30px 20px', background: 'var(--card-bg)', borderTop: '1px solid var(--border)', marginTop: '20px' } 
+        },
+            e('button', { 
+                className: 'btn btn-primary', 
+                onClick: () => window.print(),
+                style: { padding: '15px 50px', fontSize: '14px', borderRadius: '50px', margin: '0 auto', display: 'block', background: '#3b82f6', color: '#fff', cursor: 'pointer', border: 'none', fontWeight: 'bold' } 
+            }, '💾 Download My Resume')
+        ),
 
         e('footer', { className: 'footer' },
             e('div', null,
                 e('div', { style: { fontWeight: '800', color: '#3b82f6' } }, 'RESUME.PRO'),
-                e('p', { 
-    className: 'footer-text', 
-    style: { 
-        fontSize: '14px', 
-        fontWeight: '500', 
-        letterSpacing: '0.5px',
-        marginTop: '10px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '5px'
-    } 
-}, 
-    'Created with ', 
-    e('span', { style: { color: '#ef4444', fontSize: '18px' } }, '♥'), 
-    ' by ', 
-    e('span', { style: { color: 'var(--accent)', fontWeight: '700' } }, 'Paras')
-),
+                e('p', { className: 'footer-text', style: { fontSize: '14px', fontWeight: '500', marginTop: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' } }, 
+                    'Created with ', e('span', { style: { color: '#ef4444', fontSize: '18px' } }, '♥'), ' by ', e('span', { style: { color: 'var(--accent)', fontWeight: '700' } }, 'Paras')
+                ),
                 e('p', { className: 'footer-text' }, `© ${new Date().getFullYear()} All Rights Reserved`)
             )
         )
@@ -398,4 +386,4 @@ currentPage === 'home' && e('div', {
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(e(App)); 
+root.render(e(App));
