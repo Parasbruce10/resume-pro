@@ -129,18 +129,65 @@ const App = () => {
             flex: 1; width: 100%; box-sizing: border-box;
         }
         
-        .main-layout { display: flex; flex-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+        /* 1. Laptop View: Form chota (0.8) aur Resume bada (1.2) */
+        .main-layout { 
+            display: grid; 
+            grid-template-columns: 0.8fr 1.2fr; 
+            gap: 30px; 
+            align-items: start; 
+        }
 
         .form-side { 
-            background: var(--card-bg); padding: 20px; border-radius: 15px; 
-            border: 1px solid var(--border); max-height: 90vh; overflow-y: auto; margin-bottom: 10px 
+            background: var(--card-bg); 
+            padding: 20px; 
+            border-radius: 15px; 
+            border: 1px solid var(--border); 
+            max-height: 85vh; 
+            overflow-y: auto; 
         }
 
         .preview-side { 
-            background: #fff; color: #000; padding: 30px; border-radius: 4px; 
-            min-height: 600px; height: fit-content; position: sticky; 
-            top: 100px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); width: 100%; box-sizing: border-box;
-            margin-bottom: 50px; /* Space to prevent footer overlap */
+            background: #fff; 
+            color: #000; 
+            padding: 30px; 
+            border-radius: 4px; 
+            min-height: 600px; 
+            height: fit-content; 
+            position: sticky; 
+            top: 100px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+            width: 100%; 
+            box-sizing: border-box;
+        }
+
+        /* 2. Mobile View: Pehle Form aayega, phir Resume Preview */
+        @media (max-width: 900px) {
+            .nav-links, .btn-theme { display: none; }
+            .hamburger { display: flex; }
+
+            .main-layout { 
+                display: flex; 
+                flex-direction: column; /* Items ko upar-neeche karne ke liye */
+                gap: 20px; 
+            }
+
+            .form-side { 
+                order: 1; /* Form ko pehle number par kar diya */
+                width: 90%; 
+                max-height: none; 
+            }
+
+            .preview-side { 
+                order: 2; /* Resume ko dusre number par kar diya */
+                position: relative !important; 
+                top: 0 !important; 
+                width: 100% !important; 
+                margin-top: 10px; 
+                padding: 20px; 
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                min-height: 1000px; 
+        height: auto;
+            }
         }
 
         .section-title { color: #64748b; font-size: 11px; text-transform: uppercase; margin: 20px 0 10px; font-weight: 700; border-left: 3px solid var(--accent); padding-left: 10px; }
