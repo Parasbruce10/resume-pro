@@ -207,7 +207,7 @@ const App = () => {
                         e('input', { 
     placeholder: 'Full Address (House #, Street, Area)', 
     onChange: (e) => update('address', e.target.value) 
-})
+}),
                     ),
                     e('div', { className: 'section-title' }, 'Content'),
                     e('textarea', { rows: 2, placeholder: 'Summary...', onChange: (e) => update('summary', e.target.value) }),
