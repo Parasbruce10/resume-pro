@@ -326,10 +326,20 @@ const App = () => {
                 )
             ),
 
-            currentPage === 'about' && e('div', { style: {textAlign:'center', padding:'50px 20px', minHeight: '60vh'} },
-                e('h1', null, 'RESUME.PRO'),
-                e('p', null, 'Minimalist professional tools for everyone.')
-            )
+          currentPage === 'about' && e('div', { style: {textAlign:'left', maxWidth:'800px', margin:'0 auto', padding:'50px 20px', minHeight: '60vh', lineHeight:'1.6'} },
+    e('h1', { style: {textAlign:'center', color:'var(--accent)'} }, 'Welcome to Resume Pro'),
+    e('p', null, 'Your all-in-one solution for professional career branding. We believe that a great career starts with a great first impression, and we are here to help you make it count.'),
+    
+    e('h3', { style: {marginTop:'30px', color:'var(--accent)'} }, 'What We Offer:'),
+    e('ul', null, 
+        e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Instant Resume Builder: '), 'No more struggling with formatting. Simply fill out our intuitive form, and our system will generate a polished, professional CV tailored to industry standards.'),
+        e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Seamless File Conversion: '), 'We provide a built-in Word-to-PDF converter, ensuring your documents are always in the right format for any job application.'),
+        e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Professional Templates: '), 'Choose from a variety of layouts designed to catch the eye of recruiters and hiring managers.')
+    ),
+
+    e('h3', { style: {marginTop:'30px', color:'var(--accent)'} }, 'Our Vision:'),
+    e('p', null, 'At Resume Pro, we are constantly evolving. While we currently focus on making resume creation easy and efficient, we are committed to adding more advanced features in the future to help you navigate your professional journey with confidence.')
+)
         ),
         // --- Ye block Footer se pehle copy-paste karein ---
 currentPage === 'home' && e('div', { 
@@ -363,6 +373,24 @@ currentPage === 'home' && e('div', {
         e('footer', { className: 'footer' },
             e('div', null,
                 e('div', { style: { fontWeight: '800', color: '#3b82f6' } }, 'RESUME.PRO'),
+                e('p', { 
+    className: 'footer-text', 
+    style: { 
+        fontSize: '14px', 
+        fontWeight: '500', 
+        letterSpacing: '0.5px',
+        marginTop: '10px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '5px'
+    } 
+}, 
+    'Created with ', 
+    e('span', { style: { color: '#ef4444', fontSize: '18px' } }, '♥'), 
+    ' by ', 
+    e('span', { style: { color: 'var(--accent)', fontWeight: '700' } }, 'Paras')
+),
                 e('p', { className: 'footer-text' }, `© ${new Date().getFullYear()} All Rights Reserved`)
             )
         )
