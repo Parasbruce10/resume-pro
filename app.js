@@ -190,7 +190,7 @@ const App = () => {
     /* Form Section */
     .form-side { 
         order: 1 !important; 
-        width: 93% !important; 
+        width: 90% !important; 
         max-height: none !important; 
         position: relative !important;
         overflow: visible !important;
