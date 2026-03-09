@@ -558,86 +558,99 @@ const App = () => {
             )
         ), // <-- YAHAN BANNER WALA BLOCK CLOSE HO GAYA HAI (Jo pehle open reh gaya tha)
 
-        currentPage === 'logo' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
-            e('h2', { style: { color: 'var(--accent)', marginBottom: '10px' } }, 'Advanced Logo Designer'),
-            e('p', { style: { fontSize: '13px', opacity: 0.7, marginBottom: '20px' } }, 'Design professional brand icons in seconds'),
+currentPage === 'logo' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
+    e('h2', { style: { color: 'var(--accent)', marginBottom: '10px' } }, 'Advanced Logo Designer'),
+    e('p', { style: { fontSize: '13px', opacity: 0.7, marginBottom: '20px' } }, 'Design professional brand icons in seconds'),
 
-            e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
+    e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
 
-                // --- STYLISH PREVIEW BOX ---
-                e('div', {
-                    id: 'finalLogo', style: {
-                        width: '220px', height: '220px',
-                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                        backgroundColor: logoBgColor,
-                        borderRadius: logoShape === 'circle' ? '50%' : '15px',
-                        color: logoColor,
-                        boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-                        transition: '0.3s'
-                    }
-                },
-                    e('div', { style: { fontSize: '50px', marginBottom: '5px' } }, logoIcon), // Icon layer
-                    e('div', {
-                        style: {
-                            fontSize: '22px',
-                            fontWeight: '900',
-                            fontFamily: logoFont, // Dynamic Font
-                            letterSpacing: '1px',
-                            textTransform: 'uppercase'
-                        }
-                    }, logoText) // Text layer
+        // --- STYLISH PREVIEW BOX (Design wahi hai) ---
+        e('div', {
+            id: 'finalLogo', 
+            style: {
+                width: '220px', height: '220px',
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                backgroundColor: logoBgColor,
+                borderRadius: logoShape === 'circle' ? '50%' : '15px',
+                color: logoColor,
+                boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                transition: '0.3s'
+            }
+        },
+            e('div', { style: { fontSize: '50px', marginBottom: '5px' } }, logoIcon),
+            e('div', {
+                style: {
+                    fontSize: '22px',
+                    fontWeight: '900',
+                    fontFamily: logoFont,
+                    letterSpacing: '1px',
+                    textTransform: 'uppercase'
+                }
+            }, logoText)
+        ),
+
+        // --- CONTROLS ---
+        e('div', { style: { width: '100%', display: 'flex', flexDirection: 'column', gap: '15px' } },
+            e('div', { className: 'grid-2' },
+                e('input', { placeholder: 'Brand Name', value: logoText, onChange: (e) => setLogoText(e.target.value) }),
+                e('select', { value: logoIcon, onChange: (e) => setLogoIcon(e.target.value), style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)' } },
+                    e('option', { value: '★' }, 'Star'),
+                    e('option', { value: '⚡' }, 'Energy'),
+                    e('option', { value: '💎' }, 'Diamond'),
+                    e('option', { value: '🚀' }, 'Startup'),
+                    e('option', { value: '🔥' }, 'Trend'),
+                    e('option', { value: '👑' }, 'Premium')
+                )
+            ),
+
+            e('select', { value: logoFont, onChange: (e) => setLogoFont(e.target.value), style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)' } },
+                e('option', { value: 'Inter' }, 'Modern Sans'),
+                e('option', { value: 'Georgia' }, 'Classic Serif'),
+                e('option', { value: 'Courier New' }, 'Tech Mono'),
+                e('option', { value: 'Impact' }, 'Bold Impact')
+            ),
+
+            e('div', { className: 'grid-2' },
+                e('div', null,
+                    e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Text Color'),
+                    e('input', { type: 'color', value: logoColor, onChange: (e) => setLogoColor(e.target.value), style: { height: '40px' } })
                 ),
+                e('div', null,
+                    e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Backdrop'),
+                    e('input', { type: 'color', value: logoBgColor, onChange: (e) => setLogoBgColor(e.target.value), style: { height: '40px' } })
+                )
+            ),
 
-                // --- CONTROLS ---
-                e('div', { style: { width: '100%', display: 'flex', flexDirection: 'column', gap: '15px' } },
-
-                    // Text & Icon Inputs
-                    e('div', { className: 'grid-2' },
-                        e('input', { placeholder: 'Brand Name', value: logoText, onChange: (e) => setLogoText(e.target.value) }),
-                        e('select', { value: logoIcon, onChange: (e) => setLogoIcon(e.target.value), style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)' } },
-                            e('option', { value: '★' }, 'Star'),
-                            e('option', { value: '⚡' }, 'Energy'),
-                            e('option', { value: '💎' }, 'Diamond'),
-                            e('option', { value: '🚀' }, 'Startup'),
-                            e('option', { value: '🔥' }, 'Trend'),
-                            e('option', { value: '👑' }, 'Premium')
-                        )
-                    ),
-
-                    // Font Selector
-                    e('select', { value: logoFont, onChange: (e) => setLogoFont(e.target.value), style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)' } },
-                        e('option', { value: 'Inter' }, 'Modern Sans'),
-                        e('option', { value: 'Georgia' }, 'Classic Serif'),
-                        e('option', { value: 'Courier New' }, 'Tech Mono'),
-                        e('option', { value: 'Impact' }, 'Bold Impact')
-                    ),
-
-                    // Color Pickers
-                    e('div', { className: 'grid-2' },
-                        e('div', null,
-                            e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Text Color'),
-                            e('input', { type: 'color', value: logoColor, onChange: (e) => setLogoColor(e.target.value), style: { height: '40px' } })
-                        ),
-                        e('div', null,
-                            e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Backdrop'),
-                            e('input', { type: 'color', value: logoBgColor, onChange: (e) => setLogoBgColor(e.target.value), style: { height: '40px' } })
-                        )
-                    ),
-
-                    e('select', { value: logoShape, onChange: (e) => setLogoShape(e.target.value), style: { padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } },
-                        e('option', { value: 'square' }, 'Square Style'),
-                        e('option', { value: 'circle' }, 'Circular Style')
-                    )
-                ),
-
-                e('button', {
-                    className: 'btn btn-primary',
-                    onClick: () => alert('Advanced Export logic triggered! Generating High-Res Logo...'),
-                    style: { background: 'linear-gradient(45deg, #3b82f6, #2563eb)', color: '#fff', padding: '15px', width: '100%', border: 'none', borderRadius: '10px', fontWeight: 'bold', fontSize: '14px', boxShadow: '0 4px 15px rgba(37, 99, 235, 0.4)' }
-                }, '🚀 Download 4K Logo')
+            e('select', { value: logoShape, onChange: (e) => setLogoShape(e.target.value), style: { padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } },
+                e('option', { value: 'square' }, 'Square Style'),
+                e('option', { value: 'circle' }, 'Circular Style')
             )
         ),
 
+        // --- WORKING DOWNLOAD BUTTON ---
+        e('button', {
+            className: 'btn btn-primary',
+            onClick: () => {
+                const element = document.getElementById('finalLogo');
+                if (typeof html2canvas === 'undefined') {
+                    alert('Bhai, index.html mein library missing hai! Please Step 1 follow karo.');
+                    return;
+                }
+                html2canvas(element, { 
+                    backgroundColor: null, // Transparent background support
+                    scale: 3, // High quality 4K output
+                    useCORS: true 
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `${logoText || 'logo'}-resume-pro.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                });
+            },
+            style: { background: 'linear-gradient(45deg, #3b82f6, #2563eb)', color: '#fff', padding: '15px', width: '100%', border: 'none', borderRadius: '10px', fontWeight: 'bold', fontSize: '14px', boxShadow: '0 4px 15px rgba(37, 99, 235, 0.4)', cursor: 'pointer' }
+        }, '🚀 Download 4K Logo')
+    )
+),
         currentPage === 'home' && e('div', { style: { textAlign: 'center', padding: '40px 0', background: 'transparent', marginTop: '0' } },
             e('button', { className: 'btn btn-primary', onClick: () => window.print(), style: { margin: '0 auto', background: '#3b82f6', color: '#fff', padding: '12px 30px', border: 'none', borderRadius: '5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)' } }, '💾 Download My Resume')
         ),
