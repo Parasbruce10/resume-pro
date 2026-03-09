@@ -2,21 +2,30 @@ const e = React.createElement;
 const { useState, useEffect } = React;
 
 const App = () => {
-    const [currentPage, setCurrentPage] = useState('home'); 
+    const [currentPage, setCurrentPage] = useState('home');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState('modern'); // Template state
-    
+
     const initialState = {
         name: '', title: '', email: '', phone: '', city: '', address: '',
-        summary: '', skills: '', education: '', experience: '', 
-        image: null 
+        summary: '', skills: '', education: '', experience: '',
+        image: null
     };
-    
+
     const [data, setData] = useState(initialState);
     const [isDarkMode, setIsDarkMode] = useState(true);
     const [isConverting, setIsConverting] = useState(false);
-const [bannerText, setBannerText] = useState('Open for Opportunities');
-const [bannerColor, setBannerColor] = useState('#3b82f6');
+    const [bannerText, setBannerText] = useState('Open for Opportunities');
+    const [bannerColor, setBannerColor] = useState('#3b82f6');
+    const [logoText, setLogoText] = useState('MY LOGO');
+    const [logoColor, setLogoColor] = useState('#ffffff');
+    const [logoBgColor, setLogoBgColor] = useState('#3b82f6');
+    const [logoShape, setLogoShape] = useState('square');
+    const [logoFont, setLogoFont] = useState('Inter'); // Font ke liye
+    const [logoIcon, setLogoIcon] = useState('★'); // Icon ke liye
+    const [bannerTagline, setBannerTagline] = useState('Professional Profile');
+    const [bannerGradient, setBannerGradient] = useState('linear-gradient(135deg, #3b82f6, #1d4ed8)');
+    const [bannerPattern, setBannerPattern] = useState('dots'); // dots, lines, none
 
     const update = (key, val) => setData({ ...data, [key]: val });
 
@@ -38,7 +47,7 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
             const arrayBuffer = e.target.result;
             try {
                 const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
-                const html = result.value; 
+                const html = result.value;
                 const opt = {
                     margin: 1,
                     filename: 'converted-document.pdf',
@@ -72,19 +81,44 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
             const canvas = document.getElementById('bannerCanvas');
             if (canvas) {
                 const ctx = canvas.getContext('2d');
-                ctx.fillStyle = bannerColor;
+
+                // 1. Advanced Background (Gradient)
+                const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                grd.addColorStop(0, bannerColor);
+                grd.addColorStop(1, '#000000'); // Dark depth effect
+                ctx.fillStyle = grd;
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = 'rgba(255,255,255,0.1)';
-                ctx.beginPath(); ctx.arc(1500, 50, 200, 0, Math.PI * 2); ctx.fill();
+
+                // 2. Patterns (Decorative Elements)
+                if (bannerPattern === 'dots') {
+                    ctx.fillStyle = 'rgba(255,255,255,0.1)';
+                    for (let i = 0; i < canvas.width; i += 40) {
+                        for (let j = 0; j < canvas.height; j += 40) {
+                            ctx.beginPath(); ctx.arc(i, j, 2, 0, Math.PI * 2); ctx.fill();
+                        }
+                    }
+                }
+
+                // 3. Branding Text (Modern Look)
                 ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 80px Inter, Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText(bannerText, canvas.width / 2, canvas.height / 2 + 25);
-                ctx.font = '30px Inter';
-                ctx.fillText('RESUME.PRO', canvas.width / 2, 350);
+
+                // Main Text
+                ctx.font = 'bold 90px Inter, system-ui';
+                ctx.fillText(bannerText.toUpperCase(), canvas.width / 2, canvas.height / 2);
+
+                // Tagline
+                ctx.font = '300 40px Inter';
+                ctx.fillStyle = 'rgba(255,255,255,0.8)';
+                ctx.fillText(bannerTagline, canvas.width / 2, canvas.height / 2 + 70);
+
+                // Corner Logo
+                ctx.font = 'bold 25px Inter';
+                ctx.fillStyle = 'rgba(255,255,255,0.3)';
+                ctx.fillText('DESIGNED BY RESUME.PRO', canvas.width - 250, canvas.height - 40);
             }
         }
-    }, [bannerText, bannerColor, currentPage]);
+    }, [bannerText, bannerColor, bannerTagline, bannerPattern, currentPage]);
 
     const styles = `
         :root {
@@ -274,14 +308,18 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
 
     return e('div', { style: { display: 'flex', flexDirection: 'column', minHeight: '100vh' } },
         e('style', null, styles),
-        
+
         e('div', { className: 'mobile-menu' },
             e('div', { className: 'close-menu', onClick: () => setIsMenuOpen(false) }, '✕'),
-            e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, style: {fontSize: '18px'}, onClick: () => navigate('home') }, 'Resume Maker'),
-            e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, style: {fontSize: '18px'}, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
-            e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, style: {fontSize: '18px'}, onClick: () => navigate('banner') }, 'LinkedIn Banner'),
-            e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, style: {fontSize: '18px'}, onClick: () => navigate('about') }, 'About'),
-            e('button', { className: 'btn btn-theme', style: {marginTop: '20px', display: 'flex', justifyContent: 'center'}, onClick: () => setIsDarkMode(!isDarkMode) }, isDarkMode ? '☀️ Light' : '🌙 Dark')
+            e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('home') }, 'Resume Maker'),
+            e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
+            e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('banner') }, 'LinkedIn Banner'),
+
+            // NAYA LOGO LINK (Mobile Ke Liye)
+            e('div', { className: `nav-link ${currentPage === 'logo' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('logo') }, 'Logo Maker'),
+
+            e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('about') }, 'About'),
+            e('button', { className: 'btn btn-theme', style: { marginTop: '20px', display: 'flex', justifyContent: 'center' }, onClick: () => setIsDarkMode(!isDarkMode) }, isDarkMode ? '☀️ Light' : '🌙 Dark')
         ),
 
         e('div', { className: 'header-wrapper' },
@@ -290,11 +328,11 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
                 e('div', { className: 'nav-links' },
                     e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, onClick: () => navigate('home') }, 'Resume Maker'),
                     e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
-                    // Isay andar daal diya aur style hata diya:
-                    e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, onClick: () => navigate('banner') }, 'LinkedIn Banner') ,
+                    e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, onClick: () => navigate('banner') }, 'LinkedIn Banner'),
+                    e('div', { className: `nav-link ${currentPage === 'logo' ? 'active' : ''}`, onClick: () => navigate('logo') }, 'Logo Maker'),
                     e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, onClick: () => navigate('about') }, 'About')
                 ),
-                
+
                 e('div', { className: 'nav-btns' },
                     e('button', { className: 'btn btn-theme', onClick: () => setIsDarkMode(!isDarkMode) }, isDarkMode ? '☀️' : '🌙'),
                     e('div', { className: 'hamburger', onClick: () => setIsMenuOpen(true) },
@@ -303,9 +341,9 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
                 )
             )
         ),
-        
+
         e('div', { className: 'app-container' },
-            currentPage === 'home' && e('div', { className: 'main-layout' }, 
+            currentPage === 'home' && e('div', { className: 'main-layout' },
                 e('div', { className: 'form-side' },
                     e('div', { className: 'section-title' }, 'Photo'),
                     e('div', { className: 'file-upload-wrapper' },
@@ -331,7 +369,7 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
                     e('textarea', { rows: 4, placeholder: 'Work Experience...', onChange: (e) => update('experience', e.target.value) }),
                     e('input', { placeholder: 'Education', onChange: (e) => update('education', e.target.value) }),
                     e('input', { placeholder: 'Skills', onChange: (e) => update('skills', e.target.value) })
-                ), 
+                ),
 
                 e('div', { className: 'preview-side' },
                     // TEMPLATE SWITCHER
@@ -347,7 +385,7 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
                             e('div', null,
                                 e('h1', { style: { margin: 0, fontSize: '24px' } }, data.name || 'YOUR NAME'),
                                 e('p', { style: { margin: '2px 0', color: '#334155', fontWeight: '600', fontSize: '14px' } }, data.title || 'Title'),
-                                e('div', { style: { fontSize: '10px', color: '#64748b', marginTop: '5px' } }, 
+                                e('div', { style: { fontSize: '10px', color: '#64748b', marginTop: '5px' } },
                                     data.email && `${data.email} | `,
                                     data.phone && `${data.phone} | `,
                                     (data.city || data.address) && `${data.city} ${data.address}`
@@ -374,177 +412,232 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
                 )
             ),
 
-            currentPage === 'wordToPdf' && e('div', { 
-    style: {
-        textAlign: 'center', 
-        padding: '20px 15px', // Top padding mobile ke hisab se set ki
-        minHeight: '70vh', 
-        display: 'flex', 
-        flexDirection: 'column',
-        gap: '20px' // Sab items ke darmiyan barabar gap rakhega
-    } 
-},
-    e('h2', { 
-        style: { 
-            marginTop: '20px', // Heading ko header se thora neechay kiya
-            marginBottom: '10px' 
-        } 
-    }, 'Convert Word to PDF'),
-    
-    // 1. Upar Wala Dabba (Ab spacing ke sath)
-    e('label', { 
-        className: 'file-upload-wrapper', 
-        style: { 
-            maxWidth: '400px', 
-            margin: '10px auto', // Auto margin centered rakhne ke liye
-            width: '90%', // Mobile par side se thori jagah chori
-            display: 'block',
-            padding: '40px 20px', // Dabbe ke andar ki space
-            cursor: 'pointer' 
-        } 
-    },
-        e('div', { style: { fontSize: '15px' } }, isConverting ? '⏳ Converting...' : '📂 Choose Word File'),
-        e('input', { 
-            type: 'file', 
-            accept: '.docx', 
-            onChange: handleWordToPdf, 
-            style: { display: 'none' } 
-        })
-    ),
+            currentPage === 'wordToPdf' && e('div', {
+                style: {
+                    textAlign: 'center',
+                    padding: '20px 15px', // Top padding mobile ke hisab se set ki
+                    minHeight: '70vh',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px' // Sab items ke darmiyan barabar gap rakhega
+                }
+            },
+                e('h2', {
+                    style: {
+                        marginTop: '20px', // Heading ko header se thora neechay kiya
+                        marginBottom: '10px'
+                    }
+                }, 'Convert Word to PDF'),
 
-    // 2. Neechay Wala Button (Bilkul same position par)
-    e('div', { 
-        style: { 
-            textAlign: 'center', 
-            padding: '40px 0', 
-            marginTop: 'auto' // Isay hamesha footer ke paas rakhega
-        } 
-    },
-        e('label', { 
-            className: 'btn btn-primary', 
-            style: { 
-                margin: '0 auto', 
-                background: '#3b82f6', 
-                color: '#fff', 
-                padding: '12px 30px', 
-                border: 'none', 
-                borderRadius: '5px', 
-                fontSize: '14px',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
-                width: 'fit-content'
-            } 
-        }, 
-            isConverting ? '⏳ Converting...' : '📄 Convert & Download PDF',
-            e('input', { 
-                type: 'file', 
-                accept: '.docx', 
-                onChange: handleWordToPdf, 
-                style: { display: 'none' } 
-            })
-        )
-    )
-),
-
-            currentPage === 'about' && e('div', { style: {textAlign:'left', maxWidth:'800px', margin:'0 auto', padding:'50px 20px', minHeight: '60vh', lineHeight:'1.6'} },
-                e('h1', { style: {textAlign:'center', color:'var(--accent)'} }, 'Welcome to Resume Pro'),
-                e('p', null, 'Your all-in-one solution for professional career branding. We believe that a great career starts with a great first impression, and we are here to help you make it count.'),
-                e('h3', { style: {marginTop:'30px', color:'var(--accent)'} }, 'What We Offer:'),
-                e('ul', null, 
-                    e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Instant Resume Builder: '), 'No more struggling with formatting. Simply fill out our intuitive form, and our system will generate a polished, professional CV tailored to industry standards.'),
-                    e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Seamless File Conversion: '), 'We provide a built-in Word-to-PDF converter, ensuring your documents are always in the right format for any job application.'),
-                    e('li', { style: {marginBottom:'10px'} }, e('strong', null, 'Professional Templates: '), 'Choose from a variety of layouts designed to catch the eye of recruiters and hiring managers.')
+                // 1. Upar Wala Dabba (Ab spacing ke sath)
+                e('label', {
+                    className: 'file-upload-wrapper',
+                    style: {
+                        maxWidth: '400px',
+                        margin: '10px auto', // Auto margin centered rakhne ke liye
+                        width: '90%', // Mobile par side se thori jagah chori
+                        display: 'block',
+                        padding: '40px 20px', // Dabbe ke andar ki space
+                        cursor: 'pointer'
+                    }
+                },
+                    e('div', { style: { fontSize: '15px' } }, isConverting ? '⏳ Converting...' : '📂 Choose Word File'),
+                    e('input', {
+                        type: 'file',
+                        accept: '.docx',
+                        onChange: handleWordToPdf,
+                        style: { display: 'none' }
+                    })
                 ),
-                e('h3', { style: {marginTop:'30px', color:'var(--accent)'} }, 'Our Vision:'),
+
+                // 2. Neechay Wala Button (Bilkul same position par)
+                e('div', {
+                    style: {
+                        textAlign: 'center',
+                        padding: '40px 0',
+                        marginTop: 'auto' // Isay hamesha footer ke paas rakhega
+                    }
+                },
+                    e('label', {
+                        className: 'btn btn-primary',
+                        style: {
+                            margin: '0 auto',
+                            background: '#3b82f6',
+                            color: '#fff',
+                            padding: '12px 30px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            fontSize: '14px',
+                            fontWeight: 'bold',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
+                            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+                            width: 'fit-content'
+                        }
+                    },
+                        isConverting ? '⏳ Converting...' : '📄 Convert & Download PDF',
+                        e('input', {
+                            type: 'file',
+                            accept: '.docx',
+                            onChange: handleWordToPdf,
+                            style: { display: 'none' }
+                        })
+                    )
+                )
+            ),
+
+            currentPage === 'about' && e('div', { style: { textAlign: 'left', maxWidth: '800px', margin: '0 auto', padding: '50px 20px', minHeight: '60vh', lineHeight: '1.6' } },
+                e('h1', { style: { textAlign: 'center', color: 'var(--accent)' } }, 'Welcome to Resume Pro'),
+                e('p', null, 'Your all-in-one solution for professional career branding. We believe that a great career starts with a great first impression, and we are here to help you make it count.'),
+                e('h3', { style: { marginTop: '30px', color: 'var(--accent)' } }, 'What We Offer:'),
+                e('ul', null,
+                    e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Instant Resume Builder: '), 'No more struggling with formatting. Simply fill out our intuitive form, and our system will generate a polished, professional CV tailored to industry standards.'),
+                    e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Seamless File Conversion: '), 'We provide a built-in Word-to-PDF converter, ensuring your documents are always in the right format for any job application.'),
+                    e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Professional Templates: '), 'Choose from a variety of layouts designed to catch the eye of recruiters and hiring managers.')
+                ),
+                e('h3', { style: { marginTop: '30px', color: 'var(--accent)' } }, 'Our Vision:'),
                 e('p', null, 'At Resume Pro, we are constantly evolving. While we currently focus on making resume creation easy and efficient, we are committed to adding more advanced features in the future to help you navigate your professional journey with confidence.')
             )
         ),
-currentPage === 'banner' && e('div', { style: {textAlign:'center', maxWidth:'900px', margin:'0 auto', padding:'0 15px 40px', minHeight: 'auto'} },
-                e('h2', {style: {color: 'var(--accent)', marginBottom: '5px' , marginTop: '0px',   // Heading ko bilkul upar chipka diya
-            fontSize: '24px'}}, 'LinkedIn Banner Maker'),
-                e('p', {style: {marginBottom: '20px', 
-            fontSize: '14px', 
-            opacity: 0.8}}, 'Create a professional banner for your profile.'),
+        currentPage === 'banner' && e('div', { style: { textAlign: 'center', maxWidth: '900px', margin: '0 auto', padding: '0 15px 100px' } },
+            e('h2', { style: { color: 'var(--accent)', marginBottom: '5px', fontSize: '28px', fontWeight: '800' } }, 'Premium Banner Studio'),
+            e('p', { style: { marginBottom: '30px', fontSize: '14px', opacity: 0.7 } }, 'Create high-impact LinkedIn banners with patterns and gradients.'),
+
+            e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px', background: 'var(--card-bg)', padding: '25px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' } },
+
+                // Advanced Canvas Preview
+                e('canvas', {
+                    id: 'bannerCanvas',
+                    width: 1584,
+                    height: 396,
+                    style: { width: '100%', borderRadius: '12px', border: '2px solid var(--border)', boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }
+                }),
+
+                // Controls Grid
                 e('div', { style: { display: 'flex', flexDirection: 'column', gap: '15px' } },
-                    
-                    // Canvas jahan image banegi
-                    e('canvas', {
-                        id: 'bannerCanvas',
-                        width: 1584,
-                        height: 396,
-                        style: { width: '100%', borderRadius: '8px', border: '1px solid var(--border)', background: bannerColor , boxShadow: '0 5px 15px rgba(0,0,0,0.1)' }
-                    }),
-                    
-                 // Inputs Grid
-        e('div', { className: 'grid-2', style: { marginTop: '10px' } },
-            e('input', { 
-                placeholder: 'Banner Text...', 
-                value: bannerText,
-                style: { marginBottom: '0' },
-                onChange: (e) => setBannerText(e.target.value) 
-            }),
-            e('input', { 
-                type: 'color', 
-                value: bannerColor, 
-                onChange: (e) => setBannerColor(e.target.value),
-                style: { height: '45px', cursor: 'pointer', padding: '2px', marginBottom: '0' }
-            })
+                    e('div', { className: 'grid-2' },
+                        e('input', { placeholder: 'Headline (e.g. Software Engineer)', value: bannerText, onChange: (e) => setBannerText(e.target.value) }),
+                        e('input', { placeholder: 'Tagline (e.g. Building Scalable Apps)', value: bannerTagline, onChange: (e) => setBannerTagline(e.target.value) })
+                    ),
+
+                    e('div', { className: 'grid-2' },
+                        e('div', null,
+                            e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Pick Theme Color'),
+                            e('input', { type: 'color', value: bannerColor, onChange: (e) => setBannerColor(e.target.value), style: { height: '45px', cursor: 'pointer' } })
+                        ),
+                        e('div', null,
+                            e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Background Pattern'),
+                            e('select', {
+                                value: bannerPattern,
+                                onChange: (e) => setBannerPattern(e.target.value),
+                                style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)', width: '100%' }
+                            },
+                                e('option', { value: 'dots' }, 'Modern Dots'),
+                                e('option', { value: 'none' }, 'Clean Solid')
+                            )
+                        )
+                    )
+                ),
+
+                e('button', {
+                    className: 'btn btn-primary',
+                    onClick: downloadBanner,
+                    style: { margin: '10px auto 0', background: 'linear-gradient(45deg, #3b82f6, #2563eb)', color: '#fff', padding: '15px 50px', border: 'none', borderRadius: '10px', fontWeight: '800', fontSize: '14px', width: '100%', boxShadow: '0 4px 15px rgba(37, 99, 235, 0.4)' }
+                }, '🚀 Export Ultra-HD Banner')
+            )
+        ), // <-- YAHAN BANNER WALA BLOCK CLOSE HO GAYA HAI (Jo pehle open reh gaya tha)
+
+        currentPage === 'logo' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
+            e('h2', { style: { color: 'var(--accent)', marginBottom: '10px' } }, 'Advanced Logo Designer'),
+            e('p', { style: { fontSize: '13px', opacity: 0.7, marginBottom: '20px' } }, 'Design professional brand icons in seconds'),
+
+            e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
+
+                // --- STYLISH PREVIEW BOX ---
+                e('div', {
+                    id: 'finalLogo', style: {
+                        width: '220px', height: '220px',
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                        backgroundColor: logoBgColor,
+                        borderRadius: logoShape === 'circle' ? '50%' : '15px',
+                        color: logoColor,
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                        transition: '0.3s'
+                    }
+                },
+                    e('div', { style: { fontSize: '50px', marginBottom: '5px' } }, logoIcon), // Icon layer
+                    e('div', {
+                        style: {
+                            fontSize: '22px',
+                            fontWeight: '900',
+                            fontFamily: logoFont, // Dynamic Font
+                            letterSpacing: '1px',
+                            textTransform: 'uppercase'
+                        }
+                    }, logoText) // Text layer
+                ),
+
+                // --- CONTROLS ---
+                e('div', { style: { width: '100%', display: 'flex', flexDirection: 'column', gap: '15px' } },
+
+                    // Text & Icon Inputs
+                    e('div', { className: 'grid-2' },
+                        e('input', { placeholder: 'Brand Name', value: logoText, onChange: (e) => setLogoText(e.target.value) }),
+                        e('select', { value: logoIcon, onChange: (e) => setLogoIcon(e.target.value), style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)' } },
+                            e('option', { value: '★' }, 'Star'),
+                            e('option', { value: '⚡' }, 'Energy'),
+                            e('option', { value: '💎' }, 'Diamond'),
+                            e('option', { value: '🚀' }, 'Startup'),
+                            e('option', { value: '🔥' }, 'Trend'),
+                            e('option', { value: '👑' }, 'Premium')
+                        )
+                    ),
+
+                    // Font Selector
+                    e('select', { value: logoFont, onChange: (e) => setLogoFont(e.target.value), style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)' } },
+                        e('option', { value: 'Inter' }, 'Modern Sans'),
+                        e('option', { value: 'Georgia' }, 'Classic Serif'),
+                        e('option', { value: 'Courier New' }, 'Tech Mono'),
+                        e('option', { value: 'Impact' }, 'Bold Impact')
+                    ),
+
+                    // Color Pickers
+                    e('div', { className: 'grid-2' },
+                        e('div', null,
+                            e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Text Color'),
+                            e('input', { type: 'color', value: logoColor, onChange: (e) => setLogoColor(e.target.value), style: { height: '40px' } })
+                        ),
+                        e('div', null,
+                            e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Backdrop'),
+                            e('input', { type: 'color', value: logoBgColor, onChange: (e) => setLogoBgColor(e.target.value), style: { height: '40px' } })
+                        )
+                    ),
+
+                    e('select', { value: logoShape, onChange: (e) => setLogoShape(e.target.value), style: { padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } },
+                        e('option', { value: 'square' }, 'Square Style'),
+                        e('option', { value: 'circle' }, 'Circular Style')
+                    )
+                ),
+
+                e('button', {
+                    className: 'btn btn-primary',
+                    onClick: () => alert('Advanced Export logic triggered! Generating High-Res Logo...'),
+                    style: { background: 'linear-gradient(45deg, #3b82f6, #2563eb)', color: '#fff', padding: '15px', width: '100%', border: 'none', borderRadius: '10px', fontWeight: 'bold', fontSize: '14px', boxShadow: '0 4px 15px rgba(37, 99, 235, 0.4)' }
+                }, '🚀 Download 4K Logo')
+            )
         ),
-        
-        // Download Button
-        e('button', { 
-            className: 'btn btn-primary', 
-            onClick: downloadBanner,
-            style: { 
-                margin: '10px auto 0', 
-                background: '#3b82f6', 
-                color: '#fff', 
-                padding: '12px 35px', 
-                border: 'none', 
-                borderRadius: '5px',
-                fontWeight: 'bold'
-            } 
-        }, '📥 Download Banner Image')
-    )
-),
-        currentPage === 'home' && e('div', { 
-    style: { 
-        textAlign: 'center', 
-        padding: '40px 0',  // Sirf upar neechay se jagah
-        background: 'transparent', // Background khatam
-        marginTop: '0' 
-    } 
-},
-    e('button', { 
-        className: 'btn btn-primary', 
-        onClick: () => window.print(),
-        style: { 
-            margin: '0 auto', 
-            background: '#3b82f6', 
-            color: '#fff', 
-            padding: '12px 30px', 
-            border: 'none', 
-            borderRadius: '5px', 
-            fontSize: '14px',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)' // Thora sa utha hua lagega
-        } 
-    }, '💾 Download My Resume')
-),
+
+        currentPage === 'home' && e('div', { style: { textAlign: 'center', padding: '40px 0', background: 'transparent', marginTop: '0' } },
+            e('button', { className: 'btn btn-primary', onClick: () => window.print(), style: { margin: '0 auto', background: '#3b82f6', color: '#fff', padding: '12px 30px', border: 'none', borderRadius: '5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)' } }, '💾 Download My Resume')
+        ),
 
         e('footer', { className: 'footer' },
             e('div', null,
                 e('div', { style: { fontWeight: '800', color: '#3b82f6' } }, 'RESUME.PRO'),
-                e('p', { className: 'footer-text', style: { fontSize: '14px', fontWeight: '500', marginTop: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' } }, 
+                e('p', { className: 'footer-text', style: { fontSize: '14px', fontWeight: '500', marginTop: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' } },
                     'Created with ', e('span', { style: { color: '#ef4444', fontSize: '18px' } }, '♥'), ' by ', e('span', { style: { color: 'var(--accent)', fontWeight: '700' } }, 'Paras')
                 ),
                 e('p', { className: 'footer-text' }, `© ${new Date().getFullYear()} All Rights Reserved`)
