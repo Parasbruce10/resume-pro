@@ -377,37 +377,51 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
             currentPage === 'wordToPdf' && e('div', { 
     style: {
         textAlign: 'center', 
-        padding: '50px 20px', 
-        minHeight: '60vh', 
+        padding: '20px 15px', // Top padding mobile ke hisab se set ki
+        minHeight: '70vh', 
         display: 'flex', 
-        flexDirection: 'column' // Iski wajah se button automatically neechay jayega
+        flexDirection: 'column',
+        gap: '20px' // Sab items ke darmiyan barabar gap rakhega
     } 
 },
-    e('h2', null, 'Convert Word to PDF'),
-    e('div', { className: 'file-upload-wrapper', style: { maxWidth: '400px', margin: '20px auto', width: '100%' } },
-        e('div', null, isConverting ? '⏳ Converting...' : '📂 Choose Word File'),
+    e('h2', { 
+        style: { 
+            marginTop: '20px', // Heading ko header se thora neechay kiya
+            marginBottom: '10px' 
+        } 
+    }, 'Convert Word to PDF'),
+    
+    // 1. Upar Wala Dabba (Ab spacing ke sath)
+    e('label', { 
+        className: 'file-upload-wrapper', 
+        style: { 
+            maxWidth: '400px', 
+            margin: '10px auto', // Auto margin centered rakhne ke liye
+            width: '90%', // Mobile par side se thori jagah chori
+            display: 'block',
+            padding: '40px 20px', // Dabbe ke andar ki space
+            cursor: 'pointer' 
+        } 
+    },
+        e('div', { style: { fontSize: '15px' } }, isConverting ? '⏳ Converting...' : '📂 Choose Word File'),
         e('input', { 
-            id: 'pdf-uploader', // Ye ID button ko file box ke sath jor rahi hai
             type: 'file', 
             accept: '.docx', 
             onChange: handleWordToPdf, 
-            style: { opacity: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', cursor: 'pointer' } 
+            style: { display: 'none' } 
         })
     ),
 
-    // 👇 YE RAHA TERA SAME-TO-SAME BUTTON 👇
+    // 2. Neechay Wala Button (Bilkul same position par)
     e('div', { 
         style: { 
             textAlign: 'center', 
             padding: '40px 0', 
-            background: 'transparent', 
-            marginTop: 'auto' // Ye isay dhakka de kar bilkul footer ke paas le jayega
+            marginTop: 'auto' // Isay hamesha footer ke paas rakhega
         } 
     },
-        e('button', { 
+        e('label', { 
             className: 'btn btn-primary', 
-            // Button par click karne se hidden file input khulega
-            onClick: () => document.getElementById('pdf-uploader').click(), 
             style: { 
                 margin: '0 auto', 
                 background: '#3b82f6', 
@@ -420,10 +434,20 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '8px',
-                boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
+                boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+                width: 'fit-content'
             } 
-        }, isConverting ? '⏳ Converting...' : '📄 Convert & Download PDF')
+        }, 
+            isConverting ? '⏳ Converting...' : '📄 Convert & Download PDF',
+            e('input', { 
+                type: 'file', 
+                accept: '.docx', 
+                onChange: handleWordToPdf, 
+                style: { display: 'none' } 
+            })
+        )
     )
 ),
 
