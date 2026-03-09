@@ -496,6 +496,14 @@ const App = () => {
                 e('ul', null,
                     e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Instant Resume Builder: '), 'No more struggling with formatting. Simply fill out our intuitive form, and our system will generate a polished, professional CV tailored to industry standards.'),
                     e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Seamless File Conversion: '), 'We provide a built-in Word-to-PDF converter, ensuring your documents are always in the right format for any job application.'),
+                    e('li', { style: { marginBottom: '10px' } },
+                        e('strong', null, 'LinkedIn Banner Designer: '),
+                        'Elevate your professional profile with our high-impact banner maker. Create custom, high-definition LinkedIn covers with modern patterns and gradients to stand out to recruiters.'
+                    ),
+                    e('li', { style: { marginBottom: '10px' } },
+                        e('strong', null, 'Logo Designer: '),
+                        'Build your personal brand from scratch. Our intuitive logo maker allows you to design minimalist and professional logos with custom icons, fonts, and color schemes in seconds.'
+                    ),
                     e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Professional Templates: '), 'Choose from a variety of layouts designed to catch the eye of recruiters and hiring managers.')
                 ),
                 e('h3', { style: { marginTop: '30px', color: 'var(--accent)' } }, 'Our Vision:'),
@@ -648,3 +656,4 @@ const App = () => {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(e(App));
+
