@@ -374,13 +374,58 @@ const [bannerColor, setBannerColor] = useState('#3b82f6');
                 )
             ),
 
-            currentPage === 'wordToPdf' && e('div', { style: {textAlign:'center', padding:'50px 20px', minHeight: '60vh'} },
-                e('h2', null, 'Convert Word to PDF'),
-                e('div', { className: 'file-upload-wrapper', style: { maxWidth: '400px', margin: '20px auto' } },
-                    e('div', null, isConverting ? '⏳ Converting...' : '📂 Choose Word File'),
-                    e('input', { type: 'file', accept: '.docx', onChange: handleWordToPdf, style: { opacity: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', cursor: 'pointer' } })
-                )
-            ),
+            currentPage === 'wordToPdf' && e('div', { 
+    style: {
+        textAlign: 'center', 
+        padding: '50px 20px', 
+        minHeight: '60vh', 
+        display: 'flex', 
+        flexDirection: 'column' // Iski wajah se button automatically neechay jayega
+    } 
+},
+    e('h2', null, 'Convert Word to PDF'),
+    e('div', { className: 'file-upload-wrapper', style: { maxWidth: '400px', margin: '20px auto', width: '100%' } },
+        e('div', null, isConverting ? '⏳ Converting...' : '📂 Choose Word File'),
+        e('input', { 
+            id: 'pdf-uploader', // Ye ID button ko file box ke sath jor rahi hai
+            type: 'file', 
+            accept: '.docx', 
+            onChange: handleWordToPdf, 
+            style: { opacity: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', cursor: 'pointer' } 
+        })
+    ),
+
+    // 👇 YE RAHA TERA SAME-TO-SAME BUTTON 👇
+    e('div', { 
+        style: { 
+            textAlign: 'center', 
+            padding: '40px 0', 
+            background: 'transparent', 
+            marginTop: 'auto' // Ye isay dhakka de kar bilkul footer ke paas le jayega
+        } 
+    },
+        e('button', { 
+            className: 'btn btn-primary', 
+            // Button par click karne se hidden file input khulega
+            onClick: () => document.getElementById('pdf-uploader').click(), 
+            style: { 
+                margin: '0 auto', 
+                background: '#3b82f6', 
+                color: '#fff', 
+                padding: '12px 30px', 
+                border: 'none', 
+                borderRadius: '5px', 
+                fontSize: '14px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
+            } 
+        }, isConverting ? '⏳ Converting...' : '📄 Convert & Download PDF')
+    )
+),
 
             currentPage === 'about' && e('div', { style: {textAlign:'left', maxWidth:'800px', margin:'0 auto', padding:'50px 20px', minHeight: '60vh', lineHeight:'1.6'} },
                 e('h1', { style: {textAlign:'center', color:'var(--accent)'} }, 'Welcome to Resume Pro'),
