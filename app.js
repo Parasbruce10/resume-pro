@@ -15,6 +15,8 @@ const App = () => {
     const [data, setData] = useState(initialState);
     const [isDarkMode, setIsDarkMode] = useState(true);
     const [isConverting, setIsConverting] = useState(false);
+const [bannerText, setBannerText] = useState('Open for Opportunities');
+const [bannerColor, setBannerColor] = useState('#3b82f6');
 
     const update = (key, val) => setData({ ...data, [key]: val });
 
@@ -56,6 +58,33 @@ const App = () => {
         };
         reader.readAsArrayBuffer(file);
     };
+
+    const downloadBanner = () => {
+        const canvas = document.getElementById('bannerCanvas');
+        const link = document.createElement('a');
+        link.download = 'linkedin-banner.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    };
+
+    useEffect(() => {
+        if (currentPage === 'banner') {
+            const canvas = document.getElementById('bannerCanvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = bannerColor;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(255,255,255,0.1)';
+                ctx.beginPath(); ctx.arc(1500, 50, 200, 0, Math.PI * 2); ctx.fill();
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 80px Inter, Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(bannerText, canvas.width / 2, canvas.height / 2 + 25);
+                ctx.font = '30px Inter';
+                ctx.fillText('RESUME.PRO', canvas.width / 2, 350);
+            }
+        }
+    }, [bannerText, bannerColor, currentPage]);
 
     const styles = `
         :root {
@@ -250,6 +279,7 @@ const App = () => {
             e('div', { className: 'close-menu', onClick: () => setIsMenuOpen(false) }, '✕'),
             e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, style: {fontSize: '18px'}, onClick: () => navigate('home') }, 'Resume Maker'),
             e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, style: {fontSize: '18px'}, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
+            e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, style: {fontSize: '18px'}, onClick: () => navigate('banner') }, 'LinkedIn Banner'),
             e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, style: {fontSize: '18px'}, onClick: () => navigate('about') }, 'About'),
             e('button', { className: 'btn btn-theme', style: {marginTop: '20px', display: 'flex', justifyContent: 'center'}, onClick: () => setIsDarkMode(!isDarkMode) }, isDarkMode ? '☀️ Light' : '🌙 Dark')
         ),
@@ -260,8 +290,11 @@ const App = () => {
                 e('div', { className: 'nav-links' },
                     e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, onClick: () => navigate('home') }, 'Resume Maker'),
                     e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
+                    // Isay andar daal diya aur style hata diya:
+                    e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, onClick: () => navigate('banner') }, 'LinkedIn Banner') ,
                     e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, onClick: () => navigate('about') }, 'About')
                 ),
+                
                 e('div', { className: 'nav-btns' },
                     e('button', { className: 'btn btn-theme', onClick: () => setIsDarkMode(!isDarkMode) }, isDarkMode ? '☀️' : '🌙'),
                     e('div', { className: 'hamburger', onClick: () => setIsMenuOpen(true) },
@@ -362,16 +395,82 @@ const App = () => {
                 e('p', null, 'At Resume Pro, we are constantly evolving. While we currently focus on making resume creation easy and efficient, we are committed to adding more advanced features in the future to help you navigate your professional journey with confidence.')
             )
         ),
-
-        currentPage === 'home' && e('div', { 
-            style: { textAlign: 'center', padding: '30px 20px', background: 'var(--card-bg)', borderTop: '1px solid var(--border)', marginTop: '20px' } 
-        },
-            e('button', { 
-                className: 'btn btn-primary', 
-                onClick: () => window.print(),
-                style: { padding: '15px 50px', fontSize: '14px', borderRadius: '50px', margin: '0 auto', display: 'block', background: '#3b82f6', color: '#fff', cursor: 'pointer', border: 'none', fontWeight: 'bold' } 
-            }, '💾 Download My Resume')
+currentPage === 'banner' && e('div', { style: {textAlign:'center', maxWidth:'900px', margin:'0 auto', padding:'0 15px 40px', minHeight: 'auto'} },
+                e('h2', {style: {color: 'var(--accent)', marginBottom: '5px' , marginTop: '0px',   // Heading ko bilkul upar chipka diya
+            fontSize: '24px'}}, 'LinkedIn Banner Maker'),
+                e('p', {style: {marginBottom: '20px', 
+            fontSize: '14px', 
+            opacity: 0.8}}, 'Create a professional banner for your profile.'),
+                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '15px' } },
+                    
+                    // Canvas jahan image banegi
+                    e('canvas', {
+                        id: 'bannerCanvas',
+                        width: 1584,
+                        height: 396,
+                        style: { width: '100%', borderRadius: '8px', border: '1px solid var(--border)', background: bannerColor , boxShadow: '0 5px 15px rgba(0,0,0,0.1)' }
+                    }),
+                    
+                 // Inputs Grid
+        e('div', { className: 'grid-2', style: { marginTop: '10px' } },
+            e('input', { 
+                placeholder: 'Banner Text...', 
+                value: bannerText,
+                style: { marginBottom: '0' },
+                onChange: (e) => setBannerText(e.target.value) 
+            }),
+            e('input', { 
+                type: 'color', 
+                value: bannerColor, 
+                onChange: (e) => setBannerColor(e.target.value),
+                style: { height: '45px', cursor: 'pointer', padding: '2px', marginBottom: '0' }
+            })
         ),
+        
+        // Download Button
+        e('button', { 
+            className: 'btn btn-primary', 
+            onClick: downloadBanner,
+            style: { 
+                margin: '10px auto 0', 
+                background: '#3b82f6', 
+                color: '#fff', 
+                padding: '12px 35px', 
+                border: 'none', 
+                borderRadius: '5px',
+                fontWeight: 'bold'
+            } 
+        }, '📥 Download Banner Image')
+    )
+),
+        currentPage === 'home' && e('div', { 
+    style: { 
+        textAlign: 'center', 
+        padding: '40px 0',  // Sirf upar neechay se jagah
+        background: 'transparent', // Background khatam
+        marginTop: '0' 
+    } 
+},
+    e('button', { 
+        className: 'btn btn-primary', 
+        onClick: () => window.print(),
+        style: { 
+            margin: '0 auto', 
+            background: '#3b82f6', 
+            color: '#fff', 
+            padding: '12px 30px', 
+            border: 'none', 
+            borderRadius: '5px', 
+            fontSize: '14px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)' // Thora sa utha hua lagega
+        } 
+    }, '💾 Download My Resume')
+),
 
         e('footer', { className: 'footer' },
             e('div', null,
