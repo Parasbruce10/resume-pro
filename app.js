@@ -317,8 +317,8 @@ const App = () => {
 
             // NAYA LOGO LINK (Mobile Ke Liye)
             e('div', { className: `nav-link ${currentPage === 'logo' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('logo') }, 'Logo Maker'),
-// Mobile menu ke links mein ye dalo:
-e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('privacy') }, 'Privacy Policy'),
+            // Mobile menu ke links mein ye dalo:
+            e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('privacy') }, 'Privacy Policy'),
             e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('about') }, 'About'),
             e('button', { className: 'btn btn-theme', style: { marginTop: '20px', display: 'flex', justifyContent: 'center' }, onClick: () => setIsDarkMode(!isDarkMode) }, isDarkMode ? '☀️ Light' : '🌙 Dark')
         ),
@@ -332,7 +332,7 @@ e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, s
                     e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, onClick: () => navigate('banner') }, 'LinkedIn Banner'),
                     e('div', { className: `nav-link ${currentPage === 'logo' ? 'active' : ''}`, onClick: () => navigate('logo') }, 'Logo Maker'),
                     // Nav links ke andar 'About' ke bilkul niche ye dalo:
-e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, onClick: () => navigate('privacy') }, 'Privacy Policy'),
+                    e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, onClick: () => navigate('privacy') }, 'Privacy Policy'),
                     e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, onClick: () => navigate('about') }, 'About')
                 ),
 
@@ -514,47 +514,47 @@ e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, o
             )
         ),
         // --- UPDATED PRIVACY POLICY SECTION (Manually Replace This Block) ---
-currentPage === 'privacy' && e('div', { style: { maxWidth: '850px', margin: '0 auto', padding: '40px 20px', minHeight: '70vh', lineHeight: '1.7' } },
-    e('h1', { style: { color: 'var(--accent)', textAlign: 'center', marginBottom: '10px', fontWeight: '800' } }, 'Privacy Policy for RESUME.PRO'),
-    e('p', { style: { textAlign: 'center', opacity: 0.6, marginBottom: '30px', fontSize: '14px' } }, 'Latest Update'),
-    
-    e('div', { style: { background: 'var(--card-bg)', padding: '35px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' } },
-        
-        e('p', { style: { marginBottom: '20px' } }, 'At ', e('strong', { style: { color: 'var(--accent)' } }, 'RESUME.PRO'), ', we prioritize the privacy of our visitors. This policy explains that we do not collect your personal data and how we process information locally.'),
+        currentPage === 'privacy' && e('div', { style: { maxWidth: '850px', margin: '0 auto', padding: '40px 20px', minHeight: '70vh', lineHeight: '1.7' } },
+            e('h1', { style: { color: 'var(--accent)', textAlign: 'center', marginBottom: '10px', fontWeight: '800' } }, 'Privacy Policy for RESUME.PRO'),
+            e('p', { style: { textAlign: 'center', opacity: 0.6, marginBottom: '30px', fontSize: '14px' } }, 'Latest Update'),
 
-        // Section 1
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '1. No Data Collection (Server-Side)'),
-        e('p', null, 'Unlike traditional platforms, RESUME.PRO does not have a backend server or database.'),
-        e('ul', { style: { paddingLeft: '20px', marginTop: '10px' } },
-            e('li', null, 'We do not collect, store, or share any personal information you enter.'),
-            e('li', null, 'All data stays within your own web browser and is cleared once you refresh or close the page.')
+            e('div', { style: { background: 'var(--card-bg)', padding: '35px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' } },
+
+                e('p', { style: { marginBottom: '20px' } }, 'At ', e('strong', { style: { color: 'var(--accent)' } }, 'RESUME.PRO'), ', we prioritize the privacy of our visitors. This policy explains that we do not collect your personal data and how we process information locally.'),
+
+                // Section 1
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '1. No Data Collection (Server-Side)'),
+                e('p', null, 'Unlike traditional platforms, RESUME.PRO does not have a backend server or database.'),
+                e('ul', { style: { paddingLeft: '20px', marginTop: '10px' } },
+                    e('li', null, 'We do not collect, store, or share any personal information you enter.'),
+                    e('li', null, 'All data stays within your own web browser and is cleared once you refresh or close the page.')
+                ),
+
+                // Section 2
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '2. Client-Side Processing'),
+                e('p', null, 'Your personal details (Name, Email, Experience, etc.) and uploaded images remain on your device. We use JavaScript and HTML5 to process files locally. Your files are ', e('strong', null, 'never uploaded'), ' to our servers.'),
+
+                // Section 3
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '3. Third-Party Libraries & Services'),
+                e('p', null, 'We utilize trusted open-source libraries (such as html2pdf, html2canvas, and mammoth.js) to provide design features. These libraries operate entirely within your browser.'),
+
+                // Section 4
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '4. Hosting & Analytics'),
+                e('p', null, 'Our website is hosted on Vercel. Vercel may collect standard log files (like IP addresses and browser types) for security monitoring, which is not linked to your personal data.'),
+
+                // Section 5
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '5. Cookies'),
+                e('p', null, 'We do not use cookies for tracking. Your browser may only use "Local Storage" to remember your theme preference (Dark/Light mode).'),
+
+                // Section 6
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '6. Children’s Information'),
+                e('p', null, 'RESUME.PRO is safe for all age groups. We do not knowingly solicit or store any information from minors.'),
+
+                // Section 7 & 8
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '7. Contact Us'),
+                e('p', null, 'If you have any questions about our Privacy Policy, do not hesitate to contact us through our website.')
+            )
         ),
-
-        // Section 2
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '2. Client-Side Processing'),
-        e('p', null, 'Your personal details (Name, Email, Experience, etc.) and uploaded images remain on your device. We use JavaScript and HTML5 to process files locally. Your files are ', e('strong', null, 'never uploaded'), ' to our servers.'),
-
-        // Section 3
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '3. Third-Party Libraries & Services'),
-        e('p', null, 'We utilize trusted open-source libraries (such as html2pdf, html2canvas, and mammoth.js) to provide design features. These libraries operate entirely within your browser.'),
-
-        // Section 4
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '4. Hosting & Analytics'),
-        e('p', null, 'Our website is hosted on Vercel. Vercel may collect standard log files (like IP addresses and browser types) for security monitoring, which is not linked to your personal data.'),
-
-        // Section 5
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '5. Cookies'),
-        e('p', null, 'We do not use cookies for tracking. Your browser may only use "Local Storage" to remember your theme preference (Dark/Light mode).'),
-
-        // Section 6
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '6. Children’s Information'),
-        e('p', null, 'RESUME.PRO is safe for all age groups. We do not knowingly solicit or store any information from minors.'),
-
-        // Section 7 & 8
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '7. Contact Us'),
-        e('p', null, 'If you have any questions about our Privacy Policy, do not hesitate to contact us through our website.')
-    )
-),
         currentPage === 'banner' && e('div', { style: { textAlign: 'center', maxWidth: '900px', margin: '0 auto', padding: '0 15px 100px' } },
             e('h2', { style: { color: 'var(--accent)', marginBottom: '5px', fontSize: '28px', fontWeight: '800' } }, 'Premium Banner Studio'),
             e('p', { style: { marginBottom: '30px', fontSize: '14px', opacity: 0.7 } }, 'Create high-impact LinkedIn banners with patterns and gradients.'),
@@ -603,99 +603,99 @@ currentPage === 'privacy' && e('div', { style: { maxWidth: '850px', margin: '0 a
             )
         ), // <-- YAHAN BANNER WALA BLOCK CLOSE HO GAYA HAI (Jo pehle open reh gaya tha)
 
-currentPage === 'logo' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
-    e('h2', { style: { color: 'var(--accent)', marginBottom: '10px' } }, 'Advanced Logo Designer'),
-    e('p', { style: { fontSize: '13px', opacity: 0.7, marginBottom: '20px' } }, 'Design professional brand icons in seconds'),
+        currentPage === 'logo' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
+            e('h2', { style: { color: 'var(--accent)', marginBottom: '10px' } }, 'Advanced Logo Designer'),
+            e('p', { style: { fontSize: '13px', opacity: 0.7, marginBottom: '20px' } }, 'Design professional brand icons in seconds'),
 
-    e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
+            e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
 
-        // --- STYLISH PREVIEW BOX (Design wahi hai) ---
-        e('div', {
-            id: 'finalLogo', 
-            style: {
-                width: '220px', height: '220px',
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                backgroundColor: logoBgColor,
-                borderRadius: logoShape === 'circle' ? '50%' : '15px',
-                color: logoColor,
-                boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-                transition: '0.3s'
-            }
-        },
-            e('div', { style: { fontSize: '50px', marginBottom: '5px' } }, logoIcon),
-            e('div', {
-                style: {
-                    fontSize: '22px',
-                    fontWeight: '900',
-                    fontFamily: logoFont,
-                    letterSpacing: '1px',
-                    textTransform: 'uppercase'
-                }
-            }, logoText)
-        ),
-
-        // --- CONTROLS ---
-        e('div', { style: { width: '100%', display: 'flex', flexDirection: 'column', gap: '15px' } },
-            e('div', { className: 'grid-2' },
-                e('input', { placeholder: 'Brand Name', value: logoText, onChange: (e) => setLogoText(e.target.value) }),
-                e('select', { value: logoIcon, onChange: (e) => setLogoIcon(e.target.value), style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)' } },
-                    e('option', { value: '★' }, 'Star'),
-                    e('option', { value: '⚡' }, 'Energy'),
-                    e('option', { value: '💎' }, 'Diamond'),
-                    e('option', { value: '🚀' }, 'Startup'),
-                    e('option', { value: '🔥' }, 'Trend'),
-                    e('option', { value: '👑' }, 'Premium')
-                )
-            ),
-
-            e('select', { value: logoFont, onChange: (e) => setLogoFont(e.target.value), style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)' } },
-                e('option', { value: 'Inter' }, 'Modern Sans'),
-                e('option', { value: 'Georgia' }, 'Classic Serif'),
-                e('option', { value: 'Courier New' }, 'Tech Mono'),
-                e('option', { value: 'Impact' }, 'Bold Impact')
-            ),
-
-            e('div', { className: 'grid-2' },
-                e('div', null,
-                    e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Text Color'),
-                    e('input', { type: 'color', value: logoColor, onChange: (e) => setLogoColor(e.target.value), style: { height: '40px' } })
+                // --- STYLISH PREVIEW BOX (Design wahi hai) ---
+                e('div', {
+                    id: 'finalLogo',
+                    style: {
+                        width: '220px', height: '220px',
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                        backgroundColor: logoBgColor,
+                        borderRadius: logoShape === 'circle' ? '50%' : '15px',
+                        color: logoColor,
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                        transition: '0.3s'
+                    }
+                },
+                    e('div', { style: { fontSize: '50px', marginBottom: '5px' } }, logoIcon),
+                    e('div', {
+                        style: {
+                            fontSize: '22px',
+                            fontWeight: '900',
+                            fontFamily: logoFont,
+                            letterSpacing: '1px',
+                            textTransform: 'uppercase'
+                        }
+                    }, logoText)
                 ),
-                e('div', null,
-                    e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Backdrop'),
-                    e('input', { type: 'color', value: logoBgColor, onChange: (e) => setLogoBgColor(e.target.value), style: { height: '40px' } })
-                )
-            ),
 
-            e('select', { value: logoShape, onChange: (e) => setLogoShape(e.target.value), style: { padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } },
-                e('option', { value: 'square' }, 'Square Style'),
-                e('option', { value: 'circle' }, 'Circular Style')
+                // --- CONTROLS ---
+                e('div', { style: { width: '100%', display: 'flex', flexDirection: 'column', gap: '15px' } },
+                    e('div', { className: 'grid-2' },
+                        e('input', { placeholder: 'Brand Name', value: logoText, onChange: (e) => setLogoText(e.target.value) }),
+                        e('select', { value: logoIcon, onChange: (e) => setLogoIcon(e.target.value), style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)' } },
+                            e('option', { value: '★' }, 'Star'),
+                            e('option', { value: '⚡' }, 'Energy'),
+                            e('option', { value: '💎' }, 'Diamond'),
+                            e('option', { value: '🚀' }, 'Startup'),
+                            e('option', { value: '🔥' }, 'Trend'),
+                            e('option', { value: '👑' }, 'Premium')
+                        )
+                    ),
+
+                    e('select', { value: logoFont, onChange: (e) => setLogoFont(e.target.value), style: { padding: '12px', borderRadius: '8px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)' } },
+                        e('option', { value: 'Inter' }, 'Modern Sans'),
+                        e('option', { value: 'Georgia' }, 'Classic Serif'),
+                        e('option', { value: 'Courier New' }, 'Tech Mono'),
+                        e('option', { value: 'Impact' }, 'Bold Impact')
+                    ),
+
+                    e('div', { className: 'grid-2' },
+                        e('div', null,
+                            e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Text Color'),
+                            e('input', { type: 'color', value: logoColor, onChange: (e) => setLogoColor(e.target.value), style: { height: '40px' } })
+                        ),
+                        e('div', null,
+                            e('label', { style: { fontSize: '11px', display: 'block', marginBottom: '5px' } }, 'Backdrop'),
+                            e('input', { type: 'color', value: logoBgColor, onChange: (e) => setLogoBgColor(e.target.value), style: { height: '40px' } })
+                        )
+                    ),
+
+                    e('select', { value: logoShape, onChange: (e) => setLogoShape(e.target.value), style: { padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } },
+                        e('option', { value: 'square' }, 'Square Style'),
+                        e('option', { value: 'circle' }, 'Circular Style')
+                    )
+                ),
+
+                // --- WORKING DOWNLOAD BUTTON ---
+                e('button', {
+                    className: 'btn btn-primary',
+                    onClick: () => {
+                        const element = document.getElementById('finalLogo');
+                        if (typeof html2canvas === 'undefined') {
+                            alert('Bhai, index.html mein library missing hai! Please Step 1 follow karo.');
+                            return;
+                        }
+                        html2canvas(element, {
+                            backgroundColor: null, // Transparent background support
+                            scale: 3, // High quality 4K output
+                            useCORS: true
+                        }).then(canvas => {
+                            const link = document.createElement('a');
+                            link.download = `${logoText || 'logo'}-resume-pro.png`;
+                            link.href = canvas.toDataURL('image/png');
+                            link.click();
+                        });
+                    },
+                    style: { background: 'linear-gradient(45deg, #3b82f6, #2563eb)', color: '#fff', padding: '15px', width: '100%', border: 'none', borderRadius: '10px', fontWeight: 'bold', fontSize: '14px', boxShadow: '0 4px 15px rgba(37, 99, 235, 0.4)', cursor: 'pointer' }
+                }, '🚀 Download 4K Logo')
             )
         ),
-
-        // --- WORKING DOWNLOAD BUTTON ---
-        e('button', {
-            className: 'btn btn-primary',
-            onClick: () => {
-                const element = document.getElementById('finalLogo');
-                if (typeof html2canvas === 'undefined') {
-                    alert('Bhai, index.html mein library missing hai! Please Step 1 follow karo.');
-                    return;
-                }
-                html2canvas(element, { 
-                    backgroundColor: null, // Transparent background support
-                    scale: 3, // High quality 4K output
-                    useCORS: true 
-                }).then(canvas => {
-                    const link = document.createElement('a');
-                    link.download = `${logoText || 'logo'}-resume-pro.png`;
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                });
-            },
-            style: { background: 'linear-gradient(45deg, #3b82f6, #2563eb)', color: '#fff', padding: '15px', width: '100%', border: 'none', borderRadius: '10px', fontWeight: 'bold', fontSize: '14px', boxShadow: '0 4px 15px rgba(37, 99, 235, 0.4)', cursor: 'pointer' }
-        }, '🚀 Download 4K Logo')
-    )
-),
         currentPage === 'home' && e('div', { style: { textAlign: 'center', padding: '40px 0', background: 'transparent', marginTop: '0' } },
             e('button', { className: 'btn btn-primary', onClick: () => window.print(), style: { margin: '0 auto', background: '#3b82f6', color: '#fff', padding: '12px 30px', border: 'none', borderRadius: '5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)' } }, '💾 Download My Resume')
         ),
