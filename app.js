@@ -11,6 +11,7 @@ const App = () => {
         summary: '', skills: '', education: '', experience: '',
         image: null
     };
+    
 
     const [data, setData] = useState(initialState);
     const [isDarkMode, setIsDarkMode] = useState(true);
@@ -27,6 +28,66 @@ const App = () => {
     const [bannerGradient, setBannerGradient] = useState('linear-gradient(135deg, #3b82f6, #1d4ed8)');
     const [bannerPattern, setBannerPattern] = useState('dots'); // dots, lines, none
 
+    // --- UNZIP STATES ---
+const [unzippedFiles, setUnzippedFiles] = useState([]);
+
+// --- UNZIP LOGIC ---
+const handleUnzip = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // JSZip instance (Make sure index.html mein script tag ho)
+    const zip = new window.JSZip();
+    try {
+        const contents = await zip.loadAsync(file);
+        const filesArray = [];
+        
+        for (let filename in contents.files) {
+            const zipEntry = contents.files[filename];
+            if (!zipEntry.dir) {
+                const blob = await zipEntry.async("blob");
+                filesArray.push({
+                    name: filename,
+                    url: URL.createObjectURL(blob)
+                });
+            }
+        }
+        setUnzippedFiles(filesArray);
+        alert("File Unzipped Successfully!");
+    } catch (err) {
+        console.error(err);
+        alert("Error unzipping file.");
+    }
+};
+// --- MAKE ZIP LOGIC ---
+const handleMakeZip = async (event) => {
+    const files = event.target.files;
+    if (files.length === 0) return;
+
+    const zip = new window.JSZip();
+    
+    // Har select ki hui file ko zip mein add karna
+    for (let i = 0; i < files.length; i++) {
+        zip.file(files[i].name, files[i]);
+    }
+
+    // Zip file generate karna
+    try {
+        const content = await zip.generateAsync({ type: "blob" });
+        const zipUrl = URL.createObjectURL(content);
+        
+        // Auto-download link banana
+        const link = document.createElement('a');
+        link.href = zipUrl;
+        link.download = "ResumePro_Files.zip";
+        link.click();
+        
+        alert("Zip File Created & Downloaded!");
+    } catch (err) {
+        console.error(err);
+        alert("Error making zip.");
+    }
+};
     const update = (key, val) => setData({ ...data, [key]: val });
 
     const handleImage = (event) => {
@@ -317,6 +378,9 @@ const App = () => {
 
             // NAYA LOGO LINK (Mobile Ke Liye)
             e('div', { className: `nav-link ${currentPage === 'logo' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('logo') }, 'Logo Maker'),
+            // Ye add karein:
+e('div', { className: `nav-link ${currentPage === 'unzip' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('unzip') }, 'Unzip File'),
+e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('makeZip') }, 'Make Zip'),
             // Mobile menu ke links mein ye dalo:
             e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('privacy') }, 'Privacy Policy'),
             e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('about') }, 'About'),
@@ -331,6 +395,8 @@ const App = () => {
                     e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
                     e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, onClick: () => navigate('banner') }, 'LinkedIn Banner'),
                     e('div', { className: `nav-link ${currentPage === 'logo' ? 'active' : ''}`, onClick: () => navigate('logo') }, 'Logo Maker'),
+                    e('div', { className: `nav-link ${currentPage === 'unzip' ? 'active' : ''}`, onClick: () => navigate('unzip') }, 'Unzip File'),
+                    e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, onClick: () => navigate('makeZip') }, 'Make Zip'),
                     // Nav links ke andar 'About' ke bilkul niche ye dalo:
                     e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, onClick: () => navigate('privacy') }, 'Privacy Policy'),
                     e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, onClick: () => navigate('about') }, 'About')
@@ -344,6 +410,50 @@ const App = () => {
                 )
             )
         ),
+        // --- UNZIP PAGE UI ---
+currentPage === 'unzip' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
+    e('h2', { style: { color: 'var(--accent)', marginBottom: '10px', fontWeight: '800' } }, 'Zip to Unzip Extractor'),
+    e('p', { style: { fontSize: '14px', opacity: 0.7, marginBottom: '20px' } }, 'Extract files instantly without any server upload.'),
+
+    e('div', { style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
+        
+        e('label', { className: 'file-upload-wrapper', style: { display: 'block', cursor: 'pointer', padding: '40px' } },
+            e('div', { style: { fontSize: '16px', fontWeight: 'bold' } }, '📂 Click to Upload ZIP File'),
+            e('input', { type: 'file', accept: '.zip', onChange: handleUnzip, style: { display: 'none' } })
+        ),
+
+        unzippedFiles.length > 0 && e('div', { style: { marginTop: '30px', textAlign: 'left', width: '100%' } },
+            e('h4', { style: { fontSize: '14px', borderBottom: '1px solid var(--border)', paddingBottom: '10px', color: 'var(--accent)' } }, 'Extracted Files:'),
+            unzippedFiles.map((f, i) => 
+                e('div', { key: i, style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--border)' } },
+                    e('span', { style: { fontSize: '13px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '70%' } }, f.name),
+                    e('a', { 
+                        href: f.url, 
+                        download: f.name, 
+                        className: 'btn-primary',
+                        style: { padding: '5px 12px', borderRadius: '5px', textDecoration: 'none', fontSize: '11px', background: 'var(--accent)', color: '#fff' } 
+                    }, 'Download')
+                )
+            )
+        )
+    )
+),
+// --- MAKE ZIP PAGE UI ---
+currentPage === 'makeZip' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
+    e('h2', { style: { color: 'var(--accent)', marginBottom: '10px', fontWeight: '800' } }, 'Create Zip File'),
+    e('p', { style: { fontSize: '14px', opacity: 0.7, marginBottom: '20px' } }, 'Select multiple files to compress them into a single ZIP.'),
+
+    e('div', { style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
+        
+        e('label', { className: 'file-upload-wrapper', style: { display: 'block', cursor: 'pointer', padding: '40px' } },
+            e('div', { style: { fontSize: '16px', fontWeight: 'bold' } }, '📁 Select Files to Zip'),
+            // 'multiple' attribute lazmi hai taake ek se zyada files select ho sakein
+            e('input', { type: 'file', multiple: true, onChange: handleMakeZip, style: { display: 'none' } })
+        ),
+        
+        e('p', { style: { fontSize: '11px', marginTop: '15px', opacity: 0.5 } }, 'Note: After selecting files, your ZIP will download automatically.')
+    )
+),
 
         e('div', { className: 'app-container' },
             currentPage === 'home' && e('div', { className: 'main-layout' },
@@ -507,6 +617,15 @@ const App = () => {
                         e('strong', null, 'Logo Designer: '),
                         'Build your personal brand from scratch. Our intuitive logo maker allows you to design minimalist and professional logos with custom icons, fonts, and color schemes in seconds.'
                     ),
+                    e('li', { style: { marginBottom: '10px' } }, 
+    e('strong', null, 'Advanced Zip Creator: '), 
+    'Effortlessly bundle multiple documents and images into a single compressed ZIP file for easier sharing and organization.'
+),
+
+e('li', { style: { marginBottom: '10px' } }, 
+    e('strong', null, 'Instant File Unzipper: '), 
+    'Extract and view files from any ZIP archive directly in your browser with high-speed, local processing that keeps your data secure.'
+),
                     e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Professional Templates: '), 'Choose from a variety of layouts designed to catch the eye of recruiters and hiring managers.')
                 ),
                 e('h3', { style: { marginTop: '30px', color: 'var(--accent)' } }, 'Our Vision:'),
