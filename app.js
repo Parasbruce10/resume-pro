@@ -4,7 +4,40 @@ const { useState, useEffect } = React;
 const App = () => {
     const [currentPage, setCurrentPage] = useState('home');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [selectedTemplate, setSelectedTemplate] = useState('modern'); // Template state
+    const [selectedTemplate, setSelectedTemplate] = useState('modern');
+    const [typewriterText, setTypewriterText] = useState('');
+    const [phraseIndex, setPhraseIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    // AB YAHAN TYPEWRITER WALA EFFECT RAKHEIN
+    useEffect(() => {
+        const phrases = [
+            "Resume Pro: Build. Apply. Succeed.",
+            "Professionalism Made Simple.",
+            "Your Resume, Reimagined."
+        ];
+        
+        const typeSpeed = isDeleting ? 50 : 100;
+        const currentPhrase = phrases[phraseIndex];
+
+        const timer = setTimeout(() => {
+            if (!isDeleting && typewriterText === currentPhrase) {
+                setTimeout(() => setIsDeleting(true), 1500);
+            } else if (isDeleting && typewriterText === '') {
+                setIsDeleting(false);
+                setPhraseIndex((prev) => (prev + 1) % phrases.length);
+            } else {
+                const nextText = isDeleting 
+                    ? currentPhrase.substring(0, typewriterText.length - 1)
+                    : currentPhrase.substring(0, typewriterText.length + 1);
+                setTypewriterText(nextText);
+            }
+        }, typeSpeed);
+
+        return () => clearTimeout(timer);
+    }, [typewriterText, isDeleting, phraseIndex]);
+
+    // Baaqi sara code...
 
     const initialState = {
         name: '', title: '', email: '', phone: '', city: '', address: '',
@@ -410,6 +443,7 @@ e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, s
                 )
             )
         ),
+        
         // --- UNZIP PAGE UI ---
 currentPage === 'unzip' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
     e('h2', { style: { color: 'var(--accent)', marginBottom: '10px', fontWeight: '800' } }, 'Zip to Unzip Extractor'),
@@ -453,6 +487,12 @@ currentPage === 'makeZip' && e('div', { style: { textAlign: 'center', maxWidth: 
         
         e('p', { style: { fontSize: '11px', marginTop: '15px', opacity: 0.5 } }, 'Note: After selecting files, your ZIP will download automatically.')
     )
+),
+
+// Header wrapper ke baad aur app-container se pehle ye dalo:
+e('div', { className: 'typewriter-container' },
+    e('span', null, typewriterText),
+    e('span', { className: 'cursor' })
 ),
 
         e('div', { className: 'app-container' },

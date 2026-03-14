@@ -27,3 +27,23 @@ input, textarea { width: 100%; padding: 10px; margin-bottom: 10px; border-radius
 }
 
 @media (max-width: 800px) { .main-layout { grid-template-columns: 1fr; } }
+
+.typewriter-container {
+    text-align: center;
+    padding: 20px 10px 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent);
+    min-height: 40px;
+}
+
+.cursor {
+    border-right: 2px solid var(--accent);
+    animation: blink 0.7s infinite;
+    margin-left: 4px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
