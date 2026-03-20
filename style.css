@@ -104,3 +104,23 @@ input, textarea { width: 100%; padding: 10px; margin-bottom: 10px; border-radius
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+/* Mobile responsive container */
+.legal-page-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+@media (max-width: 768px) {
+    .legal-page-container {
+        padding: 20px 15px; /* Mobile par thodi kam padding */
+    }
+    .legal-content-card {
+        padding: 20px !important; /* Mobile par card ki andar ki space kam */
+    }
+    .legal-title {
+        font-size: 24px !important; /* Mobile par heading choti */
+    }
+} 

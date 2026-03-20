@@ -787,7 +787,7 @@ const App = () => {
                 e('p', { style: { marginTop: '10px' } }, 'Website: https://resumepro.theglobalhubb.com/'),
                 e('p', null, 'Email: [resumeprohub1@gmail.com]') // Yahan apni email likh dena
             )
-        ),
+        ), 
 
         currentPage === 'contact' && e('div', { style: { maxWidth: '600px', margin: '0 auto', padding: '60px 20px', minHeight: '80vh' } },
             e('h1', { style: { color: 'var(--accent)', textAlign: 'center', fontWeight: '800', marginBottom: '10px' } }, 'Get In Touch'),
