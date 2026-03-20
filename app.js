@@ -17,7 +17,7 @@ const App = () => {
             "Professionalism Made Simple.",
             "Your Resume, Reimagined."
         ];
-        
+
         const typeSpeed = isDeleting ? 50 : 100;
         const currentPhrase = phrases[phraseIndex];
 
@@ -28,7 +28,7 @@ const App = () => {
                 setIsDeleting(false);
                 setPhraseIndex((prev) => (prev + 1) % phrases.length);
             } else {
-                const nextText = isDeleting 
+                const nextText = isDeleting
                     ? currentPhrase.substring(0, typewriterText.length - 1)
                     : currentPhrase.substring(0, typewriterText.length + 1);
                 setTypewriterText(nextText);
@@ -45,7 +45,7 @@ const App = () => {
         summary: '', skills: '', education: '', experience: '',
         image: null
     };
-    
+
 
     const [data, setData] = useState(initialState);
     const [isDarkMode, setIsDarkMode] = useState(true);
@@ -63,65 +63,65 @@ const App = () => {
     const [bannerPattern, setBannerPattern] = useState('dots'); // dots, lines, none
 
     // --- UNZIP STATES ---
-const [unzippedFiles, setUnzippedFiles] = useState([]);
+    const [unzippedFiles, setUnzippedFiles] = useState([]);
 
-// --- UNZIP LOGIC ---
-const handleUnzip = async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+    // --- UNZIP LOGIC ---
+    const handleUnzip = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
 
-    // JSZip instance (Make sure index.html mein script tag ho)
-    const zip = new window.JSZip();
-    try {
-        const contents = await zip.loadAsync(file);
-        const filesArray = [];
-        
-        for (let filename in contents.files) {
-            const zipEntry = contents.files[filename];
-            if (!zipEntry.dir) {
-                const blob = await zipEntry.async("blob");
-                filesArray.push({
-                    name: filename,
-                    url: URL.createObjectURL(blob)
-                });
+        // JSZip instance (Make sure index.html mein script tag ho)
+        const zip = new window.JSZip();
+        try {
+            const contents = await zip.loadAsync(file);
+            const filesArray = [];
+
+            for (let filename in contents.files) {
+                const zipEntry = contents.files[filename];
+                if (!zipEntry.dir) {
+                    const blob = await zipEntry.async("blob");
+                    filesArray.push({
+                        name: filename,
+                        url: URL.createObjectURL(blob)
+                    });
+                }
             }
+            setUnzippedFiles(filesArray);
+            alert("File Unzipped Successfully!");
+        } catch (err) {
+            console.error(err);
+            alert("Error unzipping file.");
         }
-        setUnzippedFiles(filesArray);
-        alert("File Unzipped Successfully!");
-    } catch (err) {
-        console.error(err);
-        alert("Error unzipping file.");
-    }
-};
-// --- MAKE ZIP LOGIC ---
-const handleMakeZip = async (event) => {
-    const files = event.target.files;
-    if (files.length === 0) return;
+    };
+    // --- MAKE ZIP LOGIC ---
+    const handleMakeZip = async (event) => {
+        const files = event.target.files;
+        if (files.length === 0) return;
 
-    const zip = new window.JSZip();
-    
-    // Har select ki hui file ko zip mein add karna
-    for (let i = 0; i < files.length; i++) {
-        zip.file(files[i].name, files[i]);
-    }
+        const zip = new window.JSZip();
 
-    // Zip file generate karna
-    try {
-        const content = await zip.generateAsync({ type: "blob" });
-        const zipUrl = URL.createObjectURL(content);
-        
-        // Auto-download link banana
-        const link = document.createElement('a');
-        link.href = zipUrl;
-        link.download = "ResumePro_Files.zip";
-        link.click();
-        
-        alert("Zip File Created & Downloaded!");
-    } catch (err) {
-        console.error(err);
-        alert("Error making zip.");
-    }
-};
+        // Har select ki hui file ko zip mein add karna
+        for (let i = 0; i < files.length; i++) {
+            zip.file(files[i].name, files[i]);
+        }
+
+        // Zip file generate karna
+        try {
+            const content = await zip.generateAsync({ type: "blob" });
+            const zipUrl = URL.createObjectURL(content);
+
+            // Auto-download link banana
+            const link = document.createElement('a');
+            link.href = zipUrl;
+            link.download = "ResumePro_Files.zip";
+            link.click();
+
+            alert("Zip File Created & Downloaded!");
+        } catch (err) {
+            console.error(err);
+            alert("Error making zip.");
+        }
+    };
     const update = (key, val) => setData({ ...data, [key]: val });
 
     const handleImage = (event) => {
@@ -215,7 +215,7 @@ const handleMakeZip = async (event) => {
         }
     }, [bannerText, bannerColor, bannerTagline, bannerPattern, currentPage]);
 
-    const styles =  `
+    const styles = `
         :root {
             --bg: ${isDarkMode ? '#050505' : '#f8fafc'};
             --card-bg: ${isDarkMode ? '#111111' : '#ffffff'};
@@ -413,8 +413,8 @@ const handleMakeZip = async (event) => {
             // NAYA LOGO LINK (Mobile Ke Liye)
             e('div', { className: `nav-link ${currentPage === 'logo' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('logo') }, 'Logo Maker'),
             // Ye add karein:
-e('div', { className: `nav-link ${currentPage === 'unzip' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('unzip') }, 'Unzip File'),
-e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('makeZip') }, 'Make Zip'),
+            e('div', { className: `nav-link ${currentPage === 'unzip' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('unzip') }, 'Unzip File'),
+            e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('makeZip') }, 'Make Zip'),
             // Mobile menu ke links mein ye dalo:
             e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('privacy') }, 'Privacy Policy'),
             e('div', { className: `nav-link ${currentPage === 'terms' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('terms') }, 'Terms & Conditions'),
@@ -433,34 +433,34 @@ e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, s
                     e('div', { className: `nav-link ${currentPage === 'unzip' ? 'active' : ''}`, onClick: () => navigate('unzip') }, 'Unzip File'),
                     e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, onClick: () => navigate('makeZip') }, 'Make Zip'),
                     // Nav links ke andar 'About' ke bilkul niche ye dalo:
-                    e('div', { 
-    className: 'dropdown-container',
-    onMouseEnter: () => setIsPrivacyDropdownOpen(true),
-    onMouseLeave: () => setIsPrivacyDropdownOpen(false),
-    style: { cursor: 'pointer' }
-},
-    // Main Label
-    e('div', { 
-        className: `nav-link ${currentPage === 'privacy' || currentPage === 'terms' ? 'active' : ''}`,
-        style: { display: 'flex', alignItems: 'center', gap: '6px', fontWeight: '600' } 
-    }, 
-        'Legal', 
-        e('span', { style: { fontSize: '10px', opacity: 0.7 } }, '▼')
-    ),
+                    e('div', {
+                        className: 'dropdown-container',
+                        onMouseEnter: () => setIsPrivacyDropdownOpen(true),
+                        onMouseLeave: () => setIsPrivacyDropdownOpen(false),
+                        style: { cursor: 'pointer' }
+                    },
+                        // Main Label
+                        e('div', {
+                            className: `nav-link ${currentPage === 'privacy' || currentPage === 'terms' ? 'active' : ''}`,
+                            style: { display: 'flex', alignItems: 'center', gap: '6px', fontWeight: '600' }
+                        },
+                            'Legal',
+                            e('span', { style: { fontSize: '10px', opacity: 0.7 } }, '▼')
+                        ),
 
-    // Dropdown Box
-    isPrivacyDropdownOpen && e('div', { className: 'dropdown-menu' },
-        e('div', { 
-            className: 'dropdown-item', 
-            onClick: () => navigate('privacy') 
-        }, e('span', null, '🛡️'), 'Privacy Policy'),
-        
-        e('div', { 
-            className: 'dropdown-item', 
-            onClick: () => navigate('terms') 
-        }, e('span', null, '📜'), 'Terms & Conditions')
-    )
-),
+                        // Dropdown Box
+                        isPrivacyDropdownOpen && e('div', { className: 'dropdown-menu' },
+                            e('div', {
+                                className: 'dropdown-item',
+                                onClick: () => navigate('privacy')
+                            }, e('span', null, '🛡️'), 'Privacy Policy'),
+
+                            e('div', {
+                                className: 'dropdown-item',
+                                onClick: () => navigate('terms')
+                            }, e('span', null, '📜'), 'Terms & Conditions')
+                        )
+                    ),
                     e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, onClick: () => navigate('about') }, 'About')
                 ),
 
@@ -472,57 +472,57 @@ e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, s
                 )
             )
         ),
-        
+
         // --- UNZIP PAGE UI ---
-currentPage === 'unzip' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
-    e('h2', { style: { color: 'var(--accent)', marginBottom: '10px', fontWeight: '800' } }, 'Zip to Unzip Extractor'),
-    e('p', { style: { fontSize: '14px', opacity: 0.7, marginBottom: '20px' } }, 'Extract files instantly without any server upload.'),
+        currentPage === 'unzip' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
+            e('h2', { style: { color: 'var(--accent)', marginBottom: '10px', fontWeight: '800' } }, 'Zip to Unzip Extractor'),
+            e('p', { style: { fontSize: '14px', opacity: 0.7, marginBottom: '20px' } }, 'Extract files instantly without any server upload.'),
 
-    e('div', { style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
-        
-        e('label', { className: 'file-upload-wrapper', style: { display: 'block', cursor: 'pointer', padding: '40px' } },
-            e('div', { style: { fontSize: '16px', fontWeight: 'bold' } }, '📂 Click to Upload ZIP File'),
-            e('input', { type: 'file', accept: '.zip', onChange: handleUnzip, style: { display: 'none' } })
-        ),
+            e('div', { style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
 
-        unzippedFiles.length > 0 && e('div', { style: { marginTop: '30px', textAlign: 'left', width: '100%' } },
-            e('h4', { style: { fontSize: '14px', borderBottom: '1px solid var(--border)', paddingBottom: '10px', color: 'var(--accent)' } }, 'Extracted Files:'),
-            unzippedFiles.map((f, i) => 
-                e('div', { key: i, style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--border)' } },
-                    e('span', { style: { fontSize: '13px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '70%' } }, f.name),
-                    e('a', { 
-                        href: f.url, 
-                        download: f.name, 
-                        className: 'btn-primary',
-                        style: { padding: '5px 12px', borderRadius: '5px', textDecoration: 'none', fontSize: '11px', background: 'var(--accent)', color: '#fff' } 
-                    }, 'Download')
+                e('label', { className: 'file-upload-wrapper', style: { display: 'block', cursor: 'pointer', padding: '40px' } },
+                    e('div', { style: { fontSize: '16px', fontWeight: 'bold' } }, '📂 Click to Upload ZIP File'),
+                    e('input', { type: 'file', accept: '.zip', onChange: handleUnzip, style: { display: 'none' } })
+                ),
+
+                unzippedFiles.length > 0 && e('div', { style: { marginTop: '30px', textAlign: 'left', width: '100%' } },
+                    e('h4', { style: { fontSize: '14px', borderBottom: '1px solid var(--border)', paddingBottom: '10px', color: 'var(--accent)' } }, 'Extracted Files:'),
+                    unzippedFiles.map((f, i) =>
+                        e('div', { key: i, style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--border)' } },
+                            e('span', { style: { fontSize: '13px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '70%' } }, f.name),
+                            e('a', {
+                                href: f.url,
+                                download: f.name,
+                                className: 'btn-primary',
+                                style: { padding: '5px 12px', borderRadius: '5px', textDecoration: 'none', fontSize: '11px', background: 'var(--accent)', color: '#fff' }
+                            }, 'Download')
+                        )
+                    )
                 )
             )
-        )
-    )
-),
-// --- MAKE ZIP PAGE UI ---
-currentPage === 'makeZip' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
-    e('h2', { style: { color: 'var(--accent)', marginBottom: '10px', fontWeight: '800' } }, 'Create Zip File'),
-    e('p', { style: { fontSize: '14px', opacity: 0.7, marginBottom: '20px' } }, 'Select multiple files to compress them into a single ZIP.'),
-
-    e('div', { style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
-        
-        e('label', { className: 'file-upload-wrapper', style: { display: 'block', cursor: 'pointer', padding: '40px' } },
-            e('div', { style: { fontSize: '16px', fontWeight: 'bold' } }, '📁 Select Files to Zip'),
-            // 'multiple' attribute lazmi hai taake ek se zyada files select ho sakein
-            e('input', { type: 'file', multiple: true, onChange: handleMakeZip, style: { display: 'none' } })
         ),
-        
-        e('p', { style: { fontSize: '11px', marginTop: '15px', opacity: 0.5 } }, 'Note: After selecting files, your ZIP will download automatically.')
-    )
-),
+        // --- MAKE ZIP PAGE UI ---
+        currentPage === 'makeZip' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
+            e('h2', { style: { color: 'var(--accent)', marginBottom: '10px', fontWeight: '800' } }, 'Create Zip File'),
+            e('p', { style: { fontSize: '14px', opacity: 0.7, marginBottom: '20px' } }, 'Select multiple files to compress them into a single ZIP.'),
 
-// Header wrapper ke baad aur app-container se pehle ye dalo:
-e('div', { className: 'typewriter-container' },
-    e('span', null, typewriterText),
-    e('span', { className: 'cursor' })
-),
+            e('div', { style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
+
+                e('label', { className: 'file-upload-wrapper', style: { display: 'block', cursor: 'pointer', padding: '40px' } },
+                    e('div', { style: { fontSize: '16px', fontWeight: 'bold' } }, '📁 Select Files to Zip'),
+                    // 'multiple' attribute lazmi hai taake ek se zyada files select ho sakein
+                    e('input', { type: 'file', multiple: true, onChange: handleMakeZip, style: { display: 'none' } })
+                ),
+
+                e('p', { style: { fontSize: '11px', marginTop: '15px', opacity: 0.5 } }, 'Note: After selecting files, your ZIP will download automatically.')
+            )
+        ),
+
+        // Header wrapper ke baad aur app-container se pehle ye dalo:
+        e('div', { className: 'typewriter-container' },
+            e('span', null, typewriterText),
+            e('span', { className: 'cursor' })
+        ),
 
         e('div', { className: 'app-container' },
             currentPage === 'home' && e('div', { className: 'main-layout' },
@@ -686,15 +686,15 @@ e('div', { className: 'typewriter-container' },
                         e('strong', null, 'Logo Designer: '),
                         'Build your personal brand from scratch. Our intuitive logo maker allows you to design minimalist and professional logos with custom icons, fonts, and color schemes in seconds.'
                     ),
-                    e('li', { style: { marginBottom: '10px' } }, 
-    e('strong', null, 'Advanced Zip Creator: '), 
-    'Effortlessly bundle multiple documents and images into a single compressed ZIP file for easier sharing and organization.'
-),
+                    e('li', { style: { marginBottom: '10px' } },
+                        e('strong', null, 'Advanced Zip Creator: '),
+                        'Effortlessly bundle multiple documents and images into a single compressed ZIP file for easier sharing and organization.'
+                    ),
 
-e('li', { style: { marginBottom: '10px' } }, 
-    e('strong', null, 'Instant File Unzipper: '), 
-    'Extract and view files from any ZIP archive directly in your browser with high-speed, local processing that keeps your data secure.'
-),
+                    e('li', { style: { marginBottom: '10px' } },
+                        e('strong', null, 'Instant File Unzipper: '),
+                        'Extract and view files from any ZIP archive directly in your browser with high-speed, local processing that keeps your data secure.'
+                    ),
                     e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Professional Templates: '), 'Choose from a variety of layouts designed to catch the eye of recruiters and hiring managers.')
                 ),
                 e('h3', { style: { marginTop: '30px', color: 'var(--accent)' } }, 'Our Vision:'),
@@ -743,80 +743,80 @@ e('li', { style: { marginBottom: '10px' } },
                 e('p', null, 'If you have any questions about our Privacy Policy, do not hesitate to contact us through our Email [resumeprohub1@gmail.com].')
             )
         ),
-  
-        currentPage === 'terms' && e('div', { 
-    style: { maxWidth: '850px', margin: '0 auto', padding: '60px 20px', minHeight: '80vh', color: 'var(--text)' } 
-},
-    e('h1', { style: { color: 'var(--accent)', textAlign: 'center', fontSize: '32px', fontWeight: '800' } }, 'Terms and Conditions'),
-    e('p', { style: { textAlign: 'center', opacity: 0.6, marginBottom: '40px' } }, 'Last Updated: March 20, 2026'),
 
-    e('div', { 
-        style: { background: 'var(--card-bg)', padding: '40px', borderRadius: '24px', border: '1px solid var(--border)', lineHeight: '1.7', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' } 
-    },
-        e('p', { style: { marginBottom: '20px' } }, 'Welcome to ResumePro (https://resumepro.theglobalhubb.com/). By accessing and using this website, you agree to the following terms:'),
+        currentPage === 'terms' && e('div', {
+            style: { maxWidth: '850px', margin: '0 auto', padding: '60px 20px', minHeight: '80vh', color: 'var(--text)' }
+        },
+            e('h1', { style: { color: 'var(--accent)', textAlign: 'center', fontSize: '32px', fontWeight: '800' } }, 'Terms and Conditions'),
+            e('p', { style: { textAlign: 'center', opacity: 0.6, marginBottom: '40px' } }, 'Last Updated: March 20, 2026'),
 
-        // Section 1
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '1. Nature of Service'),
-        e('p', null, 'ResumePro is a client-side, browser-based tool built with React/JavaScript. It is designed to help users generate resumes for personal use.'),
+            e('div', {
+                style: { background: 'var(--card-bg)', padding: '40px', borderRadius: '24px', border: '1px solid var(--border)', lineHeight: '1.7', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }
+            },
+                e('p', { style: { marginBottom: '20px' } }, 'Welcome to ResumePro (https://resumepro.theglobalhubb.com/). By accessing and using this website, you agree to the following terms:'),
 
-        // Section 2
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '2. No User Data Collection'),
-        e('p', null, e('strong', null, 'Privacy First: '), 'We do not have a backend or database. We do not require users to create accounts or log in.'),
-        e('p', null, e('strong', null, 'Local Processing: '), 'All information you enter into the resume builder is processed locally in your browser. We do not store, save, or track any personal data or the content of the resumes you create.'),
+                // Section 1
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '1. Nature of Service'),
+                e('p', null, 'ResumePro is a client-side, browser-based tool built with React/JavaScript. It is designed to help users generate resumes for personal use.'),
 
-        // Section 3
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '3. Intellectual Property'),
-        e('p', null, 'All website design, code, and templates provided on ResumePro are the intellectual property of the site owner. You are granted a license to use the templates to create your personal resume. You may not copy the source code or redistribute our templates for commercial sale.'),
+                // Section 2
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '2. No User Data Collection'),
+                e('p', null, e('strong', null, 'Privacy First: '), 'We do not have a backend or database. We do not require users to create accounts or log in.'),
+                e('p', null, e('strong', null, 'Local Processing: '), 'All information you enter into the resume builder is processed locally in your browser. We do not store, save, or track any personal data or the content of the resumes you create.'),
 
-        // Section 4
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '4. Limitation of Liability'),
-        e('p', null, e('strong', null, '"As-Is" Basis: '), 'This website is provided "as-is" without any warranties. While we strive for accuracy, ResumePro is not responsible for any errors in the final resume or for your employment results.'),
-        e('p', null, e('strong', null, 'No Responsibility for Data Loss: '), 'Since we do not store your data, if you refresh the page or clear your browser cache, your progress may be lost. We are not responsible for any such data loss.'),
+                // Section 3
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '3. Intellectual Property'),
+                e('p', null, 'All website design, code, and templates provided on ResumePro are the intellectual property of the site owner. You are granted a license to use the templates to create your personal resume. You may not copy the source code or redistribute our templates for commercial sale.'),
 
-        // Section 5
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '5. Third-Party Links'),
-        e('p', null, 'Our website may contain links to external sites. We are not responsible for the content or privacy practices of those third-party websites.'),
+                // Section 4
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '4. Limitation of Liability'),
+                e('p', null, e('strong', null, '"As-Is" Basis: '), 'This website is provided "as-is" without any warranties. While we strive for accuracy, ResumePro is not responsible for any errors in the final resume or for your employment results.'),
+                e('p', null, e('strong', null, 'No Responsibility for Data Loss: '), 'Since we do not store your data, if you refresh the page or clear your browser cache, your progress may be lost. We are not responsible for any such data loss.'),
 
-        // Section 6
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '6. Changes to Terms'),
-        e('p', null, 'We reserve the right to update these terms at any time. Any changes will be posted on this page.'),
+                // Section 5
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '5. Third-Party Links'),
+                e('p', null, 'Our website may contain links to external sites. We are not responsible for the content or privacy practices of those third-party websites.'),
 
-        // Section 7
-        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '7. Contact Information'),
-        e('p', null, 'If you have any questions about these terms, you can reach out to us at:'),
-        e('p', { style: { marginTop: '10px' } }, 'Website: https://resumepro.theglobalhubb.com/'),
-        e('p', null, 'Email: [resumeprohub1@gmail.com]') // Yahan apni email likh dena
-    )
-),
+                // Section 6
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '6. Changes to Terms'),
+                e('p', null, 'We reserve the right to update these terms at any time. Any changes will be posted on this page.'),
 
-currentPage === 'contact' && e('div', { style: { maxWidth: '600px', margin: '0 auto', padding: '60px 20px', minHeight: '80vh' } },
-    e('h1', { style: { color: 'var(--accent)', textAlign: 'center', fontWeight: '800', marginBottom: '10px' } }, 'Get In Touch'),
-    e('p', { style: { textAlign: 'center', opacity: 0.7, marginBottom: '30px' } }, 'Send us a message and we will get back to you soon.'),
+                // Section 7
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '7. Contact Information'),
+                e('p', null, 'If you have any questions about these terms, you can reach out to us at:'),
+                e('p', { style: { marginTop: '10px' } }, 'Website: https://resumepro.theglobalhubb.com/'),
+                e('p', null, 'Email: [resumeprohub1@gmail.com]') // Yahan apni email likh dena
+            )
+        ),
 
-    e('div', { 
-        style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '24px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } 
-    },
-        // FIX: Yahan action mein aapki ID 'myknvklo' add kar di hai
-        e('form', { action: "https://formspree.io/f/myknvklo", method: "POST" },
-            e('div', { style: { marginBottom: '15px' } },
-                e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Name'),
-                e('input', { type: 'text', name: 'name', placeholder: 'Your Name', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
-            ),
-            e('div', { style: { marginBottom: '15px' } },
-                e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Email'),
-                e('input', { type: 'email', name: 'email', placeholder: 'your@email.com', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
-            ),
-            e('div', { style: { marginBottom: '20px' } },
-                e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Message'),
-                e('textarea', { name: 'message', rows: 5, placeholder: 'How can we help you?', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
-            ),
-            e('button', { 
-                type: 'submit', 
-                style: { width: '100%', background: 'var(--accent)', color: '#fff', padding: '15px', border: 'none', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer', transition: '0.3s' } 
-            }, '🚀 Send Message')
-        )
-    )
-),
+        currentPage === 'contact' && e('div', { style: { maxWidth: '600px', margin: '0 auto', padding: '60px 20px', minHeight: '80vh' } },
+            e('h1', { style: { color: 'var(--accent)', textAlign: 'center', fontWeight: '800', marginBottom: '10px' } }, 'Get In Touch'),
+            e('p', { style: { textAlign: 'center', opacity: 0.7, marginBottom: '30px' } }, 'Send us a message and we will get back to you soon.'),
+
+            e('div', {
+                style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '24px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }
+            },
+                // FIX: Yahan action mein aapki ID 'myknvklo' add kar di hai
+                e('form', { action: "https://formspree.io/f/myknvklo", method: "POST" },
+                    e('div', { style: { marginBottom: '15px' } },
+                        e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Name'),
+                        e('input', { type: 'text', name: 'name', placeholder: 'Your Name', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
+                    ),
+                    e('div', { style: { marginBottom: '15px' } },
+                        e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Email'),
+                        e('input', { type: 'email', name: 'email', placeholder: 'your@email.com', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
+                    ),
+                    e('div', { style: { marginBottom: '20px' } },
+                        e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Message'),
+                        e('textarea', { name: 'message', rows: 5, placeholder: 'How can we help you?', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
+                    ),
+                    e('button', {
+                        type: 'submit',
+                        style: { width: '100%', background: 'var(--accent)', color: '#fff', padding: '15px', border: 'none', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer', transition: '0.3s' }
+                    }, '🚀 Send Message')
+                )
+            )
+        ),
         currentPage === 'banner' && e('div', { style: { textAlign: 'center', maxWidth: '900px', margin: '0 auto', padding: '0 15px 100px' } },
             e('h2', { style: { color: 'var(--accent)', marginBottom: '5px', fontSize: '28px', fontWeight: '800' } }, 'Premium Banner Studio'),
             e('p', { style: { marginBottom: '30px', fontSize: '14px', opacity: 0.7 } }, 'Create high-impact LinkedIn banners with patterns and gradients.'),
@@ -963,20 +963,20 @@ currentPage === 'contact' && e('div', { style: { maxWidth: '600px', margin: '0 a
         ),
 
         e('footer', { className: 'footer', style: { padding: '40px 0', marginTop: '50px', borderTop: '1px solid var(--border)' } },
-    e('div', { style: { textAlign: 'center' } },
-        e('div', { style: { fontWeight: '800', color: '#3b82f6', fontSize: '20px', cursor: 'pointer', marginBottom: '10px' }, onClick: () => navigate('home') }, 'RESUME.PRO'),
-        
-        // --- Footer Navigation ---
-        e('div', { style: { display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '20px' } },
-            e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('privacy') }, 'Privacy Policy'),
-            e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('terms') }, 'Terms & Conditions'),
-            e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer', color: 'var(--accent)', fontWeight: 'bold' }, onClick: () => navigate('contact') }, '📩 Contact Us')
-        ),
+            e('div', { style: { textAlign: 'center' } },
+                e('div', { style: { fontWeight: '800', color: '#3b82f6', fontSize: '20px', cursor: 'pointer', marginBottom: '10px' }, onClick: () => navigate('home') }, 'RESUME.PRO'),
 
-        e('p', { className: 'footer-text', style: { opacity: 0.8 } }, 'Created with ❤️ by Paras'),
-        e('p', { className: 'footer-text', style: { opacity: 0.5, fontSize: '12px' } }, `© ${new Date().getFullYear()} All Rights Reserved`)
-    )
-)
+                // --- Footer Navigation ---
+                e('div', { style: { display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '20px' } },
+                    e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('privacy') }, 'Privacy Policy'),
+                    e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('terms') }, 'Terms & Conditions'),
+                    e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer', color: 'var(--accent)', fontWeight: 'bold' }, onClick: () => navigate('contact') }, '📩 Contact Us')
+                ),
+
+                e('p', { className: 'footer-text', style: { opacity: 0.8 } }, 'Created with ❤️ by Paras'),
+                e('p', { className: 'footer-text', style: { opacity: 0.5, fontSize: '12px' } }, `© ${new Date().getFullYear()} All Rights Reserved`)
+            )
+        )
     );
 };
 
