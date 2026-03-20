@@ -740,7 +740,7 @@ e('li', { style: { marginBottom: '10px' } },
 
                 // Section 7 & 8
                 e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '7. Contact Us'),
-                e('p', null, 'If you have any questions about our Privacy Policy, do not hesitate to contact us through our website.')
+                e('p', null, 'If you have any questions about our Privacy Policy, do not hesitate to contact us through our Email [resumeprohub1@gmail.com].')
             )
         ),
   
@@ -785,7 +785,36 @@ e('li', { style: { marginBottom: '10px' } },
         e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '7. Contact Information'),
         e('p', null, 'If you have any questions about these terms, you can reach out to us at:'),
         e('p', { style: { marginTop: '10px' } }, 'Website: https://resumepro.theglobalhubb.com/'),
-        e('p', null, 'Email: support@theglobalhubb.com') // Yahan apni email likh dena
+        e('p', null, 'Email: [resumeprohub1@gmail.com]') // Yahan apni email likh dena
+    )
+),
+
+currentPage === 'contact' && e('div', { style: { maxWidth: '600px', margin: '0 auto', padding: '60px 20px', minHeight: '80vh' } },
+    e('h1', { style: { color: 'var(--accent)', textAlign: 'center', fontWeight: '800', marginBottom: '10px' } }, 'Get In Touch'),
+    e('p', { style: { textAlign: 'center', opacity: 0.7, marginBottom: '30px' } }, 'Send us a message and we will get back to you soon.'),
+
+    e('div', { 
+        style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '24px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } 
+    },
+        // FIX: Yahan action mein aapki ID 'myknvklo' add kar di hai
+        e('form', { action: "https://formspree.io/f/myknvklo", method: "POST" },
+            e('div', { style: { marginBottom: '15px' } },
+                e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Name'),
+                e('input', { type: 'text', name: 'name', placeholder: 'Your Name', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
+            ),
+            e('div', { style: { marginBottom: '15px' } },
+                e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Email'),
+                e('input', { type: 'email', name: 'email', placeholder: 'your@email.com', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
+            ),
+            e('div', { style: { marginBottom: '20px' } },
+                e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Message'),
+                e('textarea', { name: 'message', rows: 5, placeholder: 'How can we help you?', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
+            ),
+            e('button', { 
+                type: 'submit', 
+                style: { width: '100%', background: 'var(--accent)', color: '#fff', padding: '15px', border: 'none', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer', transition: '0.3s' } 
+            }, '🚀 Send Message')
+        )
     )
 ),
         currentPage === 'banner' && e('div', { style: { textAlign: 'center', maxWidth: '900px', margin: '0 auto', padding: '0 15px 100px' } },
@@ -933,15 +962,21 @@ e('li', { style: { marginBottom: '10px' } },
             e('button', { className: 'btn btn-primary', onClick: () => window.print(), style: { margin: '0 auto', background: '#3b82f6', color: '#fff', padding: '12px 30px', border: 'none', borderRadius: '5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)' } }, '💾 Download My Resume')
         ),
 
-        e('footer', { className: 'footer' },
-            e('div', null,
-                e('div', { style: { fontWeight: '800', color: '#3b82f6' } }, 'RESUME.PRO'),
-                e('p', { className: 'footer-text', style: { fontSize: '14px', fontWeight: '500', marginTop: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' } },
-                    'Created with ', e('span', { style: { color: '#ef4444', fontSize: '18px' } }, '♥'), ' by ', e('span', { style: { color: 'var(--accent)', fontWeight: '700' } }, 'Paras')
-                ),
-                e('p', { className: 'footer-text' }, `© ${new Date().getFullYear()} All Rights Reserved`)
-            )
-        )
+        e('footer', { className: 'footer', style: { padding: '40px 0', marginTop: '50px', borderTop: '1px solid var(--border)' } },
+    e('div', { style: { textAlign: 'center' } },
+        e('div', { style: { fontWeight: '800', color: '#3b82f6', fontSize: '20px', cursor: 'pointer', marginBottom: '10px' }, onClick: () => navigate('home') }, 'RESUME.PRO'),
+        
+        // --- Footer Navigation ---
+        e('div', { style: { display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '20px' } },
+            e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('privacy') }, 'Privacy Policy'),
+            e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('terms') }, 'Terms & Conditions'),
+            e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer', color: 'var(--accent)', fontWeight: 'bold' }, onClick: () => navigate('contact') }, '📩 Contact Us')
+        ),
+
+        e('p', { className: 'footer-text', style: { opacity: 0.8 } }, 'Created with ❤️ by Paras'),
+        e('p', { className: 'footer-text', style: { opacity: 0.5, fontSize: '12px' } }, `© ${new Date().getFullYear()} All Rights Reserved`)
+    )
+)
     );
 };
 
