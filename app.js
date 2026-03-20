@@ -8,6 +8,7 @@ const App = () => {
     const [typewriterText, setTypewriterText] = useState('');
     const [phraseIndex, setPhraseIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [isPrivacyDropdownOpen, setIsPrivacyDropdownOpen] = useState(false);
 
     // AB YAHAN TYPEWRITER WALA EFFECT RAKHEIN
     useEffect(() => {
@@ -214,7 +215,7 @@ const handleMakeZip = async (event) => {
         }
     }, [bannerText, bannerColor, bannerTagline, bannerPattern, currentPage]);
 
-    const styles = `
+    const styles =  `
         :root {
             --bg: ${isDarkMode ? '#050505' : '#f8fafc'};
             --card-bg: ${isDarkMode ? '#111111' : '#ffffff'};
@@ -416,6 +417,7 @@ e('div', { className: `nav-link ${currentPage === 'unzip' ? 'active' : ''}`, sty
 e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('makeZip') }, 'Make Zip'),
             // Mobile menu ke links mein ye dalo:
             e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('privacy') }, 'Privacy Policy'),
+            e('div', { className: `nav-link ${currentPage === 'terms' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('terms') }, 'Terms & Conditions'),
             e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('about') }, 'About'),
             e('button', { className: 'btn btn-theme', style: { marginTop: '20px', display: 'flex', justifyContent: 'center' }, onClick: () => setIsDarkMode(!isDarkMode) }, isDarkMode ? '☀️ Light' : '🌙 Dark')
         ),
@@ -431,7 +433,34 @@ e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, s
                     e('div', { className: `nav-link ${currentPage === 'unzip' ? 'active' : ''}`, onClick: () => navigate('unzip') }, 'Unzip File'),
                     e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, onClick: () => navigate('makeZip') }, 'Make Zip'),
                     // Nav links ke andar 'About' ke bilkul niche ye dalo:
-                    e('div', { className: `nav-link ${currentPage === 'privacy' ? 'active' : ''}`, onClick: () => navigate('privacy') }, 'Privacy Policy'),
+                    e('div', { 
+    className: 'dropdown-container',
+    onMouseEnter: () => setIsPrivacyDropdownOpen(true),
+    onMouseLeave: () => setIsPrivacyDropdownOpen(false),
+    style: { cursor: 'pointer' }
+},
+    // Main Label
+    e('div', { 
+        className: `nav-link ${currentPage === 'privacy' || currentPage === 'terms' ? 'active' : ''}`,
+        style: { display: 'flex', alignItems: 'center', gap: '6px', fontWeight: '600' } 
+    }, 
+        'Legal', 
+        e('span', { style: { fontSize: '10px', opacity: 0.7 } }, '▼')
+    ),
+
+    // Dropdown Box
+    isPrivacyDropdownOpen && e('div', { className: 'dropdown-menu' },
+        e('div', { 
+            className: 'dropdown-item', 
+            onClick: () => navigate('privacy') 
+        }, e('span', null, '🛡️'), 'Privacy Policy'),
+        
+        e('div', { 
+            className: 'dropdown-item', 
+            onClick: () => navigate('terms') 
+        }, e('span', null, '📜'), 'Terms & Conditions')
+    )
+),
                     e('div', { className: `nav-link ${currentPage === 'about' ? 'active' : ''}`, onClick: () => navigate('about') }, 'About')
                 ),
 
@@ -714,6 +743,51 @@ e('li', { style: { marginBottom: '10px' } },
                 e('p', null, 'If you have any questions about our Privacy Policy, do not hesitate to contact us through our website.')
             )
         ),
+  
+        currentPage === 'terms' && e('div', { 
+    style: { maxWidth: '850px', margin: '0 auto', padding: '60px 20px', minHeight: '80vh', color: 'var(--text)' } 
+},
+    e('h1', { style: { color: 'var(--accent)', textAlign: 'center', fontSize: '32px', fontWeight: '800' } }, 'Terms and Conditions'),
+    e('p', { style: { textAlign: 'center', opacity: 0.6, marginBottom: '40px' } }, 'Last Updated: March 20, 2026'),
+
+    e('div', { 
+        style: { background: 'var(--card-bg)', padding: '40px', borderRadius: '24px', border: '1px solid var(--border)', lineHeight: '1.7', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' } 
+    },
+        e('p', { style: { marginBottom: '20px' } }, 'Welcome to ResumePro (https://resumepro.theglobalhubb.com/). By accessing and using this website, you agree to the following terms:'),
+
+        // Section 1
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '1. Nature of Service'),
+        e('p', null, 'ResumePro is a client-side, browser-based tool built with React/JavaScript. It is designed to help users generate resumes for personal use.'),
+
+        // Section 2
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '2. No User Data Collection'),
+        e('p', null, e('strong', null, 'Privacy First: '), 'We do not have a backend or database. We do not require users to create accounts or log in.'),
+        e('p', null, e('strong', null, 'Local Processing: '), 'All information you enter into the resume builder is processed locally in your browser. We do not store, save, or track any personal data or the content of the resumes you create.'),
+
+        // Section 3
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '3. Intellectual Property'),
+        e('p', null, 'All website design, code, and templates provided on ResumePro are the intellectual property of the site owner. You are granted a license to use the templates to create your personal resume. You may not copy the source code or redistribute our templates for commercial sale.'),
+
+        // Section 4
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '4. Limitation of Liability'),
+        e('p', null, e('strong', null, '"As-Is" Basis: '), 'This website is provided "as-is" without any warranties. While we strive for accuracy, ResumePro is not responsible for any errors in the final resume or for your employment results.'),
+        e('p', null, e('strong', null, 'No Responsibility for Data Loss: '), 'Since we do not store your data, if you refresh the page or clear your browser cache, your progress may be lost. We are not responsible for any such data loss.'),
+
+        // Section 5
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '5. Third-Party Links'),
+        e('p', null, 'Our website may contain links to external sites. We are not responsible for the content or privacy practices of those third-party websites.'),
+
+        // Section 6
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '6. Changes to Terms'),
+        e('p', null, 'We reserve the right to update these terms at any time. Any changes will be posted on this page.'),
+
+        // Section 7
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '7. Contact Information'),
+        e('p', null, 'If you have any questions about these terms, you can reach out to us at:'),
+        e('p', { style: { marginTop: '10px' } }, 'Website: https://resumepro.theglobalhubb.com/'),
+        e('p', null, 'Email: support@theglobalhubb.com') // Yahan apni email likh dena
+    )
+),
         currentPage === 'banner' && e('div', { style: { textAlign: 'center', maxWidth: '900px', margin: '0 auto', padding: '0 15px 100px' } },
             e('h2', { style: { color: 'var(--accent)', marginBottom: '5px', fontSize: '28px', fontWeight: '800' } }, 'Premium Banner Studio'),
             e('p', { style: { marginBottom: '30px', fontSize: '14px', opacity: 0.7 } }, 'Create high-impact LinkedIn banners with patterns and gradients.'),
