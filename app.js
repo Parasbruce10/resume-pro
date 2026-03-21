@@ -745,45 +745,45 @@ const App = () => {
         ),
 
         currentPage === 'terms' && e('div', {
-    style: { 
-        maxWidth: '850px', 
-        margin: '0 auto', 
-        padding: '20px 15px', // Mobile ke liye padding kam kar di
-        minHeight: '80vh', 
-        color: 'var(--text)' 
-    }
-},
-    e('h1', { 
-        style: { 
-            color: 'var(--accent)', 
-            textAlign: 'center', 
-            fontSize: '24px', // Mobile par 32px bahut bada lagta tha, 24px sahi hai
-            fontWeight: '800',
-            marginBottom: '10px'
-        } 
-    }, 'Terms and Conditions'),
-    
-    e('p', { 
-        style: { 
-            textAlign: 'center', 
-            opacity: 0.6, 
-            marginBottom: '25px', 
-            fontSize: '13px' 
-        } 
-    }, 'Last Updated: March 20, 2026'),
+            style: {
+                maxWidth: '850px',
+                margin: '0 auto',
+                padding: '20px 15px', // Mobile ke liye padding kam kar di
+                minHeight: '80vh',
+                color: 'var(--text)'
+            }
+        },
+            e('h1', {
+                style: {
+                    color: 'var(--accent)',
+                    textAlign: 'center',
+                    fontSize: '24px', // Mobile par 32px bahut bada lagta tha, 24px sahi hai
+                    fontWeight: '800',
+                    marginBottom: '10px'
+                }
+            }, 'Terms and Conditions'),
 
-    e('div', {
-        style: { 
-            background: 'var(--card-bg)', 
-            padding: '20px', // Card ki padding 40 se 20 kar di taake text ko jagah mile
-            borderRadius: '16px', // Zyada rounded corners mobile par ajeeb lagte hain
-            border: '1px solid var(--border)', 
-            lineHeight: '1.6', 
-            boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-            fontSize: '14px' // Text size mobile readable rakha hai
-        }
-    },
-        e('p', { style: { marginBottom: '15px' } }, 'Welcome to ResumePro (https://resumepro.theglobalhubb.com/). By accessing and using this website, you agree to the following terms:'),
+            e('p', {
+                style: {
+                    textAlign: 'center',
+                    opacity: 0.6,
+                    marginBottom: '25px',
+                    fontSize: '13px'
+                }
+            }, 'Last Updated: March 20, 2026'),
+
+            e('div', {
+                style: {
+                    background: 'var(--card-bg)',
+                    padding: '20px', // Card ki padding 40 se 20 kar di taake text ko jagah mile
+                    borderRadius: '16px', // Zyada rounded corners mobile par ajeeb lagte hain
+                    border: '1px solid var(--border)',
+                    lineHeight: '1.6',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                    fontSize: '14px' // Text size mobile readable rakha hai
+                }
+            },
+                e('p', { style: { marginBottom: '15px' } }, 'Welcome to ResumePro (https://resumepro.theglobalhubb.com/). By accessing and using this website, you agree to the following terms:'),
 
                 // Section 1
                 e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '1. Nature of Service'),
@@ -817,7 +817,7 @@ const App = () => {
                 e('p', { style: { marginTop: '10px' } }, 'Website: https://resumepro.theglobalhubb.com/'),
                 e('p', null, 'Email: [resumeprohub1@gmail.com]') // Yahan apni email likh dena
             )
-        ), 
+        ),
 
         currentPage === 'contact' && e('div', { style: { maxWidth: '600px', margin: '0 auto', padding: '60px 20px', minHeight: '80vh' } },
             e('h1', { style: { color: 'var(--accent)', textAlign: 'center', fontWeight: '800', marginBottom: '10px' } }, 'Get In Touch'),
