@@ -9,6 +9,22 @@ const App = () => {
     const [phraseIndex, setPhraseIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isPrivacyDropdownOpen, setIsPrivacyDropdownOpen] = useState(false);
+    const [editorContent, setEditorContent] = useState('');
+
+// Word File Download karne ka function
+const handleDownloadWord = () => {
+    const content = `
+        <html>
+            <head><meta charset="utf-8"></head>
+            <body>${editorContent}</body>
+        </html>
+    `;
+    const converted = htmlDocx.asBlob(content);
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(converted);
+    link.download = "MyArticle.docx";
+    link.click();
+};
 
     // AB YAHAN TYPEWRITER WALA EFFECT RAKHEIN
     useEffect(() => {
@@ -38,6 +54,28 @@ const App = () => {
         return () => clearTimeout(timer);
     }, [typewriterText, isDeleting, phraseIndex]);
 
+    useEffect(() => {
+    if (currentPage === 'wordEditor') {
+        const container = document.getElementById('editor-container');
+        if (container && !container.innerHTML) {
+            const quill = new Quill('#editor-container', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['clean']
+                    ]
+                }
+            });
+
+            quill.on('text-change', () => {
+                setEditorContent(quill.root.innerHTML);
+            });
+        }
+    }
+}, [currentPage]);
     // Baaqi sara code...
 
     const initialState = {
@@ -408,6 +446,7 @@ const App = () => {
             e('div', { className: 'close-menu', onClick: () => setIsMenuOpen(false) }, '✕'),
             e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('home') }, 'Resume Maker'),
             e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
+            e('div', { className: `nav-link ${currentPage === 'wordEditor' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('wordEditor') }, 'Word Editor'),
             e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('banner') }, 'LinkedIn Banner'),
 
             // NAYA LOGO LINK (Mobile Ke Liye)
@@ -429,6 +468,7 @@ const App = () => {
                     e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, onClick: () => navigate('home') }, 'Resume Maker'),
                     e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
                     e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, onClick: () => navigate('banner') }, 'LinkedIn Banner'),
+                    e('div', { className: `nav-link ${currentPage === 'wordEditor' ? 'active' : ''}`, onClick: () => navigate('wordEditor') }, 'Word Editor'),
                     e('div', { className: `nav-link ${currentPage === 'logo' ? 'active' : ''}`, onClick: () => navigate('logo') }, 'Logo Maker'),
                     e('div', { className: `nav-link ${currentPage === 'unzip' ? 'active' : ''}`, onClick: () => navigate('unzip') }, 'Unzip File'),
                     e('div', { className: `nav-link ${currentPage === 'makeZip' ? 'active' : ''}`, onClick: () => navigate('makeZip') }, 'Make Zip'),
@@ -670,6 +710,22 @@ const App = () => {
                     )
                 )
             ),
+            currentPage === 'wordEditor' && e('div', { style: { maxWidth: '800px', margin: '0 auto', padding: '20px' } },
+    e('h2', { style: { color: 'var(--accent)', textAlign: 'center', marginBottom: '10px' } }, 'Word Article Editor'),
+    e('p', { style: { textAlign: 'center', opacity: 0.6, fontSize: '14px', marginBottom: '20px' } }, 'Write your essay or article and download it as a Word file.'),
+    
+    // Editor ka dabba
+    e('div', { style: { background: '#fff', color: '#000', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border)' } },
+        e('div', { id: 'editor-container', style: { height: '400px', fontSize: '16px' } })
+    ),
+
+    // Download Button
+    e('button', {
+        className: 'btn btn-primary',
+        onClick: handleDownloadWord,
+        style: { margin: '30px auto', display: 'block', background: '#3b82f6', color: '#fff', padding: '12px 30px', borderRadius: '8px' }
+    }, '📥 Download .docx File')
+),
 
             currentPage === 'about' && e('div', { style: { textAlign: 'left', maxWidth: '800px', margin: '0 auto', padding: '50px 20px', minHeight: '60vh', lineHeight: '1.6' } },
                 e('h1', { style: { textAlign: 'center', color: 'var(--accent)' } }, 'Welcome to Resume Pro'),
@@ -690,6 +746,10 @@ const App = () => {
                         e('strong', null, 'Advanced Zip Creator: '),
                         'Effortlessly bundle multiple documents and images into a single compressed ZIP file for easier sharing and organization.'
                     ),
+                    e('li', { style: { marginBottom: '10px' } },
+    e('strong', null, 'Professional Word Editor: '),
+    'Write articles, essays, or any document using our built-in MS Word-style editor. Customize fonts, formatting, and download your work directly as a .docx file.'
+),
 
                     e('li', { style: { marginBottom: '10px' } },
                         e('strong', null, 'Instant File Unzipper: '),
