@@ -2,7 +2,7 @@ const e = React.createElement;
 const { useState, useEffect } = React;
 
 const App = () => {
-    const [currentPage, setCurrentPage] = useState('home');
+    const [currentPage, setCurrentPage] = useState('landing');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState('modern');
     const [typewriterText, setTypewriterText] = useState('');
@@ -444,6 +444,8 @@ const handleDownloadWord = () => {
 
         e('div', { className: 'mobile-menu' },
             e('div', { className: 'close-menu', onClick: () => setIsMenuOpen(false) }, '✕'),
+            // NAYA HOME BUTTON MOBILE KE LIYE
+    e('div', { className: `nav-link ${currentPage === 'landing' ? 'active' : ''}`, style: { fontSize: '18px', fontWeight: 'bold' }, onClick: () => navigate('landing') }, 'Home'),
             e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('home') }, 'Resume Maker'),
             e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
             e('div', { className: `nav-link ${currentPage === 'wordEditor' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('wordEditor') }, 'Word Editor'),
@@ -465,6 +467,8 @@ const handleDownloadWord = () => {
             e('div', { className: 'header-content' },
                 e('div', { className: 'logo', onClick: () => navigate('home') }, 'RESUME.PRO'),
                 e('div', { className: 'nav-links' },
+                    // NAYA HOME BUTTON DESKTOP KE LIYE
+    e('div', { className: `nav-link ${currentPage === 'landing' ? 'active' : ''}`, onClick: () => navigate('landing'), style: { fontWeight: 'bold' } }, 'Home'),
                     e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, onClick: () => navigate('home') }, 'Resume Maker'),
                     e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
                     e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, onClick: () => navigate('banner') }, 'LinkedIn Banner'),
@@ -565,6 +569,81 @@ const handleDownloadWord = () => {
         ),
 
         e('div', { className: 'app-container' },
+            // --- ULTRA-PREMIUM & UNIQUE LANDING PAGE ---
+currentPage === 'landing' && e('div', { style: { padding: '60px 20px', maxWidth: '1200px', margin: '0 auto', fontFamily: "'Inter', sans-serif", position: 'relative' } },
+    
+    // Background Glow (Slightly visible for depth)
+    e('div', { style: { position: 'absolute', top: '-10%', left: '50%', width: '400px', height: '400px', background: 'rgba(59, 130, 246, 0.15)', filter: 'blur(100px)', borderRadius: '50%', zIndex: -1, transform: 'translateX(-50%)' } }),
+
+    // 1. Hero Section
+    e('div', { style: { textAlign: 'center', marginBottom: '100px' } },
+        e('div', { style: { display: 'inline-flex', alignItems: 'center', background: 'rgba(59, 130, 246, 0.08)', border: '1px solid rgba(59, 130, 246, 0.2)', padding: '6px 16px', borderRadius: '100px', marginBottom: '30px' } },
+            e('span', { style: { fontSize: '12px', marginRight: '8px' } }, '🚀'),
+            e('span', { style: { color: 'var(--accent)', fontSize: '12px', fontWeight: '700', letterSpacing: '0.5px', textTransform: 'uppercase' } }, 'Next-Gen Career Platform')
+        ),
+        e('h1', { style: { fontSize: 'clamp(40px, 8vw, 72px)', fontWeight: '950', lineHeight: '1', margin: '0 0 25px 0', letterSpacing: '-2px', color: 'var(--text)' } }, 
+            'Create Without ', 
+            e('span', { style: { color: 'var(--accent)', fontStyle: 'italic', fontWeight: '400' } }, 'Limits.')
+        ),
+        e('p', { style: { fontSize: '19px', opacity: 0.7, maxWidth: '600px', margin: '0 auto 40px', lineHeight: '1.6', fontWeight: '400' } }, 
+            'Professional tools for the modern professional. Fast, secure, and built for results.'
+        ),
+        e('button', { 
+            className: 'btn main-cta', 
+            onClick: () => navigate('home'), 
+            style: { 
+                padding: '20px 50px', 
+                fontSize: '18px', 
+                borderRadius: '100px', 
+                background: 'var(--accent)', 
+                color: '#fff', 
+                border: 'none', 
+                fontWeight: '800', 
+                cursor: 'pointer',
+                boxShadow: '0 20px 40px rgba(59, 130, 246, 0.4)',
+                transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            } 
+        }, 'Get Started Now — It\'s Free')
+    ),
+
+    // 2. Feature Grid (Re-designed with Glassmorphism)
+    e('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '30px' } },
+        
+        // Feature 1
+        e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
+            e('div', { style: { background: 'rgba(59, 130, 246, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '✍️'),
+            e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Resume Builder'),
+            e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'Industry-standard templates that capture attention. Export to PDF in seconds with pixel-perfect precision.'),
+            e('img', { src: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
+        ),
+
+        // Feature 2
+        e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
+            e('div', { style: { background: 'rgba(147, 51, 234, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '🖼️'),
+            e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Social Canvas'),
+            e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'Personalize your LinkedIn presence with high-fidelity banners. Custom ratios for all professional networks.'),
+            e('img', { src: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
+        ),
+
+        // Feature 3
+        e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
+            e('div', { style: { background: 'rgba(16, 185, 129, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '🛠️'),
+            e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Power Utilities'),
+            e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'One-click ZIP extraction and a distraction-free Word editor. Built for speed and local privacy.'),
+            e('img', { src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
+        )
+    ),
+
+    // 3. CTA Footer (Compact & Bold)
+    e('div', { style: { marginTop: '120px', textAlign: 'center', borderTop: '1px solid var(--border)', paddingTop: '60px' } },
+        e('h2', { style: { fontSize: '36px', fontWeight: '900', marginBottom: '10px' } }, 'Ready to start?'),
+        e('p', { style: { opacity: 0.5, marginBottom: '30px' } }, 'No credit card. No signup. Just tools.'),
+        e('button', { 
+            onClick: () => navigate('home'), 
+            style: { background: 'var(--text)', color: 'var(--bg)', border: 'none', padding: '15px 40px', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '16px' } 
+        }, 'Open Resume Pro')
+    )
+),
             currentPage === 'home' && e('div', { className: 'main-layout' },
                 e('div', { className: 'form-side' },
                     e('div', { className: 'section-title' }, 'Photo'),
