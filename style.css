@@ -124,3 +124,62 @@ input, textarea { width: 100%; padding: 10px; margin-bottom: 10px; border-radius
         font-size: 24px !important; /* Mobile par heading choti */
     }
 } 
+/* Premium Card Hover Effect & Responsive adjustments */
+.premium-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.premium-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.main-cta:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* --- Mobile Specific Fixes --- */
+@media (max-width: 768px) {
+    /* Padding thori kam kar di taakay screen space bache */
+    .app-container > div[style*="padding: 60px"] {
+        padding: 30px 15px !important;
+    }
+
+    /* Heading ka size mobile par chota aur readable */
+    h1 {
+        font-size: 38px !important;
+        letter-spacing: -1px !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Description text mobile par adjust kiya */
+    p {
+        font-size: 16px !important;
+        margin-bottom: 30px !important;
+    }
+
+    /* Grid ko force kiya ke mobile par 1 column dikhaye */
+    div[style*="display: grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* Images aur cards ki padding set ki */
+    .premium-card {
+        padding: 25px !important;
+        border-radius: 24px !important;
+    }
+
+    .premium-card img {
+        height: 150px !important;
+    }
+
+    /* Button ko mobile par full width ya responsive kiya */
+    .main-cta {
+        padding: 15px 30px !important;
+        width: 100%;
+        font-size: 16px !important;
+    }
+}
