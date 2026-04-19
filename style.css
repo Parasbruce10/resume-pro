@@ -184,32 +184,3 @@ input, textarea { width: 100%; padding: 10px; margin-bottom: 10px; border-radius
     }
 }
 
-@media (max-width: 900px) {
-    .main-layout {
-        display: flex !important;
-        flex-direction: column !important;
-        height: auto !important;
-        overflow-x: hidden !important;
-    }
-
-    .form-side, .preview-side {
-        width: 100% !important;
-        min-width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        position: relative !important;
-        height: auto !important;
-    }
-
-    /* Input fields jo screen se bahar ja rahi hain */
-    input, textarea {
-        width: 100% !important;
-        box-sizing: border-box !important;
-    }
-
-    /* Grid columns ko torna */
-    div[style*="display: grid"] {
-        display: flex !important;
-        flex-direction: column !important;
-    }
-}
