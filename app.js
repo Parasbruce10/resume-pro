@@ -10,6 +10,13 @@ const App = () => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isPrivacyDropdownOpen, setIsPrivacyDropdownOpen] = useState(false);
     const [editorContent, setEditorContent] = useState('');
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
+
+useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 900);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+}, []);
 
 // Word File Download karne ka function
 const handleDownloadWord = () => {
@@ -644,7 +651,15 @@ currentPage === 'landing' && e('div', { style: { padding: '60px 20px', maxWidth:
         }, 'Open Resume Pro')
     )
 ),
-            currentPage === 'home' && e('div', { className: 'main-layout' },
+            currentPage === 'home' && e('div', { 
+    className: 'main-layout', 
+    style: { 
+        display: isMobile ? 'flex' : 'grid', 
+        flexDirection: isMobile ? 'column' : 'row',
+        height: isMobile ? 'auto' : 'calc(100vh - 80px)',
+        padding: isMobile ? '10px' : '20px'
+    } 
+},
                 e('div', { className: 'form-side' },
                     e('div', { className: 'section-title' }, 'Photo'),
                     e('div', { className: 'file-upload-wrapper' },
