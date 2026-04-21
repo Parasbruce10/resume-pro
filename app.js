@@ -78,11 +78,23 @@ const handleDownloadWord = () => {
 }, [currentPage]);
     // Baaqi sara code...
 
-    const initialState = {
-        name: '', title: '', email: '', phone: '', city: '', address: '',
-        summary: '', skills: '', education: '', experience: '',
-        image: null
-    };
+    // Purana 'education' delete karke ye teenon add karein
+const initialState = {
+    name: '', title: '', email: '', phone: '', city: '', address: '',
+    summary: '', skills: '',
+    // Matric
+    matDeg: '', matYear: '', matStatus: '',
+    // Inter
+    intDeg: '', intYear: '', intStatus: '',
+    // Graduation
+    gradDeg: '', gradYear: '', gradStatus: '',
+    // Masters
+    masDeg: '', masYear: '', masStatus: '',
+    // PhD
+    phdDeg: '', phdYear: '', phdStatus: '',
+    experience: '',
+    image: null
+};
 
 
     const [data, setData] = useState(initialState);
@@ -668,7 +680,38 @@ currentPage === 'landing' && e('div', { style: { padding: '60px 20px', maxWidth:
                     e('div', { className: 'section-title' }, 'Content'),
                     e('textarea', { rows: 2, placeholder: 'Summary...', onChange: (e) => update('summary', e.target.value) }),
                     e('textarea', { rows: 4, placeholder: 'Work Experience...', onChange: (e) => update('experience', e.target.value) }),
-                    e('input', { placeholder: 'Education', onChange: (e) => update('education', e.target.value) }),
+                    e('div', { className: 'section-title' }, 'Education Details'),
+                    
+// Education Section Header
+e('div', { className: 'section-title' }, 'Education History'),
+
+// Loop for 5 Education Boxes
+['mat', 'int', 'grad', 'mas', 'phd'].map((key) => {
+    const labels = { mat: 'Matric', int: 'Intermediate', grad: 'Graduation', mas: 'Masters', phd: 'PhD' };
+    return e('div', { key: key, style: { marginBottom: '20px', padding: '15px', border: '1px solid var(--border)', borderRadius: '10px' } },
+        e('label', { style: { fontWeight: 'bold', display: 'block', marginBottom: '5px' } }, labels[key]),
+        e('input', { 
+            placeholder: 'Degree Name (e.g. Computer Science)', 
+            onChange: (e) => update(`${key}Deg`, e.target.value),
+            style: { marginBottom: '10px' }
+        }),
+        e('div', { className: 'grid-2' },
+            e('input', { 
+                placeholder: 'Year', 
+                onChange: (e) => update(`${key}Year`, e.target.value) 
+            }),
+            e('select', { 
+                onChange: (e) => update(`${key}Status`, e.target.value),
+                style: { width: '100%', padding: '12px', background: 'var(--input-bg)', border: '1px solid var(--border)', color: 'var(--text)', borderRadius: '8px' }
+            },
+                e('option', { value: '' }, 'Status'),
+                e('option', { value: 'Passed' }, 'Passed'),
+                e('option', { value: 'Result Awaited' }, 'Result Awaited'),
+                e('option', { value: 'Studying' }, 'Currently Studying')
+            )
+        )
+    );
+}),
                     e('input', { placeholder: 'Skills', onChange: (e) => update('skills', e.target.value) })
                 ),
 
@@ -701,10 +744,18 @@ currentPage === 'landing' && e('div', { style: { padding: '60px 20px', maxWidth:
                             e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'EXPERIENCE'),
                             e('p', { style: { fontSize: '12px', whiteSpace: 'pre-line' } }, data.experience)
                         ),
-                        data.education && e('div', { style: { marginBottom: '15px' } },
-                            e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'EDUCATION'),
-                            e('p', { style: { fontSize: '12px' } }, data.education)
-                        ),
+     // Check agar kisi bhi box mein data bhara gaya hai
+(data.matDeg || data.intDeg || data.gradDeg || data.masDeg || data.phdDeg) && e('div', { style: { marginBottom: '15px' } },
+    e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'EDUCATION'),
+    ['mat', 'int', 'grad', 'mas', 'phd'].map(key => (
+        data[`${key}Deg`] && e('div', { key, style: { marginBottom: '8px' } },
+            e('p', { style: { fontSize: '12px', fontWeight: 'bold', margin: '0' } }, data[`${key}Deg`]),
+            e('p', { style: { fontSize: '11px', color: '#64748b', margin: '0' } }, 
+                `${data[`${key}Year`]} | ${data[`${key}Status`]}`
+            )
+        )
+    ))
+),
                         data.skills && e('div', null,
                             e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'SKILLS'),
                             e('p', { style: { fontSize: '12px' } }, data.skills)
