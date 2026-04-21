@@ -2,11 +2,11 @@ const e = React.createElement;
 const { useState, useEffect } = React;
 
 const App = () => {
-    
+
     const [bannerAlign, setBannerAlign] = useState('center'); // left, center, right
-const [bannerFontFamily, setBannerFontFamily] = useState('Inter, sans-serif');
+    const [bannerFontFamily, setBannerFontFamily] = useState('Inter, sans-serif');
     const [bannerTheme, setBannerTheme] = useState('modern'); // 'modern' or 'minimal'
-const [bannerGlass, setBannerGlass] = useState(true);     // Glass effect toggle
+    const [bannerGlass, setBannerGlass] = useState(true);     // Glass effect toggle
     const [currentPage, setCurrentPage] = useState('landing');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState('modern');
@@ -16,20 +16,20 @@ const [bannerGlass, setBannerGlass] = useState(true);     // Glass effect toggle
     const [isPrivacyDropdownOpen, setIsPrivacyDropdownOpen] = useState(false);
     const [editorContent, setEditorContent] = useState('');
 
-// Word File Download karne ka function
-const handleDownloadWord = () => {
-    const content = `
+    // Word File Download karne ka function
+    const handleDownloadWord = () => {
+        const content = `
         <html>
             <head><meta charset="utf-8"></head>
             <body>${editorContent}</body>
         </html>
     `;
-    const converted = htmlDocx.asBlob(content);
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(converted);
-    link.download = "MyArticle.docx";
-    link.click();
-};
+        const converted = htmlDocx.asBlob(content);
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(converted);
+        link.download = "MyArticle.docx";
+        link.click();
+    };
 
     // AB YAHAN TYPEWRITER WALA EFFECT RAKHEIN
     useEffect(() => {
@@ -60,48 +60,49 @@ const handleDownloadWord = () => {
     }, [typewriterText, isDeleting, phraseIndex]);
 
     useEffect(() => {
-    if (currentPage === 'wordEditor') {
-        const container = document.getElementById('editor-container');
-        if (container && !container.innerHTML) {
-            const quill = new Quill('#editor-container', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        [{ 'header': [1, 2, 3, false] }],
-                        ['bold', 'italic', 'underline'],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        ['clean']
-                    ]
-                }
-            });
+        if (currentPage === 'wordEditor') {
+            const container = document.getElementById('editor-container');
+            if (container && !container.innerHTML) {
+                const quill = new Quill('#editor-container', {
+                    theme: 'snow',
+                    modules: {
+                        toolbar: [
+                            [{ 'header': [1, 2, 3, false] }],
+                            ['bold', 'italic', 'underline'],
+                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                            ['clean']
+                        ]
+                    }
+                });
 
-            quill.on('text-change', () => {
-                setEditorContent(quill.root.innerHTML);
-            });
+                quill.on('text-change', () => {
+                    setEditorContent(quill.root.innerHTML);
+                });
+            }
         }
-    }
-}, [currentPage]);
+    }, [currentPage]);
     // Baaqi sara code...
 
     // Purana 'education' delete karke ye teenon add karein
-const initialState = {
-    name: '', title: '', email: '', phone: '', city: '', address: '',
-    summary: '', skills: '',
-    // Matric
-    matDeg: '', matYear: '', matStatus: '',
-    // Inter
-    intDeg: '', intYear: '', intStatus: '',
-    // Graduation
-    gradDeg: '', gradYear: '', gradStatus: '',
-    // Masters
-    masDeg: '', masYear: '', masStatus: '',
-    // PhD
-    phdDeg: '', phdYear: '', phdStatus: '',
-    experience: '',
-    image: null
-};
+    const initialState = {
+        name: '', title: '', email: '', phone: '', city: '', address: '',
+        summary: '', skills: '',
+        // Matric
+        matDeg: '', matYear: '', matStatus: '',
+        // Inter
+        intDeg: '', intYear: '', intStatus: '',
+        // Graduation
+        gradDeg: '', gradYear: '', gradStatus: '',
+        // Masters
+        masDeg: '', masYear: '', masStatus: '',
+        // PhD
+        phdDeg: '', phdYear: '', phdStatus: '',
+        experience: '',
+        image: null
 
+    };
 
+    const [references, setReferences] = useState('');
     const [data, setData] = useState(initialState);
     const [isDarkMode, setIsDarkMode] = useState(true);
     const [isConverting, setIsConverting] = useState(false);
@@ -114,8 +115,8 @@ const initialState = {
     const [logoFont, setLogoFont] = useState('Inter'); // Font ke liye
     const [logoIcon, setLogoIcon] = useState('★'); // Icon ke liye
     const [logoLayout, setLogoLayout] = useState('vertical'); // vertical, horizontal, icon-only
-const [logoBorder, setLogoBorder] = useState('none'); // none, solid, double
-const [logoShadow, setLogoShadow] = useState('heavy'); // soft, heavy, none
+    const [logoBorder, setLogoBorder] = useState('none'); // none, solid, double
+    const [logoShadow, setLogoShadow] = useState('heavy'); // soft, heavy, none
     const [bannerTagline, setBannerTagline] = useState('Professional Profile');
     const [bannerGradient, setBannerGradient] = useState('linear-gradient(135deg, #3b82f6, #1d4ed8)');
     const [bannerPattern, setBannerPattern] = useState('dots'); // dots, lines, none
@@ -230,77 +231,77 @@ const [logoShadow, setLogoShadow] = useState('heavy'); // soft, heavy, none
     };
 
     useEffect(() => {
-    const updateCanvas = () => {
-        const canvas = document.getElementById('bannerCanvas');
-        if (!canvas) return;
-        
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
+        const updateCanvas = () => {
+            const canvas = document.getElementById('bannerCanvas');
+            if (!canvas) return;
 
-        try {
-            // 1. Clear & Background (Gradient)
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            grd.addColorStop(0, bannerColor || '#3b82f6');
-            grd.addColorStop(1, '#000000'); 
-            ctx.fillStyle = grd;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
 
-            // 2. Patterns
-            if (bannerPattern === 'dots') {
-                ctx.fillStyle = 'rgba(255,255,255,0.1)';
-                for (let i = 0; i < canvas.width; i += 40) {
-                    for (let j = 0; j < canvas.height; j += 40) {
-                        ctx.beginPath(); 
-                        ctx.arc(i, j, 2, 0, Math.PI * 2); 
-                        ctx.fill();
+            try {
+                // 1. Clear & Background (Gradient)
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                grd.addColorStop(0, bannerColor || '#3b82f6');
+                grd.addColorStop(1, '#000000');
+                ctx.fillStyle = grd;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // 2. Patterns
+                if (bannerPattern === 'dots') {
+                    ctx.fillStyle = 'rgba(255,255,255,0.1)';
+                    for (let i = 0; i < canvas.width; i += 40) {
+                        for (let j = 0; j < canvas.height; j += 40) {
+                            ctx.beginPath();
+                            ctx.arc(i, j, 2, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    }
+                } else if (bannerPattern === 'lines') {
+                    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+                    ctx.lineWidth = 2;
+                    for (let i = 0; i < canvas.width + 200; i += 50) {
+                        ctx.beginPath();
+                        ctx.moveTo(i, 0);
+                        ctx.lineTo(i - 150, canvas.height);
+                        ctx.stroke();
                     }
                 }
-            } else if (bannerPattern === 'lines') {
-                ctx.strokeStyle = 'rgba(255,255,255,0.1)';
-                ctx.lineWidth = 2;
-                for (let i = 0; i < canvas.width + 200; i += 50) {
-                    ctx.beginPath();
-                    ctx.moveTo(i, 0);
-                    ctx.lineTo(i - 150, canvas.height);
-                    ctx.stroke();
-                }
+
+                // 3. Text Alignment Position
+                let xPos = canvas.width / 2;
+                if (bannerAlign === 'left') xPos = 100;
+                else if (bannerAlign === 'right') xPos = canvas.width - 100;
+
+                // 4. Draw Main Text
+                ctx.textAlign = bannerAlign || 'center';
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `bold 90px ${bannerFontFamily || 'sans-serif'}`;
+                const mainText = (bannerText || 'YOUR NAME').toUpperCase();
+                ctx.fillText(mainText, xPos, canvas.height / 2);
+
+                // 5. Draw Tagline
+                ctx.font = `300 40px ${bannerFontFamily || 'sans-serif'}`;
+                ctx.fillStyle = 'rgba(255,255,255,0.8)';
+                const subText = bannerTagline || 'Professional Tagline';
+                ctx.fillText(subText, xPos, canvas.height / 2 + 75);
+
+                // 6. Watermark (Fixed)
+                ctx.font = 'bold 20px sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillStyle = 'rgba(255,255,255,0.2)';
+                ctx.fillText('DESIGNED BY RESUME.PRO', canvas.width - 50, canvas.height - 40);
+
+            } catch (err) {
+                console.error("Canvas drawing error:", err);
             }
+        };
 
-            // 3. Text Alignment Position
-            let xPos = canvas.width / 2;
-            if (bannerAlign === 'left') xPos = 100;
-            else if (bannerAlign === 'right') xPos = canvas.width - 100;
+        // Chhota sa delay taake canvas DOM mein load ho jaye
+        const timeoutId = setTimeout(updateCanvas, 50);
+        return () => clearTimeout(timeoutId);
 
-            // 4. Draw Main Text
-            ctx.textAlign = bannerAlign || 'center';
-            ctx.fillStyle = '#ffffff';
-            ctx.font = `bold 90px ${bannerFontFamily || 'sans-serif'}`;
-            const mainText = (bannerText || 'YOUR NAME').toUpperCase();
-            ctx.fillText(mainText, xPos, canvas.height / 2);
-
-            // 5. Draw Tagline
-            ctx.font = `300 40px ${bannerFontFamily || 'sans-serif'}`;
-            ctx.fillStyle = 'rgba(255,255,255,0.8)';
-            const subText = bannerTagline || 'Professional Tagline';
-            ctx.fillText(subText, xPos, canvas.height / 2 + 75);
-
-            // 6. Watermark (Fixed)
-            ctx.font = 'bold 20px sans-serif';
-            ctx.textAlign = 'right';
-            ctx.fillStyle = 'rgba(255,255,255,0.2)';
-            ctx.fillText('DESIGNED BY RESUME.PRO', canvas.width - 50, canvas.height - 40);
-
-        } catch (err) {
-            console.error("Canvas drawing error:", err);
-        }
-    };
-
-    // Chhota sa delay taake canvas DOM mein load ho jaye
-    const timeoutId = setTimeout(updateCanvas, 50);
-    return () => clearTimeout(timeoutId);
-
-}, [bannerText, bannerTagline, bannerColor, bannerPattern, bannerAlign, bannerFontFamily, currentPage]);
+    }, [bannerText, bannerTagline, bannerColor, bannerPattern, bannerAlign, bannerFontFamily, currentPage]);
     const styles = `
         :root {
             --bg: ${isDarkMode ? '#050505' : '#f8fafc'};
@@ -493,7 +494,7 @@ const [logoShadow, setLogoShadow] = useState('heavy'); // soft, heavy, none
         e('div', { className: 'mobile-menu' },
             e('div', { className: 'close-menu', onClick: () => setIsMenuOpen(false) }, '✕'),
             // NAYA HOME BUTTON MOBILE KE LIYE
-    e('div', { className: `nav-link ${currentPage === 'landing' ? 'active' : ''}`, style: { fontSize: '18px', fontWeight: 'bold' }, onClick: () => navigate('landing') }, 'Home'),
+            e('div', { className: `nav-link ${currentPage === 'landing' ? 'active' : ''}`, style: { fontSize: '18px', fontWeight: 'bold' }, onClick: () => navigate('landing') }, 'Home'),
             e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('home') }, 'Resume Maker'),
             e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
             e('div', { className: `nav-link ${currentPage === 'wordEditor' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('wordEditor') }, 'Word Editor'),
@@ -516,7 +517,7 @@ const [logoShadow, setLogoShadow] = useState('heavy'); // soft, heavy, none
                 e('div', { className: 'logo', onClick: () => navigate('home') }, 'RESUME.PRO'),
                 e('div', { className: 'nav-links' },
                     // NAYA HOME BUTTON DESKTOP KE LIYE
-    e('div', { className: `nav-link ${currentPage === 'landing' ? 'active' : ''}`, onClick: () => navigate('landing'), style: { fontWeight: 'bold' } }, 'Home'),
+                    e('div', { className: `nav-link ${currentPage === 'landing' ? 'active' : ''}`, onClick: () => navigate('landing'), style: { fontWeight: 'bold' } }, 'Home'),
                     e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, onClick: () => navigate('home') }, 'Resume Maker'),
                     e('div', { className: `nav-link ${currentPage === 'wordToPdf' ? 'active' : ''}`, onClick: () => navigate('wordToPdf') }, 'Word to PDF'),
                     e('div', { className: `nav-link ${currentPage === 'banner' ? 'active' : ''}`, onClick: () => navigate('banner') }, 'LinkedIn Banner'),
@@ -618,80 +619,80 @@ const [logoShadow, setLogoShadow] = useState('heavy'); // soft, heavy, none
 
         e('div', { className: 'app-container' },
             // --- ULTRA-PREMIUM & UNIQUE LANDING PAGE ---
-currentPage === 'landing' && e('div', { style: { padding: '60px 20px', maxWidth: '1200px', margin: '0 auto', fontFamily: "'Inter', sans-serif", position: 'relative' } },
-    
-    // Background Glow (Slightly visible for depth)
-    e('div', { style: { position: 'absolute', top: '-10%', left: '50%', width: '400px', height: '400px', background: 'rgba(59, 130, 246, 0.15)', filter: 'blur(100px)', borderRadius: '50%', zIndex: -1, transform: 'translateX(-50%)' } }),
+            currentPage === 'landing' && e('div', { style: { padding: '60px 20px', maxWidth: '1200px', margin: '0 auto', fontFamily: "'Inter', sans-serif", position: 'relative' } },
 
-    // 1. Hero Section
-    e('div', { style: { textAlign: 'center', marginBottom: '100px' } },
-        e('div', { style: { display: 'inline-flex', alignItems: 'center', background: 'rgba(59, 130, 246, 0.08)', border: '1px solid rgba(59, 130, 246, 0.2)', padding: '6px 16px', borderRadius: '100px', marginBottom: '30px' } },
-            e('span', { style: { fontSize: '12px', marginRight: '8px' } }, '🚀'),
-            e('span', { style: { color: 'var(--accent)', fontSize: '12px', fontWeight: '700', letterSpacing: '0.5px', textTransform: 'uppercase' } }, 'Next-Gen Career Platform')
-        ),
-        e('h1', { style: { fontSize: 'clamp(40px, 8vw, 72px)', fontWeight: '950', lineHeight: '1', margin: '0 0 25px 0', letterSpacing: '-2px', color: 'var(--text)' } }, 
-            'Create Without ', 
-            e('span', { style: { color: 'var(--accent)', fontStyle: 'italic', fontWeight: '400' } }, 'Limits.')
-        ),
-        e('p', { style: { fontSize: '19px', opacity: 0.7, maxWidth: '600px', margin: '0 auto 40px', lineHeight: '1.6', fontWeight: '400' } }, 
-            'Professional tools for the modern professional. Fast, secure, and built for results.'
-        ),
-        e('button', { 
-            className: 'btn main-cta', 
-            onClick: () => navigate('home'), 
-            style: { 
-                padding: '20px 50px', 
-                fontSize: '18px', 
-                borderRadius: '100px', 
-                background: 'var(--accent)', 
-                color: '#fff', 
-                border: 'none', 
-                fontWeight: '800', 
-                cursor: 'pointer',
-                boxShadow: '0 20px 40px rgba(59, 130, 246, 0.4)',
-                transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-            } 
-        }, 'Get Started Now — It\'s Free')
-    ),
+                // Background Glow (Slightly visible for depth)
+                e('div', { style: { position: 'absolute', top: '-10%', left: '50%', width: '400px', height: '400px', background: 'rgba(59, 130, 246, 0.15)', filter: 'blur(100px)', borderRadius: '50%', zIndex: -1, transform: 'translateX(-50%)' } }),
 
-    // 2. Feature Grid (Re-designed with Glassmorphism)
-    e('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '30px' } },
-        
-        // Feature 1
-        e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
-            e('div', { style: { background: 'rgba(59, 130, 246, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '✍️'),
-            e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Resume Builder'),
-            e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'Industry-standard templates that capture attention. Export to PDF in seconds with pixel-perfect precision.'),
-            e('img', { src: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
-        ),
+                // 1. Hero Section
+                e('div', { style: { textAlign: 'center', marginBottom: '100px' } },
+                    e('div', { style: { display: 'inline-flex', alignItems: 'center', background: 'rgba(59, 130, 246, 0.08)', border: '1px solid rgba(59, 130, 246, 0.2)', padding: '6px 16px', borderRadius: '100px', marginBottom: '30px' } },
+                        e('span', { style: { fontSize: '12px', marginRight: '8px' } }, '🚀'),
+                        e('span', { style: { color: 'var(--accent)', fontSize: '12px', fontWeight: '700', letterSpacing: '0.5px', textTransform: 'uppercase' } }, 'Next-Gen Career Platform')
+                    ),
+                    e('h1', { style: { fontSize: 'clamp(40px, 8vw, 72px)', fontWeight: '950', lineHeight: '1', margin: '0 0 25px 0', letterSpacing: '-2px', color: 'var(--text)' } },
+                        'Create Without ',
+                        e('span', { style: { color: 'var(--accent)', fontStyle: 'italic', fontWeight: '400' } }, 'Limits.')
+                    ),
+                    e('p', { style: { fontSize: '19px', opacity: 0.7, maxWidth: '600px', margin: '0 auto 40px', lineHeight: '1.6', fontWeight: '400' } },
+                        'Professional tools for the modern professional. Fast, secure, and built for results.'
+                    ),
+                    e('button', {
+                        className: 'btn main-cta',
+                        onClick: () => navigate('home'),
+                        style: {
+                            padding: '20px 50px',
+                            fontSize: '18px',
+                            borderRadius: '100px',
+                            background: 'var(--accent)',
+                            color: '#fff',
+                            border: 'none',
+                            fontWeight: '800',
+                            cursor: 'pointer',
+                            boxShadow: '0 20px 40px rgba(59, 130, 246, 0.4)',
+                            transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                        }
+                    }, 'Get Started Now — It\'s Free')
+                ),
 
-        // Feature 2
-        e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
-            e('div', { style: { background: 'rgba(147, 51, 234, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '🖼️'),
-            e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Social Canvas'),
-            e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'Personalize your LinkedIn presence with high-fidelity banners. Custom ratios for all professional networks.'),
-            e('img', { src: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
-        ),
+                // 2. Feature Grid (Re-designed with Glassmorphism)
+                e('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '30px' } },
 
-        // Feature 3
-        e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
-            e('div', { style: { background: 'rgba(16, 185, 129, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '🛠️'),
-            e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Power Utilities'),
-            e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'One-click ZIP extraction and a distraction-free Word editor. Built for speed and local privacy.'),
-            e('img', { src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
-        )
-    ),
+                    // Feature 1
+                    e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
+                        e('div', { style: { background: 'rgba(59, 130, 246, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '✍️'),
+                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Resume Builder'),
+                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'Industry-standard templates that capture attention. Export to PDF in seconds with pixel-perfect precision.'),
+                        e('img', { src: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
+                    ),
 
-    // 3. CTA Footer (Compact & Bold)
-    e('div', { style: { marginTop: '120px', textAlign: 'center', borderTop: '1px solid var(--border)', paddingTop: '60px' } },
-        e('h2', { style: { fontSize: '36px', fontWeight: '900', marginBottom: '10px' } }, 'Ready to start?'),
-        e('p', { style: { opacity: 0.5, marginBottom: '30px' } }, 'No credit card. No signup. Just tools.'),
-        e('button', { 
-            onClick: () => navigate('home'), 
-            style: { background: 'var(--text)', color: 'var(--bg)', border: 'none', padding: '15px 40px', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '16px' } 
-        }, 'Open Resume Pro')
-    )
-),
+                    // Feature 2
+                    e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
+                        e('div', { style: { background: 'rgba(147, 51, 234, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '🖼️'),
+                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Social Canvas'),
+                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'Personalize your LinkedIn presence with high-fidelity banners. Custom ratios for all professional networks.'),
+                        e('img', { src: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
+                    ),
+
+                    // Feature 3
+                    e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
+                        e('div', { style: { background: 'rgba(16, 185, 129, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '🛠️'),
+                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Power Utilities'),
+                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'One-click ZIP extraction and a distraction-free Word editor. Built for speed and local privacy.'),
+                        e('img', { src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
+                    )
+                ),
+
+                // 3. CTA Footer (Compact & Bold)
+                e('div', { style: { marginTop: '120px', textAlign: 'center', borderTop: '1px solid var(--border)', paddingTop: '60px' } },
+                    e('h2', { style: { fontSize: '36px', fontWeight: '900', marginBottom: '10px' } }, 'Ready to start?'),
+                    e('p', { style: { opacity: 0.5, marginBottom: '30px' } }, 'No credit card. No signup. Just tools.'),
+                    e('button', {
+                        onClick: () => navigate('home'),
+                        style: { background: 'var(--text)', color: 'var(--bg)', border: 'none', padding: '15px 40px', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '16px' }
+                    }, 'Open Resume Pro')
+                )
+            ),
             currentPage === 'home' && e('div', { className: 'main-layout' },
                 e('div', { className: 'form-side' },
                     e('div', { className: 'section-title' }, 'Photo'),
@@ -717,37 +718,37 @@ currentPage === 'landing' && e('div', { style: { padding: '60px 20px', maxWidth:
                     e('textarea', { rows: 2, placeholder: 'Summary...', onChange: (e) => update('summary', e.target.value) }),
                     e('textarea', { rows: 4, placeholder: 'Work Experience...', onChange: (e) => update('experience', e.target.value) }),
                     e('div', { className: 'section-title' }, 'Education Details'),
-                    
-// Education Section Header
-e('div', { className: 'section-title' }, 'Education History'),
 
-// Loop for 5 Education Boxes
-['mat', 'int', 'grad', 'mas', 'phd'].map((key) => {
-    const labels = { mat: 'Matric', int: 'Intermediate', grad: 'Graduation', mas: 'Masters', phd: 'PhD' };
-    return e('div', { key: key, style: { marginBottom: '20px', padding: '15px', border: '1px solid var(--border)', borderRadius: '10px' } },
-        e('label', { style: { fontWeight: 'bold', display: 'block', marginBottom: '5px' } }, labels[key]),
-        e('input', { 
-            placeholder: 'Degree Name (e.g. Computer Science)', 
-            onChange: (e) => update(`${key}Deg`, e.target.value),
-            style: { marginBottom: '10px' }
-        }),
-        e('div', { className: 'grid-2' },
-            e('input', { 
-                placeholder: 'Year', 
-                onChange: (e) => update(`${key}Year`, e.target.value) 
-            }),
-            e('select', { 
-                onChange: (e) => update(`${key}Status`, e.target.value),
-                style: { width: '100%', padding: '12px', background: 'var(--input-bg)', border: '1px solid var(--border)', color: 'var(--text)', borderRadius: '8px' }
-            },
-                e('option', { value: '' }, 'Status'),
-                e('option', { value: 'Passed' }, 'Passed'),
-                e('option', { value: 'Result Awaited' }, 'Result Awaited'),
-                e('option', { value: 'Studying' }, 'Currently Studying')
-            )
-        )
-    );
-}),
+                    // Education Section Header
+                    e('div', { className: 'section-title' }, 'Education History'),
+
+                    // Loop for 5 Education Boxes
+                    ['mat', 'int', 'grad', 'mas', 'phd'].map((key) => {
+                        const labels = { mat: 'Matric', int: 'Intermediate', grad: 'Graduation', mas: 'Masters', phd: 'PhD' };
+                        return e('div', { key: key, style: { marginBottom: '20px', padding: '15px', border: '1px solid var(--border)', borderRadius: '10px' } },
+                            e('label', { style: { fontWeight: 'bold', display: 'block', marginBottom: '5px' } }, labels[key]),
+                            e('input', {
+                                placeholder: 'Degree Name (e.g. Computer Science)',
+                                onChange: (e) => update(`${key}Deg`, e.target.value),
+                                style: { marginBottom: '10px' }
+                            }),
+                            e('div', { className: 'grid-2' },
+                                e('input', {
+                                    placeholder: 'Year',
+                                    onChange: (e) => update(`${key}Year`, e.target.value)
+                                }),
+                                e('select', {
+                                    onChange: (e) => update(`${key}Status`, e.target.value),
+                                    style: { width: '100%', padding: '12px', background: 'var(--input-bg)', border: '1px solid var(--border)', color: 'var(--text)', borderRadius: '8px' }
+                                },
+                                    e('option', { value: '' }, 'Status'),
+                                    e('option', { value: 'Passed' }, 'Passed'),
+                                    e('option', { value: 'Result Awaited' }, 'Result Awaited'),
+                                    e('option', { value: 'Studying' }, 'Currently Studying')
+                                )
+                            )
+                        );
+                    }),
                     e('input', { placeholder: 'Skills', onChange: (e) => update('skills', e.target.value) })
                 ),
 
@@ -780,18 +781,18 @@ e('div', { className: 'section-title' }, 'Education History'),
                             e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'EXPERIENCE'),
                             e('p', { style: { fontSize: '12px', whiteSpace: 'pre-line' } }, data.experience)
                         ),
-     // Check agar kisi bhi box mein data bhara gaya hai
-(data.matDeg || data.intDeg || data.gradDeg || data.masDeg || data.phdDeg) && e('div', { style: { marginBottom: '15px' } },
-    e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'EDUCATION'),
-    ['mat', 'int', 'grad', 'mas', 'phd'].map(key => (
-        data[`${key}Deg`] && e('div', { key, style: { marginBottom: '8px' } },
-            e('p', { style: { fontSize: '12px', fontWeight: 'bold', margin: '0' } }, data[`${key}Deg`]),
-            e('p', { style: { fontSize: '11px', color: '#64748b', margin: '0' } }, 
-                `${data[`${key}Year`]} | ${data[`${key}Status`]}`
-            )
-        )
-    ))
-),
+                        // Check agar kisi bhi box mein data bhara gaya hai
+                        (data.matDeg || data.intDeg || data.gradDeg || data.masDeg || data.phdDeg) && e('div', { style: { marginBottom: '15px' } },
+                            e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'EDUCATION'),
+                            ['mat', 'int', 'grad', 'mas', 'phd'].map(key => (
+                                data[`${key}Deg`] && e('div', { key, style: { marginBottom: '8px' } },
+                                    e('p', { style: { fontSize: '12px', fontWeight: 'bold', margin: '0' } }, data[`${key}Deg`]),
+                                    e('p', { style: { fontSize: '11px', color: '#64748b', margin: '0' } },
+                                        `${data[`${key}Year`]} | ${data[`${key}Status`]}`
+                                    )
+                                )
+                            ))
+                        ),
                         data.skills && e('div', null,
                             e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'SKILLS'),
                             e('p', { style: { fontSize: '12px' } }, data.skills)
@@ -877,21 +878,21 @@ e('div', { className: 'section-title' }, 'Education History'),
                 )
             ),
             currentPage === 'wordEditor' && e('div', { style: { maxWidth: '800px', margin: '0 auto', padding: '20px' } },
-    e('h2', { style: { color: 'var(--accent)', textAlign: 'center', marginBottom: '10px' } }, 'Word Article Editor'),
-    e('p', { style: { textAlign: 'center', opacity: 0.6, fontSize: '14px', marginBottom: '20px' } }, 'Write your essay or article and download it as a Word file.'),
-    
-    // Editor ka dabba
-    e('div', { style: { background: '#fff', color: '#000', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border)' } },
-        e('div', { id: 'editor-container', style: { height: '400px', fontSize: '16px' } })
-    ),
+                e('h2', { style: { color: 'var(--accent)', textAlign: 'center', marginBottom: '10px' } }, 'Word Article Editor'),
+                e('p', { style: { textAlign: 'center', opacity: 0.6, fontSize: '14px', marginBottom: '20px' } }, 'Write your essay or article and download it as a Word file.'),
 
-    // Download Button
-    e('button', {
-        className: 'btn btn-primary',
-        onClick: handleDownloadWord,
-        style: { margin: '30px auto', display: 'block', background: '#3b82f6', color: '#fff', padding: '12px 30px', borderRadius: '8px' }
-    }, '📥 Download .docx File')
-),
+                // Editor ka dabba
+                e('div', { style: { background: '#fff', color: '#000', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border)' } },
+                    e('div', { id: 'editor-container', style: { height: '400px', fontSize: '16px' } })
+                ),
+
+                // Download Button
+                e('button', {
+                    className: 'btn btn-primary',
+                    onClick: handleDownloadWord,
+                    style: { margin: '30px auto', display: 'block', background: '#3b82f6', color: '#fff', padding: '12px 30px', borderRadius: '8px' }
+                }, '📥 Download .docx File')
+            ),
 
             currentPage === 'about' && e('div', { style: { textAlign: 'left', maxWidth: '800px', margin: '0 auto', padding: '50px 20px', minHeight: '60vh', lineHeight: '1.6' } },
                 e('h1', { style: { textAlign: 'center', color: 'var(--accent)' } }, 'Welcome to Resume Pro'),
@@ -913,9 +914,9 @@ e('div', { className: 'section-title' }, 'Education History'),
                         'Effortlessly bundle multiple documents and images into a single compressed ZIP file for easier sharing and organization.'
                     ),
                     e('li', { style: { marginBottom: '10px' } },
-    e('strong', null, 'Professional Word Editor: '),
-    'Write articles, essays, or any document using our built-in MS Word-style editor. Customize fonts, formatting, and download your work directly as a .docx file.'
-),
+                        e('strong', null, 'Professional Word Editor: '),
+                        'Write articles, essays, or any document using our built-in MS Word-style editor. Customize fonts, formatting, and download your work directly as a .docx file.'
+                    ),
 
                     e('li', { style: { marginBottom: '10px' } },
                         e('strong', null, 'Instant File Unzipper: '),
@@ -1074,149 +1075,151 @@ e('div', { className: 'section-title' }, 'Education History'),
             )
         ),
         currentPage === 'banner' && e('div', { style: { textAlign: 'center', maxWidth: '1000px', margin: '0 auto', padding: '20px 15px 100px' } },
-            
-    // 1. Premium Studio Header
-    e('div', { style: { marginBottom: '40px' } },
-        e('h2', { style: { 
-            background: 'linear-gradient(to right, #3b82f6, #8b5cf6)', 
-            WebkitBackgroundClip: 'text', 
-            WebkitTextFillColor: 'transparent', 
-            marginBottom: '10px', fontSize: '40px', fontWeight: '900', letterSpacing: '-1px' 
-        } }, 'Banner Studio Pro'),
-        e('p', { style: { fontSize: '16px', color: '#64748b', letterSpacing: '0.5px' } }, 'Design ultra-HD, high-impact LinkedIn banners instantly.')
-    ),
 
-    // 2. Main Studio Container
-    e('div', { 
-        style: { 
-            display: 'flex', flexDirection: 'column', gap: '35px', 
-            background: 'rgba(255, 255, 255, 0.03)', 
-            backdropFilter: 'blur(20px)',
-            padding: '40px', 
-            borderRadius: '24px', 
-            border: '1px solid rgba(100, 116, 139, 0.2)', 
-            boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' 
-        } 
-    },
-
-        // 3. Canvas Presentation Stage
-        e('div', { style: { position: 'relative', padding: '15px', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border)' } },
-            e('div', { style: { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '85%', height: '70%', background: bannerColor, filter: 'blur(80px)', opacity: '0.2', zIndex: 0 } }),
-            
-            e('canvas', {
-                id: 'bannerCanvas',
-                width: 1584,
-                height: 396,
-                style: { width: '100%', borderRadius: '8px', position: 'relative', zIndex: 1, border: '1px solid rgba(0,0,0,0.1)', boxShadow: '0 15px 35px rgba(0,0,0,0.15)' }
-            })
-        ),
-
-        // 4. Advanced Controls Grid (Ab 2 ki jagah 3 columns ka feel dega andar se)
-        e('div', { style: { display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '30px', textAlign: 'left' } },
-            
-            // --- LEFT COLUMN: TEXT & TYPOGRAPHY ---
-            e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px' } },
-                
-                // Inputs
-                e('div', null,
-                    e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Primary Headline'),
-                    e('input', { 
-                        placeholder: 'e.g. Software Engineer', value: bannerText, onChange: (e) => setBannerText(e.target.value),
-                        style: { width: '100%', padding: '15px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)', fontSize: '15px', outline: 'none' }
-                    })
-                ),
-                e('div', null,
-                    e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Professional Tagline'),
-                    e('input', { 
-                        placeholder: 'e.g. Building Scalable Web Applications', value: bannerTagline, onChange: (e) => setBannerTagline(e.target.value),
-                        style: { width: '100%', padding: '15px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)', fontSize: '15px', outline: 'none' }
-                    })
-                ),
-
-                // NEW: Font Style & Alignment Grid
-                e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' } },
-                    // Font Selection
-                    e('div', null,
-                        e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Typography Style'),
-                        e('select', {
-                            value: bannerFontFamily, onChange: (e) => setBannerFontFamily(e.target.value),
-                            style: { width: '100%', padding: '12px', borderRadius: '10px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)', fontSize: '14px', outline: 'none' }
-                        },
-                            e('option', { value: 'Inter, sans-serif' }, 'Modern (Inter)'),
-                            e('option', { value: 'Georgia, serif' }, 'Elegant (Serif)'),
-                            e('option', { value: 'monospace' }, 'Tech (Monospace)')
-                        )
-                    ),
-                    // Alignment Selection (Icon Pills)
-                    e('div', null,
-                        e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Alignment'),
-                        e('div', { style: { display: 'flex', gap: '5px', background: 'var(--input-bg)', padding: '4px', borderRadius: '10px', border: '1px solid var(--border)' } },
-                            ['left', 'center', 'right'].map(align => (
-                                e('button', {
-                                    key: align,
-                                    onClick: () => setBannerAlign(align),
-                                    style: {
-                                        flex: 1, padding: '8px', fontSize: '16px', borderRadius: '6px', border: 'none', cursor: 'pointer', transition: '0.2s',
-                                        background: bannerAlign === align ? '#3b82f6' : 'transparent',
-                                        color: bannerAlign === align ? '#fff' : 'var(--text)'
-                                    }
-                                }, align === 'left' ? '⬅️' : align === 'center' ? '⏺️' : '➡️') // Emojis as simple icons
-                            ))
-                        )
-                    )
-                )
+            // 1. Premium Studio Header
+            e('div', { style: { marginBottom: '40px' } },
+                e('h2', {
+                    style: {
+                        background: 'linear-gradient(to right, #3b82f6, #8b5cf6)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        marginBottom: '10px', fontSize: '40px', fontWeight: '900', letterSpacing: '-1px'
+                    }
+                }, 'Banner Studio Pro'),
+                e('p', { style: { fontSize: '16px', color: '#64748b', letterSpacing: '0.5px' } }, 'Design ultra-HD, high-impact LinkedIn banners instantly.')
             ),
 
-            // --- RIGHT COLUMN: APPEARANCE & THEME ---
-            e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px', background: 'var(--card-bg)', padding: '25px', borderRadius: '16px', border: '1px solid var(--border)' } },
-                
-                // Color Picker
-                e('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' } },
-                    e('label', { style: { fontSize: '13px', fontWeight: '800', color: 'var(--text)' } }, 'Theme Color'),
-                    e('div', { style: { width: '42px', height: '42px', borderRadius: '50%', padding: '2px', background: 'var(--input-bg)', border: '2px solid var(--border)', overflow: 'hidden', cursor: 'pointer' } },
-                        e('input', { 
-                            type: 'color', value: bannerColor, onChange: (e) => setBannerColor(e.target.value), 
-                            style: { width: '200%', height: '200%', transform: 'translate(-25%, -25%)', border: 'none', cursor: 'pointer' } 
-                        })
+            // 2. Main Studio Container
+            e('div', {
+                style: {
+                    display: 'flex', flexDirection: 'column', gap: '35px',
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    backdropFilter: 'blur(20px)',
+                    padding: '40px',
+                    borderRadius: '24px',
+                    border: '1px solid rgba(100, 116, 139, 0.2)',
+                    boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)'
+                }
+            },
+
+                // 3. Canvas Presentation Stage
+                e('div', { style: { position: 'relative', padding: '15px', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border)' } },
+                    e('div', { style: { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '85%', height: '70%', background: bannerColor, filter: 'blur(80px)', opacity: '0.2', zIndex: 0 } }),
+
+                    e('canvas', {
+                        id: 'bannerCanvas',
+                        width: 1584,
+                        height: 396,
+                        style: { width: '100%', borderRadius: '8px', position: 'relative', zIndex: 1, border: '1px solid rgba(0,0,0,0.1)', boxShadow: '0 15px 35px rgba(0,0,0,0.15)' }
+                    })
+                ),
+
+                // 4. Advanced Controls Grid (Ab 2 ki jagah 3 columns ka feel dega andar se)
+                e('div', { style: { display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '30px', textAlign: 'left' } },
+
+                    // --- LEFT COLUMN: TEXT & TYPOGRAPHY ---
+                    e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px' } },
+
+                        // Inputs
+                        e('div', null,
+                            e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Primary Headline'),
+                            e('input', {
+                                placeholder: 'e.g. Software Engineer', value: bannerText, onChange: (e) => setBannerText(e.target.value),
+                                style: { width: '100%', padding: '15px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)', fontSize: '15px', outline: 'none' }
+                            })
+                        ),
+                        e('div', null,
+                            e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Professional Tagline'),
+                            e('input', {
+                                placeholder: 'e.g. Building Scalable Web Applications', value: bannerTagline, onChange: (e) => setBannerTagline(e.target.value),
+                                style: { width: '100%', padding: '15px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)', fontSize: '15px', outline: 'none' }
+                            })
+                        ),
+
+                        // NEW: Font Style & Alignment Grid
+                        e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' } },
+                            // Font Selection
+                            e('div', null,
+                                e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Typography Style'),
+                                e('select', {
+                                    value: bannerFontFamily, onChange: (e) => setBannerFontFamily(e.target.value),
+                                    style: { width: '100%', padding: '12px', borderRadius: '10px', background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--border)', fontSize: '14px', outline: 'none' }
+                                },
+                                    e('option', { value: 'Inter, sans-serif' }, 'Modern (Inter)'),
+                                    e('option', { value: 'Georgia, serif' }, 'Elegant (Serif)'),
+                                    e('option', { value: 'monospace' }, 'Tech (Monospace)')
+                                )
+                            ),
+                            // Alignment Selection (Icon Pills)
+                            e('div', null,
+                                e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Alignment'),
+                                e('div', { style: { display: 'flex', gap: '5px', background: 'var(--input-bg)', padding: '4px', borderRadius: '10px', border: '1px solid var(--border)' } },
+                                    ['left', 'center', 'right'].map(align => (
+                                        e('button', {
+                                            key: align,
+                                            onClick: () => setBannerAlign(align),
+                                            style: {
+                                                flex: 1, padding: '8px', fontSize: '16px', borderRadius: '6px', border: 'none', cursor: 'pointer', transition: '0.2s',
+                                                background: bannerAlign === align ? '#3b82f6' : 'transparent',
+                                                color: bannerAlign === align ? '#fff' : 'var(--text)'
+                                            }
+                                        }, align === 'left' ? '⬅️' : align === 'center' ? '⏺️' : '➡️') // Emojis as simple icons
+                                    ))
+                                )
+                            )
+                        )
+                    ),
+
+                    // --- RIGHT COLUMN: APPEARANCE & THEME ---
+                    e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px', background: 'var(--card-bg)', padding: '25px', borderRadius: '16px', border: '1px solid var(--border)' } },
+
+                        // Color Picker
+                        e('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' } },
+                            e('label', { style: { fontSize: '13px', fontWeight: '800', color: 'var(--text)' } }, 'Theme Color'),
+                            e('div', { style: { width: '42px', height: '42px', borderRadius: '50%', padding: '2px', background: 'var(--input-bg)', border: '2px solid var(--border)', overflow: 'hidden', cursor: 'pointer' } },
+                                e('input', {
+                                    type: 'color', value: bannerColor, onChange: (e) => setBannerColor(e.target.value),
+                                    style: { width: '200%', height: '200%', transform: 'translate(-25%, -25%)', border: 'none', cursor: 'pointer' }
+                                })
+                            )
+                        ),
+
+                        e('div', { style: { height: '1px', background: 'var(--border)', width: '100%' } }),
+
+                        // NEW: Added 'Lines' to Patterns
+                        e('div', null,
+                            e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '12px', display: 'block' } }, 'Background Style'),
+                            e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' } },
+                                ['none', 'dots', 'grid', 'lines'].map(pat => ( // 'lines' naya pattern hai
+                                    e('button', {
+                                        key: pat,
+                                        onClick: () => setBannerPattern(pat),
+                                        style: {
+                                            padding: '12px 5px', fontSize: '12px', fontWeight: '700', textTransform: 'capitalize',
+                                            borderRadius: '8px', cursor: 'pointer', transition: '0.3s all', border: 'none',
+                                            background: bannerPattern === pat ? '#3b82f6' : 'var(--input-bg)',
+                                            color: bannerPattern === pat ? '#fff' : 'var(--text)'
+                                        }
+                                    }, pat === 'none' ? 'Solid' : pat)
+                                ))
+                            )
+                        )
                     )
                 ),
-                
-                e('div', { style: { height: '1px', background: 'var(--border)', width: '100%' } }),
 
-                // NEW: Added 'Lines' to Patterns
-                e('div', null,
-                    e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '12px', display: 'block' } }, 'Background Style'),
-                    e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' } },
-                        ['none', 'dots', 'grid', 'lines'].map(pat => ( // 'lines' naya pattern hai
-                            e('button', {
-                                key: pat,
-                                onClick: () => setBannerPattern(pat),
-                                style: {
-                                    padding: '12px 5px', fontSize: '12px', fontWeight: '700', textTransform: 'capitalize',
-                                    borderRadius: '8px', cursor: 'pointer', transition: '0.3s all', border: 'none',
-                                    background: bannerPattern === pat ? '#3b82f6' : 'var(--input-bg)',
-                                    color: bannerPattern === pat ? '#fff' : 'var(--text)'
-                                }
-                            }, pat === 'none' ? 'Solid' : pat)
-                        ))
-                    )
-                )
+                // 5. Ultimate Export Button
+                e('button', {
+                    className: 'btn btn-primary',
+                    onClick: downloadBanner,
+                    style: {
+                        marginTop: '15px', background: 'linear-gradient(135deg, #2563eb, #7c3aed)', color: '#fff',
+                        padding: '20px', border: 'none', borderRadius: '14px', fontWeight: '900', fontSize: '16px',
+                        letterSpacing: '1px', textTransform: 'uppercase', cursor: 'pointer',
+                        boxShadow: '0 10px 30px rgba(37, 99, 235, 0.4)'
+                    }
+                }, '⚡ Export Ultra-HD Banner')
             )
-        ),
-
-        // 5. Ultimate Export Button
-        e('button', {
-            className: 'btn btn-primary',
-            onClick: downloadBanner,
-            style: { 
-                marginTop: '15px', background: 'linear-gradient(135deg, #2563eb, #7c3aed)', color: '#fff', 
-                padding: '20px', border: 'none', borderRadius: '14px', fontWeight: '900', fontSize: '16px', 
-                letterSpacing: '1px', textTransform: 'uppercase', cursor: 'pointer', 
-                boxShadow: '0 10px 30px rgba(37, 99, 235, 0.4)'
-            }
-        }, '⚡ Export Ultra-HD Banner')
-    )
-), // <-- YAHAN BANNER WALA BLOCK CLOSE HO GAYA HAI (Jo pehle open reh gaya tha)
+        ), // <-- YAHAN BANNER WALA BLOCK CLOSE HO GAYA HAI (Jo pehle open reh gaya tha)
 
         currentPage === 'logo' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
             e('h2', { style: { color: 'var(--accent)', marginBottom: '10px' } }, 'Advanced Logo Designer'),
@@ -1226,75 +1229,75 @@ e('div', { className: 'section-title' }, 'Education History'),
 
                 // --- STYLISH PREVIEW BOX (Design wahi hai) ---
                 e('div', {
-    id: 'finalLogo',
-    style: {
-        width: '240px', height: '240px',
-        display: 'flex', 
-        // Layout shift logic
-        flexDirection: logoLayout === 'horizontal' ? 'row' : 'column', 
-        alignItems: 'center', justifyContent: 'center', gap: '15px',
-        backgroundColor: logoBgColor,
-        borderRadius: logoShape === 'circle' ? '50%' : '20px',
-        color: logoColor,
-        border: logoBorder === 'solid' ? `4px solid ${logoColor}` : 'none',
-        boxShadow: logoShadow === 'heavy' ? '0 20px 50px rgba(0,0,0,0.3)' : 'none',
-        padding: '20px', transition: '0.3s'
-    }
-},
-    // Icon Section
-    e('div', { style: { fontSize: logoLayout === 'icon-only' ? '100px' : '60px' } }, logoIcon),
-    
-    // Text Section (Sirf tab dikhega agar icon-only na ho)
-    logoLayout !== 'icon-only' && e('div', {
-        style: {
-            fontSize: '24px', fontWeight: '900', fontFamily: logoFont,
-            letterSpacing: '1.5px', textTransform: 'uppercase',
-            borderLeft: logoLayout === 'horizontal' ? `2px solid ${logoColor}` : 'none',
-            paddingLeft: logoLayout === 'horizontal' ? '15px' : '0'
-        }
-    }, logoText)
-),
-// --- YAHAN SE PASTE KAREIN ---
-e('div', { style: { marginTop: '25px' } },
-    // 1. Layout Selector (Cards)
-    e('label', { style: { fontSize: '12px', fontWeight: '800', display: 'block', marginBottom: '12px', color: '#64748b', letterSpacing: '1px' } }, 'CHOOSE LAYOUT'),
-    e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' } },
-        ['vertical', 'horizontal', 'icon-only'].map(layout => (
-            e('div', {
-                key: layout,
-                onClick: () => setLogoLayout(layout),
-                style: {
-                    padding: '12px 8px', textAlign: 'center', cursor: 'pointer', borderRadius: '12px',
-                    border: logoLayout === layout ? '2px solid #3b82f6' : '1px solid var(--border)',
-                    background: logoLayout === layout ? '#3b82f615' : 'transparent',
-                    transition: '0.3s all ease',
-                    fontWeight: logoLayout === layout ? '700' : '400',
-                    color: logoLayout === layout ? '#3b82f6' : 'var(--text)'
-                }
-            }, layout.charAt(0).toUpperCase() + layout.slice(1))
-        ))
-    ),
-
-    // 2. Frame Style (Pill Switch)
-    e('div', { style: { marginTop: '20px' } },
-        e('label', { style: { fontSize: '12px', fontWeight: '800', display: 'block', marginBottom: '12px', color: '#64748b' } }, 'FRAME STYLE'),
-        e('div', { style: { display: 'flex', gap: '8px', background: 'var(--input-bg)', padding: '6px', borderRadius: '14px', border: '1px solid var(--border)' } },
-            ['none', 'solid'].map(style => (
-                e('button', {
-                    key: style,
-                    onClick: () => setLogoBorder(style),
+                    id: 'finalLogo',
                     style: {
-                        flex: 1, padding: '10px', border: 'none', borderRadius: '10px', cursor: 'pointer',
-                        background: logoBorder === style ? '#3b82f6' : 'transparent',
-                        color: logoBorder === style ? '#fff' : 'var(--text)',
-                        fontSize: '13px', fontWeight: '600', transition: '0.3s'
+                        width: '240px', height: '240px',
+                        display: 'flex',
+                        // Layout shift logic
+                        flexDirection: logoLayout === 'horizontal' ? 'row' : 'column',
+                        alignItems: 'center', justifyContent: 'center', gap: '15px',
+                        backgroundColor: logoBgColor,
+                        borderRadius: logoShape === 'circle' ? '50%' : '20px',
+                        color: logoColor,
+                        border: logoBorder === 'solid' ? `4px solid ${logoColor}` : 'none',
+                        boxShadow: logoShadow === 'heavy' ? '0 20px 50px rgba(0,0,0,0.3)' : 'none',
+                        padding: '20px', transition: '0.3s'
                     }
-                }, style === 'none' ? 'Clean' : 'Framed')
-            ))
-        )
-    )
-),
-// --- YAHAN TAK ---
+                },
+                    // Icon Section
+                    e('div', { style: { fontSize: logoLayout === 'icon-only' ? '100px' : '60px' } }, logoIcon),
+
+                    // Text Section (Sirf tab dikhega agar icon-only na ho)
+                    logoLayout !== 'icon-only' && e('div', {
+                        style: {
+                            fontSize: '24px', fontWeight: '900', fontFamily: logoFont,
+                            letterSpacing: '1.5px', textTransform: 'uppercase',
+                            borderLeft: logoLayout === 'horizontal' ? `2px solid ${logoColor}` : 'none',
+                            paddingLeft: logoLayout === 'horizontal' ? '15px' : '0'
+                        }
+                    }, logoText)
+                ),
+                // --- YAHAN SE PASTE KAREIN ---
+                e('div', { style: { marginTop: '25px' } },
+                    // 1. Layout Selector (Cards)
+                    e('label', { style: { fontSize: '12px', fontWeight: '800', display: 'block', marginBottom: '12px', color: '#64748b', letterSpacing: '1px' } }, 'CHOOSE LAYOUT'),
+                    e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' } },
+                        ['vertical', 'horizontal', 'icon-only'].map(layout => (
+                            e('div', {
+                                key: layout,
+                                onClick: () => setLogoLayout(layout),
+                                style: {
+                                    padding: '12px 8px', textAlign: 'center', cursor: 'pointer', borderRadius: '12px',
+                                    border: logoLayout === layout ? '2px solid #3b82f6' : '1px solid var(--border)',
+                                    background: logoLayout === layout ? '#3b82f615' : 'transparent',
+                                    transition: '0.3s all ease',
+                                    fontWeight: logoLayout === layout ? '700' : '400',
+                                    color: logoLayout === layout ? '#3b82f6' : 'var(--text)'
+                                }
+                            }, layout.charAt(0).toUpperCase() + layout.slice(1))
+                        ))
+                    ),
+
+                    // 2. Frame Style (Pill Switch)
+                    e('div', { style: { marginTop: '20px' } },
+                        e('label', { style: { fontSize: '12px', fontWeight: '800', display: 'block', marginBottom: '12px', color: '#64748b' } }, 'FRAME STYLE'),
+                        e('div', { style: { display: 'flex', gap: '8px', background: 'var(--input-bg)', padding: '6px', borderRadius: '14px', border: '1px solid var(--border)' } },
+                            ['none', 'solid'].map(style => (
+                                e('button', {
+                                    key: style,
+                                    onClick: () => setLogoBorder(style),
+                                    style: {
+                                        flex: 1, padding: '10px', border: 'none', borderRadius: '10px', cursor: 'pointer',
+                                        background: logoBorder === style ? '#3b82f6' : 'transparent',
+                                        color: logoBorder === style ? '#fff' : 'var(--text)',
+                                        fontSize: '13px', fontWeight: '600', transition: '0.3s'
+                                    }
+                                }, style === 'none' ? 'Clean' : 'Framed')
+                            ))
+                        )
+                    )
+                ),
+                // --- YAHAN TAK ---
 
                 // --- CONTROLS ---
                 e('div', { style: { width: '100%', display: 'flex', flexDirection: 'column', gap: '15px' } },
