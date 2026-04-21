@@ -108,6 +108,9 @@ const initialState = {
     const [logoShape, setLogoShape] = useState('square');
     const [logoFont, setLogoFont] = useState('Inter'); // Font ke liye
     const [logoIcon, setLogoIcon] = useState('★'); // Icon ke liye
+    const [logoLayout, setLogoLayout] = useState('vertical'); // vertical, horizontal, icon-only
+const [logoBorder, setLogoBorder] = useState('none'); // none, solid, double
+const [logoShadow, setLogoShadow] = useState('heavy'); // soft, heavy, none
     const [bannerTagline, setBannerTagline] = useState('Professional Profile');
     const [bannerGradient, setBannerGradient] = useState('linear-gradient(135deg, #3b82f6, #1d4ed8)');
     const [bannerPattern, setBannerPattern] = useState('dots'); // dots, lines, none
@@ -1093,28 +1096,75 @@ e('div', { className: 'section-title' }, 'Education History'),
 
                 // --- STYLISH PREVIEW BOX (Design wahi hai) ---
                 e('div', {
-                    id: 'finalLogo',
+    id: 'finalLogo',
+    style: {
+        width: '240px', height: '240px',
+        display: 'flex', 
+        // Layout shift logic
+        flexDirection: logoLayout === 'horizontal' ? 'row' : 'column', 
+        alignItems: 'center', justifyContent: 'center', gap: '15px',
+        backgroundColor: logoBgColor,
+        borderRadius: logoShape === 'circle' ? '50%' : '20px',
+        color: logoColor,
+        border: logoBorder === 'solid' ? `4px solid ${logoColor}` : 'none',
+        boxShadow: logoShadow === 'heavy' ? '0 20px 50px rgba(0,0,0,0.3)' : 'none',
+        padding: '20px', transition: '0.3s'
+    }
+},
+    // Icon Section
+    e('div', { style: { fontSize: logoLayout === 'icon-only' ? '100px' : '60px' } }, logoIcon),
+    
+    // Text Section (Sirf tab dikhega agar icon-only na ho)
+    logoLayout !== 'icon-only' && e('div', {
+        style: {
+            fontSize: '24px', fontWeight: '900', fontFamily: logoFont,
+            letterSpacing: '1.5px', textTransform: 'uppercase',
+            borderLeft: logoLayout === 'horizontal' ? `2px solid ${logoColor}` : 'none',
+            paddingLeft: logoLayout === 'horizontal' ? '15px' : '0'
+        }
+    }, logoText)
+),
+// --- YAHAN SE PASTE KAREIN ---
+e('div', { style: { marginTop: '25px' } },
+    // 1. Layout Selector (Cards)
+    e('label', { style: { fontSize: '12px', fontWeight: '800', display: 'block', marginBottom: '12px', color: '#64748b', letterSpacing: '1px' } }, 'CHOOSE LAYOUT'),
+    e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' } },
+        ['vertical', 'horizontal', 'icon-only'].map(layout => (
+            e('div', {
+                key: layout,
+                onClick: () => setLogoLayout(layout),
+                style: {
+                    padding: '12px 8px', textAlign: 'center', cursor: 'pointer', borderRadius: '12px',
+                    border: logoLayout === layout ? '2px solid #3b82f6' : '1px solid var(--border)',
+                    background: logoLayout === layout ? '#3b82f615' : 'transparent',
+                    transition: '0.3s all ease',
+                    fontWeight: logoLayout === layout ? '700' : '400',
+                    color: logoLayout === layout ? '#3b82f6' : 'var(--text)'
+                }
+            }, layout.charAt(0).toUpperCase() + layout.slice(1))
+        ))
+    ),
+
+    // 2. Frame Style (Pill Switch)
+    e('div', { style: { marginTop: '20px' } },
+        e('label', { style: { fontSize: '12px', fontWeight: '800', display: 'block', marginBottom: '12px', color: '#64748b' } }, 'FRAME STYLE'),
+        e('div', { style: { display: 'flex', gap: '8px', background: 'var(--input-bg)', padding: '6px', borderRadius: '14px', border: '1px solid var(--border)' } },
+            ['none', 'solid'].map(style => (
+                e('button', {
+                    key: style,
+                    onClick: () => setLogoBorder(style),
                     style: {
-                        width: '220px', height: '220px',
-                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                        backgroundColor: logoBgColor,
-                        borderRadius: logoShape === 'circle' ? '50%' : '15px',
-                        color: logoColor,
-                        boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-                        transition: '0.3s'
+                        flex: 1, padding: '10px', border: 'none', borderRadius: '10px', cursor: 'pointer',
+                        background: logoBorder === style ? '#3b82f6' : 'transparent',
+                        color: logoBorder === style ? '#fff' : 'var(--text)',
+                        fontSize: '13px', fontWeight: '600', transition: '0.3s'
                     }
-                },
-                    e('div', { style: { fontSize: '50px', marginBottom: '5px' } }, logoIcon),
-                    e('div', {
-                        style: {
-                            fontSize: '22px',
-                            fontWeight: '900',
-                            fontFamily: logoFont,
-                            letterSpacing: '1px',
-                            textTransform: 'uppercase'
-                        }
-                    }, logoText)
-                ),
+                }, style === 'none' ? 'Clean' : 'Framed')
+            ))
+        )
+    )
+),
+// --- YAHAN TAK ---
 
                 // --- CONTROLS ---
                 e('div', { style: { width: '100%', display: 'flex', flexDirection: 'column', gap: '15px' } },
