@@ -273,7 +273,8 @@ textarea {
 
     .form-side {
         order: 1 !important;
-        width: 100% !important;
+         width: 110% !important;        /* Ye change karo */
+        margin-left: -5% !important; 
         max-height: none !important;
         position: relative !important;
         overflow: visible !important;
