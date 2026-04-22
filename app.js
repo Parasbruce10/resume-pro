@@ -101,6 +101,7 @@ const App = () => {
         image: null
 
     };
+    
 
     const [references, setReferences] = useState('');
     const [data, setData] = useState(initialState);
@@ -745,12 +746,22 @@ const App = () => {
                                     e('option', { value: 'Passed' }, 'Passed'),
                                     e('option', { value: 'Result Awaited' }, 'Result Awaited'),
                                     e('option', { value: 'Studying' }, 'Currently Studying')
+                    
                                 )
                             )
                         );
+
                     }),
+                                                         e('div', { className: 'section-title' }, 'References'),
+e('textarea', { 
+    rows: 3, 
+    placeholder: 'References (e.g. Name - Company - Contact)', 
+    onChange: (e) => setReferences(e.target.value),
+    style: { marginBottom: '10px' }
+}),
                     e('input', { placeholder: 'Skills', onChange: (e) => update('skills', e.target.value) })
                 ),
+   
 
                 e('div', { className: 'preview-side' },
                     // TEMPLATE SWITCHER
@@ -792,7 +803,12 @@ const App = () => {
                                     )
                                 )
                             ))
+
                         ),
+                        references && e('div', null,
+    e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'REFERENCES'),
+    e('p', { style: { fontSize: '12px', whiteSpace: 'pre-line' } }, references)
+),
                         data.skills && e('div', null,
                             e('h4', { style: { borderBottom: '1px solid #eee', fontSize: '12px', paddingBottom: '3px' } }, 'SKILLS'),
                             e('p', { style: { fontSize: '12px' } }, data.skills)
