@@ -493,7 +493,53 @@ const App = () => {
         e('style', null, styles),
 
         e('div', { className: 'mobile-menu' },
+            
             e('div', { className: 'close-menu', onClick: () => setIsMenuOpen(false) }, '✕'),
+            e('div', {
+    className: 'logo',
+    style: {
+        fontSize: '1.8rem',
+        fontWeight: '900',
+        letterSpacing: '1.5px',
+        textAlign: 'center',
+        marginBottom: '40px',
+        marginTop: '10px',
+        cursor: 'pointer',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textTransform: 'uppercase',
+        fontFamily: 'system-ui, -apple-system, sans-serif'
+    },
+    onClick: () => {
+        setIsMenuOpen(false);
+        navigate('landing');
+    }
+},
+
+    // RESUME - Same style as PRO
+    e('span', {
+        style: {
+            color: '#60a5fa',
+            marginRight: '8px',
+            fontSize: '1.35rem',
+            fontWeight: '900',
+            textShadow: '0 0 12px rgba(96, 165, 250, 0.8)',
+            letterSpacing: '1px'
+        }
+    }, 'RESUME'),
+
+    // PRO
+    e('span', {
+        style: {
+            color: '#60a5fa',
+            fontSize: '1.35rem',
+            fontWeight: '900',
+            textShadow: '0 0 12px rgba(96, 165, 250, 0.8)',
+            letterSpacing: '1px'
+        }
+    }, 'PRO')
+),
             // NAYA HOME BUTTON MOBILE KE LIYE
             e('div', { className: `nav-link ${currentPage === 'landing' ? 'active' : ''}`, style: { fontSize: '18px', fontWeight: 'bold' }, onClick: () => navigate('landing') }, 'Home'),
             e('div', { className: `nav-link ${currentPage === 'home' ? 'active' : ''}`, style: { fontSize: '18px' }, onClick: () => navigate('home') }, 'Resume Maker'),
