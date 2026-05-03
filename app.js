@@ -1381,21 +1381,94 @@ e('textarea', {
             e('button', { className: 'btn btn-primary', onClick: () => window.print(), style: { margin: '0 auto', background: '#3b82f6', color: '#fff', padding: '12px 30px', border: 'none', borderRadius: '5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)' } }, '💾 Download My Resume')
         ),
 
-        e('footer', { className: 'footer', style: { padding: '40px 0', marginTop: '50px', borderTop: '1px solid var(--border)' } },
-            e('div', { style: { textAlign: 'center' } },
-                e('div', { style: { fontWeight: '800', color: '#3b82f6', fontSize: '20px', cursor: 'pointer', marginBottom: '10px' }, onClick: () => navigate('home') }, 'RESUME.PRO'),
+        e('footer', { 
+    className: 'footer', 
+    style: { 
+        padding: '60px 20px 30px', 
+        marginTop: '100px', 
+        background: 'var(--card-bg)', 
+        borderTop: '1px solid var(--border)',
+        position: 'relative',
+        overflow: 'hidden'
+    } 
+},
+    // Background Glow Effect
+    e('div', { style: { position: 'absolute', bottom: '-50px', right: '-50px', width: '200px', height: '200px', background: 'rgba(59, 130, 246, 0.05)', filter: 'blur(80px)', borderRadius: '50%', zIndex: 0 } }),
 
-                // --- Footer Navigation ---
-                e('div', { style: { display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '20px' } },
+    e('div', { style: { maxWidth: '1100px', margin: '0 auto', position: 'relative', zIndex: 1 } },
+        // Top Section: Brand & Links
+        e('div', { 
+            style: { 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+                gap: '40px', 
+                textAlign: 'left',
+                marginBottom: '40px'
+            } 
+        },
+            // Column 1: Brand Info
+            e('div', null,
+                e('div', { 
+                    style: { fontWeight: '900', color: 'var(--accent)', fontSize: '22px', marginBottom: '15px', letterSpacing: '-1px', cursor: 'pointer' },
+                    onClick: () => navigate('landing') 
+                }, 'RESUME.PRO'),
+                e('p', { style: { fontSize: '13px', opacity: 0.6, lineHeight: '1.6', maxWidth: '300px' } }, 
+                    'Empowering professionals with next-gen career tools. Build, design, and export with ease.'
+                )
+            ),
+
+            // Column 2: Quick Explore
+            e('div', null,
+                e('h4', { style: { fontSize: '14px', fontWeight: '800', marginBottom: '20px', textTransform: 'uppercase', letterSpacing: '1px' } }, 'Explore'),
+                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px' } },
+                    ['home', 'banner', 'wordEditor', 'logo'].map(item => 
+                        e('span', { 
+                            key: item,
+                            className: 'nav-link', 
+                            style: { fontSize: '13px', cursor: 'pointer', display: 'block', textTransform: 'capitalize' }, 
+                            onClick: () => navigate(item) 
+                        }, item.replace(/([A-Z])/g, ' $1'))
+                    )
+                )
+            ),
+
+            // Column 3: Legal & Support
+            e('div', null,
+                e('h4', { style: { fontSize: '14px', fontWeight: '800', marginBottom: '20px', textTransform: 'uppercase', letterSpacing: '1px' } }, 'Support'),
+                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px' } },
                     e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('privacy') }, 'Privacy Policy'),
-                    e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('terms') }, 'Terms & Conditions'),
-                    e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer', color: 'var(--accent)', fontWeight: 'bold' }, onClick: () => navigate('contact') }, '📩 Contact Us')
-                ),
+                    e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('terms') }, 'Terms of Service'),
+                    e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer', color: 'var(--accent)' }, onClick: () => navigate('contact') }, 'Contact Us')
+                )
+            )
+        ),
 
-                e('p', { className: 'footer-text', style: { opacity: 0.8 } }, 'Created with ❤️ by Paras'),
-                e('p', { className: 'footer-text', style: { opacity: 0.5, fontSize: '12px' } }, `© ${new Date().getFullYear()} All Rights Reserved`)
+        // Divider
+        e('div', { style: { height: '1px', background: 'var(--border)', width: '100%', marginBottom: '30px', opacity: 0.5 } }),
+
+        // Bottom Bar: Copyright & Credit
+        e('div', { 
+            style: { 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center', 
+                flexWrap: 'wrap', 
+                gap: '20px' 
+            } 
+        },
+            e('p', { style: { fontSize: '12px', opacity: 0.5, margin: 0 } }, 
+                `© ${new Date().getFullYear()} Resume Pro. All Rights Reserved.`
+            ),
+            // Custom Credit
+            e('div', { style: { fontSize: '13px', fontWeight: '500', opacity: 0.8 } },
+                'Created with ',
+                e('span', { style: { color: '#ff4d4d' } }, '❤️'),
+                ' by ',
+                e('span', { style: { color: 'var(--accent)', fontWeight: '700' } }, 'Paras')
             )
         )
+    )
+)
     );
 };
 
