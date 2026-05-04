@@ -323,6 +323,7 @@ const App = () => {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
         
         .header-wrapper {
@@ -372,7 +373,7 @@ const App = () => {
 
         .app-container { 
             max-width: 1200px; margin: 0 auto; padding: 20px 15px 100px;
-            flex: 1; width: 100%; box-sizing: border-box;
+            flex: 1; width: 100%; box-sizing: border-box; overflow-x: hidden;
         }
         
         .main-layout { 
@@ -431,30 +432,34 @@ const App = () => {
         flex-direction: column !important; 
         gap: 20px !important;
         height: auto !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     /* Form Section */
     .form-side { 
         order: 1 !important; 
-        width: 88% !important; 
+        width: 100% !important; 
         max-height: none !important; 
         position: relative !important;
         overflow: visible !important;
         margin-bottom: 20px;
+        box-sizing: border-box !important;
     }
 
     /* Resume Preview Section */
     .preview-side { 
         order: 2 !important; 
-        width: 103% !important; 
+        width: 100% !important; 
         position: relative !important; 
         top: 0 !important;
         margin-top: 20px !important;
-        margin-bottom: 40px !important; /* Taake Download button aur Footer se gap rahe */
+        margin-bottom: 40px !important;
         min-height: 500px !important; 
         height: auto !important;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         display: block !important;
+        box-sizing: border-box !important;
     }
 
     /* Footer Fix - Isay hamesha niche rakhne ke liye */
@@ -478,7 +483,9 @@ const App = () => {
             .preview-side { width: 100%; border: none; box-shadow: none; padding: 0; position: static; margin: 0; }
             .main-layout { display: block; }
             body { background: white; }
+            
         }
+            
 
         .footer { background: var(--card-bg); border-top: 1px solid var(--border); padding: 30px 20px; text-align: center; margin-top: auto; }
         .footer-text { font-size: 12px; color: #64748b; margin: 0; }
@@ -666,7 +673,7 @@ const App = () => {
 
         e('div', { className: 'app-container' },
             // --- ULTRA-PREMIUM & UNIQUE LANDING PAGE ---
-            currentPage === 'landing' && e('div', { style: { padding: '60px 20px', maxWidth: '1200px', margin: '0 auto', fontFamily: "'Inter', sans-serif", position: 'relative' } },
+            currentPage === 'landing' && e('div', { style: { padding: 'clamp(20px, 5vw, 60px) 0', maxWidth: '1200px', margin: '0 auto', fontFamily: "'Inter', sans-serif", position: 'relative', width: '100%', boxSizing: 'border-box' } },
 
                 // Background Glow (Slightly visible for depth)
                 e('div', { style: { position: 'absolute', top: '-10%', left: '50%', width: '400px', height: '400px', background: 'rgba(59, 130, 246, 0.15)', filter: 'blur(100px)', borderRadius: '50%', zIndex: -1, transform: 'translateX(-50%)' } }),
@@ -1520,4 +1527,3 @@ e('textarea', {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(e(App));
-

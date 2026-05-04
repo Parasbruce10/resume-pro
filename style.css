@@ -106,6 +106,13 @@ textarea {
 @media (max-width: 800px) {
     .main-layout {
         grid-template-columns: 1fr;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .form-side, .preview-side {
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 }
 
@@ -244,7 +251,7 @@ textarea {
 
     /* Padding thori kam kar di taakay screen space bache */
     .app-container>div[style*="padding: 60px"] {
-        padding: 30px 15px !important;
+        padding: 20px 0 !important;
     }
 
     /* Heading ka size mobile par chota aur readable */
@@ -270,6 +277,8 @@ textarea {
     .premium-card {
         padding: 25px !important;
         border-radius: 24px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .premium-card img {
@@ -282,34 +291,9 @@ textarea {
         width: 100%;
         font-size: 16px !important;
     }
+    
+    /* Prevent horizontal overflow */
+    * {
+        max-width: 100%;
+    }
 }
-
-/* MOBILE RESPONSIVENESS FIXES FOR ALL PAGES */
-        @media (max-width: 768px) {
-            /* 1. Form Inputs ke grids ko 1 column mein karein */
-            .grid-2 { 
-                grid-template-columns: 1fr !important; 
-            }
-
-            /* 2. Banner Studio ke controls ko stack karein */
-            .banner-controls-grid { 
-                grid-template-columns: 1fr !important; 
-                gap: 20px !important; 
-            }
-            .banner-options-grid { 
-                grid-template-columns: 1fr !important; 
-            }
-
-            /* 3. Logo Maker ke layout options ko stack karein */
-            .logo-layout-grid { 
-                grid-template-columns: 1fr !important; 
-            }
-
-            /* 4. Logo Preview Card ko mobile par adjust karein */
-            #finalLogo { 
-                flex-direction: column !important; 
-                text-align: center !important; 
-                height: auto !important; 
-                padding: 30px 15px !important; 
-            }
-        }
