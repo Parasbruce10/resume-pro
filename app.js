@@ -1533,7 +1533,7 @@ e('textarea', {
             margin: '0', 
             padding: '0',
             // Iska bhi line height fix kiya taake gap na aaye
-            lineHeight: window.innerWidth < 768 ? '1' : '1.5'
+            lineHeight: window.innerWidth < 768 ? '0' : '1'
         } 
     },
         'Created with ',
