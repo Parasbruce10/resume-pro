@@ -479,11 +479,12 @@ const App = () => {
         .resume-header { display: flex; gap: 20px; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
 
         @media print {
-            .header-wrapper, .form-side, .footer, .hamburger, .mobile-menu, .template-selector, .btn-primary { display: none !important; }
+            .header-wrapper, .form-side, .footer, .hamburger, .mobile-menu, .template-selector, .btn-primary, .typewriter-container { display: none !important; }
             .preview-side { width: 100%; border: none; box-shadow: none; padding: 0; position: static; margin: 0; }
             .main-layout { display: block; }
             body { background: white; }
-            
+            /* Ads hide karo print mein */
+            script + div, [id^="container-"], iframe { display: none !important; }
         }
             
 
@@ -665,8 +666,8 @@ const App = () => {
             )
         ),
 
-        // Header wrapper ke baad aur app-container se pehle ye dalo:
-        e('div', { className: 'typewriter-container' },
+        // Typewriter sirf landing page par show karo
+        currentPage === 'landing' && e('div', { className: 'typewriter-container' },
             e('span', null, typewriterText),
             e('span', { className: 'cursor' })
         ),
