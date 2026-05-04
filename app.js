@@ -1500,29 +1500,53 @@ e('textarea', {
         e('div', { style: { height: '1px', background: 'var(--border)', width: '100%', marginBottom: '30px', opacity: 0.5 } }),
 
         // Bottom Bar: Copyright & Credit
-        e('div', { 
-            style: { 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center', 
-                flexWrap: 'wrap', 
-                gap: '20px' 
-            } 
-        },
-            e('p', { style: { fontSize: '12px', opacity: 0.5, margin: 0 } }, 
-                `© ${new Date().getFullYear()} Resume Pro. All Rights Reserved.`
-            ),
-            // Custom Credit
-            e('div', { style: { fontSize: '13px', fontWeight: '500', opacity: 0.8 } },
-                'Created with ',
-                e('span', { style: { color: '#ff4d4d' } }, '❤️'),
-                ' by ',
-                e('span', { style: { color: 'var(--accent)', fontWeight: '700' } }, 'Paras')
+       e('div', { 
+    style: { 
+        display: 'flex', 
+        // Mobile par column aur desktop par row
+        flexDirection: window.innerWidth < 768 ? 'column' : 'row',
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        width: '100%',
+        // Mobile par gaps bilkul 0 kar diye
+        gap: window.innerWidth < 768 ? '0px' : '20px',
+        textAlign: 'center'
+    } 
+},
+    e('p', { 
+        style: { 
+            fontSize: '12px', 
+            opacity: 0.5, 
+            margin: '0', 
+            padding: '0',
+            // Line height 1 rakhne se vertical space khatam ho jayegi
+            lineHeight: window.innerWidth < 768 ? '1' : '1.5' 
+        } 
+    }, 
+        `© ${new Date().getFullYear()} Resume Pro. All Rights Reserved.`
+    ),
+    e('div', { 
+        style: { 
+            fontSize: '13px', 
+            fontWeight: '500', 
+            opacity: 0.8, 
+            margin: '0', 
+            padding: '0',
+            // Iska bhi line height fix kiya taake gap na aaye
+            lineHeight: window.innerWidth < 768 ? '1' : '1.5'
+        } 
+    },
+        'Created with ',
+        e('span', { style: { color: '#ff4d4d' } }, '❤️'),
+        ' by ',
+        e('span', { style: { color: 'var(--accent)', fontWeight: '700' } }, 'Paras')
+    )
+
             )
         )
     )
 )
-    );
+    
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
