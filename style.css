@@ -283,3 +283,33 @@ textarea {
         font-size: 16px !important;
     }
 }
+
+/* MOBILE RESPONSIVENESS FIXES FOR ALL PAGES */
+        @media (max-width: 768px) {
+            /* 1. Form Inputs ke grids ko 1 column mein karein */
+            .grid-2 { 
+                grid-template-columns: 1fr !important; 
+            }
+
+            /* 2. Banner Studio ke controls ko stack karein */
+            .banner-controls-grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 20px !important; 
+            }
+            .banner-options-grid { 
+                grid-template-columns: 1fr !important; 
+            }
+
+            /* 3. Logo Maker ke layout options ko stack karein */
+            .logo-layout-grid { 
+                grid-template-columns: 1fr !important; 
+            }
+
+            /* 4. Logo Preview Card ko mobile par adjust karein */
+            #finalLogo { 
+                flex-direction: column !important; 
+                text-align: center !important; 
+                height: auto !important; 
+                padding: 30px 15px !important; 
+            }
+        }

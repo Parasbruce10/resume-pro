@@ -1177,7 +1177,7 @@ e('textarea', {
                 ),
 
                 // 4. Advanced Controls Grid (Ab 2 ki jagah 3 columns ka feel dega andar se)
-                e('div', { style: { display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '30px', textAlign: 'left' } },
+                e('div', { className: 'banner-controls-grid', style: { display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '30px', textAlign: 'left' } },
 
                     // --- LEFT COLUMN: TEXT & TYPOGRAPHY ---
                     e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px' } },
@@ -1199,7 +1199,7 @@ e('textarea', {
                         ),
 
                         // NEW: Font Style & Alignment Grid
-                        e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' } },
+                        e('div', { className: 'banner-options-grid', style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' } },
                             // Font Selection
                             e('div', null,
                                 e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Typography Style'),
@@ -1323,7 +1323,7 @@ e('textarea', {
                 e('div', { style: { marginTop: '25px' } },
                     // 1. Layout Selector (Cards)
                     e('label', { style: { fontSize: '12px', fontWeight: '800', display: 'block', marginBottom: '12px', color: '#64748b', letterSpacing: '1px' } }, 'CHOOSE LAYOUT'),
-                    e('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' } },
+                    e('div', { className: 'logo-layout-grid', style: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' } },
                         ['vertical', 'horizontal', 'icon-only'].map(layout => (
                             e('div', {
                                 key: layout,
