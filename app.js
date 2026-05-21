@@ -672,82 +672,145 @@ const App = () => {
             e('span', { className: 'cursor' })
         ),
 
-        e('div', { className: 'app-container' },
-            // --- ULTRA-PREMIUM & UNIQUE LANDING PAGE ---
-            currentPage === 'landing' && e('div', { style: { padding: 'clamp(20px, 5vw, 60px) 0', maxWidth: '1200px', margin: '0 auto', fontFamily: "'Inter', sans-serif", position: 'relative', width: '100%', boxSizing: 'border-box' } },
+     e('div', { className: 'app-container' },
 
-                // Background Glow (Slightly visible for depth)
-                e('div', { style: { position: 'absolute', top: '-10%', left: '50%', width: '400px', height: '400px', background: 'rgba(59, 130, 246, 0.15)', filter: 'blur(100px)', borderRadius: '50%', zIndex: -1, transform: 'translateX(-50%)' } }),
+            // =========================================
+            // 🌟 ULTRA-WIDE FLUID PREMIUM LANDING PAGE
+            // =========================================
+            currentPage === 'landing' && e('div', { className: 'full-screen-landing', style: { width: '100%', boxSizing: 'border-box' } },
 
-                // 1. Hero Section
-                e('div', { style: { textAlign: 'center', marginBottom: '100px' } },
-                    e('div', { style: { display: 'inline-flex', alignItems: 'center', background: 'rgba(59, 130, 246, 0.08)', border: '1px solid rgba(59, 130, 246, 0.2)', padding: '6px 16px', borderRadius: '100px', marginBottom: '30px' } },
-                        e('span', { style: { fontSize: '12px', marginRight: '8px' } }, '🚀'),
-                        e('span', { style: { color: 'var(--accent)', fontSize: '12px', fontWeight: '700', letterSpacing: '0.5px', textTransform: 'uppercase' } }, 'Next-Gen Career Platform')
-                    ),
-                    e('h1', { style: { fontSize: 'clamp(40px, 8vw, 72px)', fontWeight: '950', lineHeight: '1', margin: '0 0 25px 0', letterSpacing: '-2px', color: 'var(--text)' } },
-                        'Create Without ',
-                        e('span', { style: { color: 'var(--accent)', fontStyle: 'italic', fontWeight: '400' } }, 'Limits.')
-                    ),
-                    e('p', { style: { fontSize: '19px', opacity: 0.7, maxWidth: '600px', margin: '0 auto 40px', lineHeight: '1.6', fontWeight: '400' } },
-                        'Professional tools for the modern professional. Fast, secure, and built for results.'
-                    ),
-                    e('button', {
-                        className: 'btn main-cta',
-                        onClick: () => navigate('home'),
-                        style: {
-                            padding: '20px 50px',
-                            fontSize: '18px',
-                            borderRadius: '100px',
-                            background: 'var(--accent)',
-                            color: '#fff',
-                            border: 'none',
-                            fontWeight: '800',
-                            cursor: 'pointer',
-                            boxShadow: '0 20px 40px rgba(59, 130, 246, 0.4)',
-                            transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-                        }
-                    }, 'Get Started Now — It\'s Free')
+                // Deep Glowing Background Orbs
+                e('div', { style: { position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', pointerEvents: 'none', zIndex: -1, overflow: 'hidden' } },
+                    e('div', { style: { position: 'absolute', top: '10%', left: '-5%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%)', filter: 'blur(80px)' }, className: 'float-heavy' }),
+                    e('div', { style: { position: 'absolute', bottom: '10%', right: '-5%', width: '700px', height: '700px', background: 'radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)', filter: 'blur(80px)' }, className: 'float-heavy' })
                 ),
 
-                // 2. Feature Grid (Re-designed with Glassmorphism)
-                e('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '30px' } },
+                // 1. MASSIVE HERO SECTION (Centered & Stretched)
+                e('div', { className: 'hero-flex-container animate-slide-up', style: { width: '100%', boxSizing: 'border-box' } },
+                    
+                    e('div', { className: 'floating-element heavy-glow', style: { display: 'inline-flex', alignItems: 'center', background: 'rgba(15, 23, 42, 0.8)', border: '1px solid rgba(56, 189, 248, 0.4)', padding: '12px 28px', borderRadius: '100px', marginBottom: '35px' } },
+                        e('span', { style: { fontSize: '16px', marginRight: '12px' } }, '⚡'),
+                        e('span', { style: { color: 'var(--accent)', fontSize: '13px', fontWeight: '850', letterSpacing: '2px', textTransform: 'uppercase' } }, 'Version 2.0 Is Live')
+                    ),
+                    
+                    e('h1', { style: { fontSize: 'clamp(44px, 8.5vw, 95px)', fontWeight: '950', lineHeight: '1.05', margin: '0 0 25px 0', letterSpacing: '-3px', color: 'var(--text)', width: '100%', boxSizing: 'border-box' } },
+                        'Master Your ',
+                        e('span', { className: 'text-gradient' }, 'Workflow.')
+                    ),
+                    
+                    e('p', { style: { fontSize: 'clamp(18px, 2vw, 22px)', opacity: 0.75, maxWidth: '850px', margin: '0 auto 45px', lineHeight: '1.6', fontWeight: '400', width: '100%', boxSizing: 'border-box' } },
+                        'Deploy production-ready documents, extract archives in milliseconds, and craft pixel-perfect branding without ever leaving your browser.'
+                    ),
+                    
+                    e('button', {
+                        className: 'btn main-cta heavy-glow',
+                        onClick: () => navigate('home'),
+                        style: { padding: '22px 65px', fontSize: '19px', borderRadius: '100px', background: 'var(--text)', color: 'var(--bg)', border: 'none', fontWeight: '900', cursor: 'pointer', display: 'inline-block' }
+                    }, 'Get Started Now ')
+                ),
 
-                    // Feature 1
-                    e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
-                        e('div', { style: { background: 'rgba(59, 130, 246, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '✍️'),
-                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Resume Builder'),
-                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'Industry-standard templates that capture attention. Export to PDF in seconds with pixel-perfect precision.'),
-                        e('img', { src: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
+                // 2. ARTICLE TYPE DETAIL SECTION (Full Width Layout)
+                e('div', { className: 'animate-slide-up delay-1', style: { width: '100%', margin: '60px 0', display: 'flex', flexDirection: window.innerWidth < 900 ? 'column' : 'row', gap: '40px', alignItems: 'center', boxSizing: 'border-box' } },
+                    
+                    // Left Text Side
+                    e('div', { className: 'article-box-fluid', style: { flex: 1.3 } },
+                        e('h2', { style: { fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: '900', marginBottom: '25px', color: 'var(--text)', lineHeight: '1.2' } }, 'Built for the Modern Webmaster & Creator'),
+                        e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, marginBottom: '20px' } }, 
+                            'In today’s fast-paced digital ecosystem, bouncing between multiple heavy desktop applications just to format an essay or extract a ZIP file is a massive productivity killer. We engineered this platform to eliminate friction completely.'
+                        ),
+                        e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, marginBottom: '25px' } }, 
+                            'Whether you are refining AI-generated content, prepping high-quality assets for monetization networks, or simply organizing your project deployment files, our AI-ready interface ensures your workflow remains uninterrupted, secure, and lightning-fast.'
+                        ),
+                        e('ul', { style: { listStyleType: 'none', padding: 0, margin: 0 } },
+                            [
+                                { icon: '🔒', text: 'Zero server uploads. 100% client-side privacy.' },
+                                { icon: '⚡', text: 'Instant rendering engine for 4K exports.' },
+                                { icon: '🧠', text: 'Architecture optimized for modern web standards.' }
+                            ].map((item, i) => 
+                                e('li', { key: i, style: { fontSize: '16px', margin: '15px 0', display: 'flex', alignItems: 'center', opacity: 0.9, fontWeight: '500' } },
+                                    e('span', { style: { marginRight: '15px', fontSize: '18px', background: 'rgba(255,255,255,0.05)', padding: '8px', borderRadius: '8px' } }, item.icon),
+                                    item.text
+                                )
+                            )
+                        )
                     ),
 
-                    // Feature 2
-                    e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
-                        e('div', { style: { background: 'rgba(147, 51, 234, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '🖼️'),
-                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Social Canvas'),
-                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'Personalize your LinkedIn presence with high-fidelity banners. Custom ratios for all professional networks.'),
-                        e('img', { src: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
-                    ),
-
-                    // Feature 3
-                    e('div', { className: 'premium-card', style: { background: 'linear-gradient(145deg, var(--card-bg), var(--bg))', borderRadius: '32px', padding: '40px', border: '1px solid var(--border)', position: 'relative', overflow: 'hidden' } },
-                        e('div', { style: { background: 'rgba(16, 185, 129, 0.1)', width: '60px', height: '60px', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', marginBottom: '25px' } }, '🛠️'),
-                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Power Utilities'),
-                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' } }, 'One-click ZIP extraction and a distraction-free Word editor. Built for speed and local privacy.'),
-                        e('img', { src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=500', style: { width: '110%', marginLeft: '-5%', borderRadius: '20px', height: '180px', objectFit: 'cover', opacity: 0.9 } })
+                    // Right Side 3D Visual Box
+                    e('div', { className: 'card-3d-wrap', style: { flex: 0.7, width: '100%', boxSizing: 'border-box' } },
+                        e('div', { className: 'premium-feature-card', style: { display: 'flex', flexDirection: 'column', gap: '35px', textAlign: 'center', padding: '60px 40px', boxSizing: 'border-box' } },
+                            e('div', null,
+                                e('h3', { className: 'text-gradient', style: { fontSize: '52px', margin: '0 0 10px 0', fontWeight: '950' } }, '10x'),
+                                e('p', { style: { margin: 0, opacity: 0.6, fontSize: '14px', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: '700' } }, 'Faster Performance')
+                            ),
+                            e('div', { style: { height: '1px', background: 'rgba(255,255,255,0.1)', width: '60%', margin: '0 auto' } }),
+                            e('div', null,
+                                e('h3', { className: 'text-gradient', style: { fontSize: '52px', margin: '0 0 10px 0', fontWeight: '950' } }, '0KB'),
+                                e('p', { style: { margin: 0, opacity: 0.6, fontSize: '14px', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: '700' } }, 'Server Overload')
+                            )
+                        )
                     )
                 ),
 
-                // 3. CTA Footer (Compact & Bold)
-                e('div', { style: { marginTop: '120px', textAlign: 'center', borderTop: '1px solid var(--border)', paddingTop: '60px' } },
-                    e('h2', { style: { fontSize: '36px', fontWeight: '900', marginBottom: '10px' } }, 'Ready to start?'),
-                    e('p', { style: { opacity: 0.5, marginBottom: '30px' } }, 'No credit card. No signup. Just tools.'),
+                // 3. FEATURES GRID SECTION (Wide Matrix)
+                e('div', { style: { textAlign: 'center', marginBottom: '50px', marginTop: '60px', width: '100%', boxSizing: 'border-box' } },
+                    e('h2', { style: { fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: '900', marginBottom: '15px', letterSpacing: '-1px' } }, 'The Complete Arsenal'),
+                    e('p', { style: { opacity: 0.6, fontSize: '19px', maxWidth: '600px', margin: '0 auto' } }, 'Click any module below to instantly launch the tool in your browser environment.')
+                ),
+
+                e('div', { className: 'card-3d-wrap', style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', width: '100%', boxSizing: 'border-box', marginBottom: '80px' } },
+                    
+                    e('div', { className: 'premium-feature-card' },
+                        e('div', { style: { background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.2), transparent)', width: '70px', height: '70px', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', marginBottom: '30px', border: '1px solid rgba(56, 189, 248, 0.3)' } }, '📄'),
+                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Smart Resume Builder'),
+                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7' } }, 'Dynamic ATS-friendly templates that capture attention. Export to high-quality PDF in seconds.')
+                    ),
+                    
+                    e('div', { className: 'premium-feature-card' },
+                        e('div', { style: { background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.2), transparent)', width: '70px', height: '70px', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', marginBottom: '30px', border: '1px solid rgba(168, 85, 247, 0.3)' } }, '🎨'),
+                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Banner Studio Pro'),
+                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7' } }, 'Design ultra-HD LinkedIn covers and website headers with custom typography and modern glassmorphism.')
+                    ),
+
+                    e('div', { className: 'premium-feature-card' },
+                        e('div', { style: { background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.2), transparent)', width: '70px', height: '70px', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', marginBottom: '30px', border: '1px solid rgba(236, 72, 153, 0.3)' } }, '✨'),
+                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Advanced Logo Maker'),
+                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7' } }, 'Construct professional brand identities instantly with our vectorized 4K exporter tool.')
+                    ),
+
+                    e('div', { className: 'premium-feature-card' },
+                        e('div', { style: { background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2), transparent)', width: '70px', height: '70px', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', marginBottom: '30px', border: '1px solid rgba(16, 185, 129, 0.3)' } }, '✍️'),
+                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Rich Word Editor'),
+                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7' } }, 'Draft articles, format essays, and write code documentation in a distraction-free environment.')
+                    ),
+
+                    e('div', { className: 'premium-feature-card' },
+                        e('div', { style: { background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.2), transparent)', width: '70px', height: '70px', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', marginBottom: '30px', border: '1px solid rgba(245, 158, 11, 0.3)' } }, '🗜️'),
+                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Instant Archive Utility'),
+                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7' } }, 'Unzip deployment folders or compress massive directories locally within your browser.')
+                    ),
+
+                    e('div', { className: 'premium-feature-card' },
+                        e('div', { style: { background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.2), transparent)', width: '70px', height: '70px', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', marginBottom: '30px', border: '1px solid rgba(239, 68, 68, 0.3)' } }, '🔄'),
+                        e('h3', { style: { fontSize: '24px', fontWeight: '800', marginBottom: '15px' } }, 'Word to PDF Engine'),
+                        e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7' } }, 'Seamlessly compile your formatted Word documents into crisp, print-ready PDFs securely.')
+                    )
+                ),
+
+                // 4. MASSIVE FOOTER CTA
+                e('div', { className: 'heavy-glow', style: { width: '100%', margin: '20px 0 60px 0', background: 'linear-gradient(135deg, rgba(56,189,248,0.1), rgba(168,85,247,0.1))', padding: '80px 20px', borderRadius: '40px', border: '1px solid rgba(255,255,255,0.08)', position: 'relative', overflow: 'hidden', boxSizing: 'border-box', textAlign: 'center' } },
+                    e('div', { style: { position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '60%', height: '2px', background: 'linear-gradient(90deg, transparent, var(--accent), transparent)' } }),
+                    e('h2', { style: { fontSize: 'clamp(32px, 5vw, 50px)', fontWeight: '900', marginBottom: '20px', letterSpacing: '-1px' } }, 'Ready to Elevate?'),
+                    e('p', { style: { opacity: 0.7, marginBottom: '40px', fontSize: '20px' } }, 'No signups. No credit cards. Just powerful tools.'),
                     e('button', {
                         onClick: () => navigate('home'),
-                        style: { background: 'var(--text)', color: 'var(--bg)', border: 'none', padding: '15px 40px', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '16px' }
-                    }, 'Open Resume Pro')
+                        style: { background: '#fff', color: '#000', border: 'none', padding: '22px 60px', borderRadius: '100px', fontWeight: '900', cursor: 'pointer', fontSize: '18px', textTransform: 'uppercase', letterSpacing: '1px' }
+                    }, 'Start Building Now')
                 )
             ),
+            // =========================================
+            // 🌟 ULTRA-WIDE FLUID PREMIUM LANDING PAGE END
+            // =========================================
+
             currentPage === 'home' && e('div', { className: 'main-layout' },
                 e('div', { className: 'form-side' },
                     e('div', { className: 'section-title' }, 'Photo'),
