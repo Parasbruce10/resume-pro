@@ -1498,71 +1498,123 @@ e('textarea', {
             e('button', { className: 'btn btn-primary', onClick: () => window.print(), style: { margin: '0 auto', background: '#3b82f6', color: '#fff', padding: '12px 30px', border: 'none', borderRadius: '5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)' } }, '💾 Download My Resume')
         ),
         // --- 5 IMAGES & DETAIL SECTION START ---
-        currentPage === 'home' && e('div', { style: { width: '100%', maxWidth: '1400px', margin: '60px auto', padding: '0 40px', paddingBottom: '60px', boxSizing: 'border-box' } },
-            e('h2', { style: { textAlign: 'center', fontSize: '38px', fontWeight: '900', marginBottom: '60px', color: 'var(--accent)', letterSpacing: '-0.5px' } }, 'Elevate Your Professional Profile'),
-            
-            [
-                { 
-                    img: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80', 
-                    title: 'Industry Standard Templates', 
-                    desc: 'Craft your resume with professional layouts that are proven to catch the eye of top recruiters and hiring managers instantly.' 
-                },
-                { 
-                    img: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80', 
-                    title: 'ATS-Friendly Formatting', 
-                    desc: 'Ensure your resume passes through Applicant Tracking Systems effortlessly with our highly optimized and structured document architecture.' 
-                },
-                { 
-                    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80', 
-                    title: 'Real-Time Live Preview', 
-                    desc: 'See your changes instantly as you type. Adjust your layout, tweak your content, and perfect your professional story on the fly without any hassle.' 
-                },
-                { 
-                    img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80', 
-                    title: 'High-Resolution Export', 
-                    desc: 'Download your finished resume in crystal-clear, high-resolution format, ready to be attached to your next big job application.' 
-                },
-                { 
-                    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80', 
-                    title: '100% Secure & Private', 
-                    desc: 'Your career data stays strictly on your device. We prioritize your complete privacy with local, client-side processing algorithms.' 
-                }
-            ].map((item, index) => 
-                e('div', { 
-                    key: index, 
+        currentPage === 'home' && e('div', { 
+    className: 'mobile-container',
+    style: { width: '100%', maxWidth: '1400px', margin: '60px auto', padding: '0 40px', paddingBottom: '60px', boxSizing: 'border-box' } 
+},
+    // 1. Responsive Styles Injection
+    e('style', null, `
+        @media (max-width: 768px) {
+            .mobile-container { padding: 0 20px !important; margin: 40px auto !important; }
+            .mobile-heading { font-size: 28px !important; margin-bottom: 40px !important; }
+            .mobile-card { 
+                flex-direction: column !important; 
+                gap: 24px !important; 
+                padding: 24px !important; 
+                margin-bottom: 30px !important;
+            }
+            .mobile-col { flex: 1 1 100% !important; padding: 0 !important; }
+            .mobile-img { height: 240px !important; }
+            .mobile-paragraphs-section { padding: 30px 20px !important; margin-top: 50px !important; border-radius: 20px !important; }
+            .mobile-paragraphs-heading { font-size: 26px !important; text-align: center; }
+        }
+    `),
+
+    // 2. Main Heading
+    e('h2', { 
+        className: 'mobile-heading',
+        style: { textAlign: 'center', fontSize: '38px', fontWeight: '900', marginBottom: '60px', color: 'var(--accent)', letterSpacing: '-0.5px' } 
+    }, 'Elevate Your Professional Profile'),
+    
+    // 3. Feature Cards Loop
+    [
+        { 
+            img: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80', 
+            title: 'Industry Standard Templates', 
+            desc: 'Craft your resume with elite, recruiter-tested layouts engineered to highlight your core strengths and instantly command attention from top-tier enterprise hiring managers.' 
+        },
+        { 
+            img: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80', 
+            title: 'ATS-Friendly Formatting', 
+            desc: 'Defeat automated screening gatekeepers effortlessly. Our highly optimized and structured document architecture ensures flawless parsing by modern Applicant Tracking Systems.' 
+        },
+        { 
+            img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80', 
+            title: 'Real-Time Live Preview', 
+            desc: 'Experience frictionless editing. Witness structural modifications, layout shifts, and textual updates instantly as you sculpt your professional story in real-time.' 
+        },
+        { 
+            img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80', 
+            title: 'High-Resolution Export', 
+            desc: 'Secure crystal-clear, pixel-perfect document downloads. Export production-ready files tailored to meet the exact printing and digital submission standards of modern employers.' 
+        },
+        { 
+            img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80', 
+            title: '100% Secure & Private', 
+            desc: 'Your personal data never leaves your sight. We prioritize your complete data sovereignty with advanced local, client-side cryptographic processing algorithms.' 
+        }
+    ].map((item, index) => 
+        e('div', { 
+            key: index, 
+            className: 'mobile-card',
+            style: { 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', 
+                alignItems: 'center', 
+                gap: '50px', 
+                marginBottom: '50px', 
+                background: 'var(--card-bg)', 
+                padding: '40px', 
+                borderRadius: '24px', 
+                border: '1px solid var(--border)', 
+                boxShadow: '0 15px 40px rgba(0,0,0,0.06)' 
+            } 
+        },
+            e('div', { className: 'mobile-col', style: { flex: '1 1 500px' } }, 
+                e('img', { 
+                    src: item.img, 
+                    className: 'mobile-img',
                     style: { 
-                        display: 'flex', 
-                        flexWrap: 'wrap', 
-                        flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', 
-                        alignItems: 'center', 
-                        gap: '50px', 
-                        marginBottom: '50px', 
-                        background: 'var(--card-bg)', 
-                        padding: '40px', 
-                        borderRadius: '24px', 
-                        border: '1px solid var(--border)', 
-                        boxShadow: '0 15px 40px rgba(0,0,0,0.06)' 
+                        width: '100%', 
+                        height: '380px', 
+                        objectFit: 'cover', 
+                        borderRadius: '18px',
+                        boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
                     } 
-                },
-                    e('div', { style: { flex: '1 1 500px' } }, 
-                        e('img', { 
-                            src: item.img, 
-                            style: { 
-                                width: '100%', 
-                                height: '380px', // Image ki height thori barhai hai premium look ke liye
-                                objectFit: 'cover', 
-                                borderRadius: '18px',
-                                boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
-                            } 
-                        })
-                    ),
-                    e('div', { style: { flex: '1 1 500px', padding: '20px' } },
-                        e('h3', { style: { fontSize: '28px', fontWeight: '800', marginBottom: '16px', color: 'var(--text)', letterSpacing: '-0.3px' } }, item.title),
-                        e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, color: 'var(--text)' } }, item.desc)
-                    )
-                )
+                })
+            ),
+            e('div', { className: 'mobile-col', style: { flex: '1 1 500px', padding: '20px' } },
+                e('h3', { style: { fontSize: '28px', fontWeight: '800', marginBottom: '16px', color: 'var(--text)', letterSpacing: '-0.3px' } }, item.title),
+                e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, color: 'var(--text)' } }, item.desc)
             )
-        ),
+        )
+    ),
+
+    // 4. New Beautiful English Paragraphs Section (Below the loop)
+    e('div', {
+        className: 'mobile-paragraphs-section',
+        style: { 
+            marginTop: '80px', 
+            padding: '60px', 
+            background: 'linear-gradient(135deg, var(--card-bg) 0%, rgba(0,0,0,0.02) 100%)', 
+            borderRadius: '32px', 
+            border: '1px solid var(--border)',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.04)'
+        }
+    },
+        e('h2', { 
+            className: 'mobile-paragraphs-heading',
+            style: { fontSize: '32px', fontWeight: '800', marginBottom: '24px', color: 'var(--text)', letterSpacing: '-0.4px' } 
+        }, 'Why Crafting a Standout Resume Matters'),
+        e('p', { 
+            style: { fontSize: '16px', lineHeight: '1.8', color: 'var(--text)', opacity: 0.85, marginBottom: '20px' } 
+        }, 'In today’s highly competitive job market, your resume is no longer just a static summary of your work history—it is your personal marketing engine. Employers and recruiters spend an average of just six seconds skimming an application before deciding if a candidate moves forward. By combining precision typography, intuitive visual hierarchy, and strategic content placement, our platform ensures that your unique career narrative instantly captures attention and highlights your greatest milestones.'),
+        e('p', { 
+            style: { fontSize: '16px', lineHeight: '1.8', color: 'var(--text)', opacity: 0.85 } 
+        }, 'Beyond structural elegance, navigating the modern hiring ecosystem requires technical optimization. Most enterprise organizations deploy advanced tracking systems to filter candidates before a human eyes the page. Our document architecture bridges the gap between human design expectations and system compliance, giving you a friction-free, elite presentation that maximizes response rates and accelerates your journey toward your dream career.')
+    )
+),
         // --- 5 IMAGES & DETAIL SECTION END ---
         // --- WORD TO PDF: 5 IMAGES & DETAIL SECTION START ---
         currentPage === 'wordToPdf' && e('div', { style: { width: '100%', maxWidth: '1400px', margin: '60px auto', padding: '0 40px', paddingBottom: '60px', boxSizing: 'border-box' } },
