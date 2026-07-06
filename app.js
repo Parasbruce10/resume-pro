@@ -1497,6 +1497,475 @@ e('textarea', {
         currentPage === 'home' && e('div', { style: { textAlign: 'center', padding: '40px 0', background: 'transparent', marginTop: '0' } },
             e('button', { className: 'btn btn-primary', onClick: () => window.print(), style: { margin: '0 auto', background: '#3b82f6', color: '#fff', padding: '12px 30px', border: 'none', borderRadius: '5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)' } }, '💾 Download My Resume')
         ),
+        // --- 5 IMAGES & DETAIL SECTION START ---
+        currentPage === 'home' && e('div', { style: { width: '100%', maxWidth: '1400px', margin: '60px auto', padding: '0 40px', paddingBottom: '60px', boxSizing: 'border-box' } },
+            e('h2', { style: { textAlign: 'center', fontSize: '38px', fontWeight: '900', marginBottom: '60px', color: 'var(--accent)', letterSpacing: '-0.5px' } }, 'Elevate Your Professional Profile'),
+            
+            [
+                { 
+                    img: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80', 
+                    title: 'Industry Standard Templates', 
+                    desc: 'Craft your resume with professional layouts that are proven to catch the eye of top recruiters and hiring managers instantly.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80', 
+                    title: 'ATS-Friendly Formatting', 
+                    desc: 'Ensure your resume passes through Applicant Tracking Systems effortlessly with our highly optimized and structured document architecture.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80', 
+                    title: 'Real-Time Live Preview', 
+                    desc: 'See your changes instantly as you type. Adjust your layout, tweak your content, and perfect your professional story on the fly without any hassle.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80', 
+                    title: 'High-Resolution Export', 
+                    desc: 'Download your finished resume in crystal-clear, high-resolution format, ready to be attached to your next big job application.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80', 
+                    title: '100% Secure & Private', 
+                    desc: 'Your career data stays strictly on your device. We prioritize your complete privacy with local, client-side processing algorithms.' 
+                }
+            ].map((item, index) => 
+                e('div', { 
+                    key: index, 
+                    style: { 
+                        display: 'flex', 
+                        flexWrap: 'wrap', 
+                        flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', 
+                        alignItems: 'center', 
+                        gap: '50px', 
+                        marginBottom: '50px', 
+                        background: 'var(--card-bg)', 
+                        padding: '40px', 
+                        borderRadius: '24px', 
+                        border: '1px solid var(--border)', 
+                        boxShadow: '0 15px 40px rgba(0,0,0,0.06)' 
+                    } 
+                },
+                    e('div', { style: { flex: '1 1 500px' } }, 
+                        e('img', { 
+                            src: item.img, 
+                            style: { 
+                                width: '100%', 
+                                height: '380px', // Image ki height thori barhai hai premium look ke liye
+                                objectFit: 'cover', 
+                                borderRadius: '18px',
+                                boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
+                            } 
+                        })
+                    ),
+                    e('div', { style: { flex: '1 1 500px', padding: '20px' } },
+                        e('h3', { style: { fontSize: '28px', fontWeight: '800', marginBottom: '16px', color: 'var(--text)', letterSpacing: '-0.3px' } }, item.title),
+                        e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, color: 'var(--text)' } }, item.desc)
+                    )
+                )
+            )
+        ),
+        // --- 5 IMAGES & DETAIL SECTION END ---
+        // --- WORD TO PDF: 5 IMAGES & DETAIL SECTION START ---
+        currentPage === 'wordToPdf' && e('div', { style: { width: '100%', maxWidth: '1400px', margin: '60px auto', padding: '0 40px', paddingBottom: '60px', boxSizing: 'border-box' } },
+            e('h2', { style: { textAlign: 'center', fontSize: '38px', fontWeight: '900', marginBottom: '60px', color: 'var(--accent)', letterSpacing: '-0.5px' } }, 'Seamless Word to PDF Conversion'),
+            
+            [
+                { 
+                    img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80', 
+                    title: '100% Accurate Layout Retention', 
+                    desc: 'Convert your documents without losing fonts, margins, or complex alignments. Your PDF will look exactly like your original Word file.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', 
+                    title: 'Lightning Fast Processing', 
+                    desc: 'No more waiting around. Our optimized cloud engines convert your heavy Docx files into high-quality PDFs within seconds.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=800&q=80', 
+                    title: 'Batch Conversion Support', 
+                    desc: 'Save your precious time by uploading and converting multiple Word documents to PDF simultaneously with a single click.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80', 
+                    title: 'Cross-Platform Compatibility', 
+                    desc: 'Generated PDFs are universally compatible and perfectly optimized to view on any device, including iPhones, Androids, and Windows PCs.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80', 
+                    title: 'Secure File Encryption', 
+                    desc: 'Your files are heavily protected. All uploaded documents are automatically and permanently deleted from our servers immediately after conversion.' 
+                }
+            ].map((item, index) => 
+                e('div', { 
+                    key: index, 
+                    style: { 
+                        display: 'flex', 
+                        flexWrap: 'wrap', 
+                        flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', // Zig-zag layout
+                        alignItems: 'center', 
+                        gap: '50px', 
+                        marginBottom: '50px', 
+                        background: 'var(--card-bg)', 
+                        padding: '40px', 
+                        borderRadius: '24px', 
+                        border: '1px solid var(--border)', 
+                        boxShadow: '0 15px 40px rgba(0,0,0,0.06)' 
+                    } 
+                },
+                    e('div', { style: { flex: '1 1 500px' } }, 
+                        e('img', { 
+                            src: item.img, 
+                            style: { 
+                                width: '100%', 
+                                height: '380px', 
+                                objectFit: 'cover', 
+                                borderRadius: '18px',
+                                boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
+                            } 
+                        })
+                    ),
+                    e('div', { style: { flex: '1 1 500px', padding: '20px' } },
+                        e('h3', { style: { fontSize: '28px', fontWeight: '800', marginBottom: '16px', color: 'var(--text)', letterSpacing: '-0.3px' } }, item.title),
+                        e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, color: 'var(--text)' } }, item.desc)
+                    )
+                )
+            )
+        ),
+        // --- WORD TO PDF: 5 IMAGES & DETAIL SECTION END ---
+        // --- LINKEDIN BANNER: 5 IMAGES & DETAIL SECTION START ---
+        currentPage === 'banner' && e('div', { style: { width: '100%', maxWidth: '1400px', margin: '60px auto', padding: '0 40px', paddingBottom: '60px', boxSizing: 'border-box' } },
+            e('h2', { style: { textAlign: 'center', fontSize: '38px', fontWeight: '900', marginBottom: '60px', color: 'var(--accent)', letterSpacing: '-0.5px' } }, 'Design Banners That Demand Attention'),
+            
+            [
+                { 
+                    img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80', 
+                    title: 'Tailored Corporate Aesthetics', 
+                    desc: 'Create highly professional LinkedIn banners that perfectly align with your industry, reflecting sophistication and executive presence from the first click.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80', 
+                    title: 'Pixel-Perfect Dimensions', 
+                    desc: 'Say goodbye to blurry or awkwardly cropped designs. Every layout is mathematically engineered to fit the official LinkedIn banner grid flawlessly across all devices.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80', 
+                    title: 'Personal Branding Edge', 
+                    desc: 'Stand out in a sea of generic job seekers. Highlight your skills, services, or core corporate values with clean, high-impact typography elements.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=800&q=80', 
+                    title: 'Modern Abstract Visuals', 
+                    desc: 'Access a curated collection of beautiful gradients, corporate vector assets, and clean technical backgrounds designed to lock in recruiter engagement.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80', 
+                    title: 'Instant High-Res Export', 
+                    desc: 'Generate your banner instantly in premium digital formats. Crisp, uncompressed rendering ensures your professional profile maintains peak visual authority.' 
+                }
+            ].map((item, index) => 
+                e('div', { 
+                    key: index, 
+                    style: { 
+                        display: 'flex', 
+                        flexWrap: 'wrap', 
+                        flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', // Premium Zig-zag pattern
+                        alignItems: 'center', 
+                        gap: '50px', 
+                        marginBottom: '50px', 
+                        background: 'var(--card-bg)', 
+                        padding: '40px', 
+                        borderRadius: '24px', 
+                        border: '1px solid var(--border)', 
+                        boxShadow: '0 15px 40px rgba(0,0,0,0.06)' 
+                    } 
+                },
+                    e('div', { style: { flex: '1 1 500px' } }, 
+                        e('img', { 
+                            src: item.img, 
+                            style: { 
+                                width: '100%', 
+                                height: '380px', 
+                                objectFit: 'cover', 
+                                borderRadius: '18px',
+                                boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
+                            } 
+                        })
+                    ),
+                    e('div', { style: { flex: '1 1 500px', padding: '20px' } },
+                        e('h3', { style: { fontSize: '28px', fontWeight: '800', marginBottom: '16px', color: 'var(--text)', letterSpacing: '-0.3px' } }, item.title),
+                        e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, color: 'var(--text)' } }, item.desc)
+                    )
+                )
+            )
+        ),
+        // --- LINKEDIN BANNER: 5 IMAGES & DETAIL SECTION END ---
+        // --- WORD EDITOR: 5 IMAGES & DETAIL SECTION START ---
+        currentPage === 'wordEditor' && e('div', { style: { width: '100%', maxWidth: '1400px', margin: '60px auto', padding: '0 40px', paddingBottom: '60px', boxSizing: 'border-box' } },
+            e('h2', { style: { textAlign: 'center', fontSize: '38px', fontWeight: '900', marginBottom: '60px', color: 'var(--accent)', letterSpacing: '-0.5px' } }, 'Powerful Document Editing Redefined'),
+            
+            [
+                { 
+                    img: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80', 
+                    title: 'Rich Text Formatting Suite', 
+                    desc: 'Take complete control over your content with advanced typography engines. Easily manipulate headings, fonts, custom alignment, and element scaling on a clean canvas.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80', 
+                    title: 'Distraction-Free Environment', 
+                    desc: 'Focus entirely on your thought process. Our minimalist writing layout eliminates unnecessary UI clutter, boosting your creative output and drafting speed.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80', 
+                    title: 'Instant Layout Autosave', 
+                    desc: 'Never lose a single sentence again. The editor actively caches your drafts locally, keeping your operational data protected against unexpected crashes.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80', 
+                    title: 'Clean Copy-Paste Integration', 
+                    desc: 'Import articles, web components, or raw code blocks smoothly. Our semantic parsers clean up background styling issues automatically upon pasting.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?w=800&q=80', 
+                    title: 'Universal Document Export', 
+                    desc: 'Compile your written drafts into beautifully structured documents instantly. Ready to be shared, printed, or ported over into core document management hubs.' 
+                }
+            ].map((item, index) => 
+                e('div', { 
+                    key: index, 
+                    style: { 
+                        display: 'flex', 
+                        flexWrap: 'wrap', 
+                        flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', // Classic elite zig-zag
+                        alignItems: 'center', 
+                        gap: '50px', 
+                        marginBottom: '50px', 
+                        background: 'var(--card-bg)', 
+                        padding: '40px', 
+                        borderRadius: '24px', 
+                        border: '1px solid var(--border)', 
+                        boxShadow: '0 15px 40px rgba(0,0,0,0.06)' 
+                    } 
+                },
+                    e('div', { style: { flex: '1 1 500px' } }, 
+                        e('img', { 
+                            src: item.img, 
+                            style: { 
+                                width: '100%', 
+                                height: '380px', 
+                                objectFit: 'cover', 
+                                borderRadius: '18px',
+                                boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
+                            } 
+                        })
+                    ),
+                    e('div', { style: { flex: '1 1 500px', padding: '20px' } },
+                        e('h3', { style: { fontSize: '28px', fontWeight: '800', marginBottom: '16px', color: 'var(--text)', letterSpacing: '-0.3px' } }, item.title),
+                        e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, color: 'var(--text)' } }, item.desc)
+                    )
+                )
+            )
+        ),
+        // --- WORD EDITOR: 5 IMAGES & DETAIL SECTION END ---
+        // --- LOGO MAKER: 5 IMAGES & DETAIL SECTION START ---
+        currentPage === 'logo' && e('div', { style: { width: '100%', maxWidth: '1400px', margin: '60px auto', padding: '0 40px', paddingBottom: '60px', boxSizing: 'border-box' } },
+            e('h2', { style: { textAlign: 'center', fontSize: '38px', fontWeight: '900', marginBottom: '60px', color: 'var(--accent)', letterSpacing: '-0.5px' } }, 'Craft an Unforgettable Brand Identity'),
+            
+            [
+                { 
+                    img: 'https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?w=800&q=80', 
+                    title: 'Vector-Perfect Clarity', 
+                    desc: 'Design logos that scale flawlessly from tiny mobile app icons to massive high-resolution digital storefront banners without losing an ounce of sharpness.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=800&q=80', 
+                    title: 'Strategic Color Harmony', 
+                    desc: 'Access curated color palettes engineered around brand psychology. Create high-contrast schemes that evoke the exact emotional response your business needs.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?auto=format&fit=crop&w=800&q=80', 
+                    title: 'Modern Typography Blocks', 
+                    desc: 'Pair your brand marks with clean, high-impact fonts. Establish instant visual hierarchy and professional authority that makes your company memorable.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80', 
+                    title: 'Minimalist & Bold Archetypes', 
+                    desc: 'Stand out in saturated digital spaces. Our layouts focus on timeless, clean geometries that ensure your emblem remains instantly recognizable.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80', 
+                    title: 'Transparent Asset Exports', 
+                    desc: 'Download your finished vector elements with transparent backgrounds instantly, fully prepared to overlay onto websites, business cards, or product packaging.' 
+                }
+            ].map((item, index) => 
+                e('div', { 
+                    key: index, 
+                    style: { 
+                        display: 'flex', 
+                        flexWrap: 'wrap', 
+                        flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', // Premium Zig-zag matrix
+                        alignItems: 'center', 
+                        gap: '50px', 
+                        marginBottom: '50px', 
+                        background: 'var(--card-bg)', 
+                        padding: '40px', 
+                        borderRadius: '24px', 
+                        border: '1px solid var(--border)', 
+                        boxShadow: '0 15px 40px rgba(0,0,0,0.06)' 
+                    } 
+                },
+                    e('div', { style: { flex: '1 1 500px' } }, 
+                        e('img', { 
+                            src: item.img, 
+                            style: { 
+                                width: '100%', 
+                                height: '380px', 
+                                objectFit: 'cover', 
+                                borderRadius: '18px',
+                                boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
+                            } 
+                        })
+                    ),
+                    e('div', { style: { flex: '1 1 500px', padding: '20px' } },
+                        e('h3', { style: { fontSize: '28px', fontWeight: '800', marginBottom: '16px', color: 'var(--text)', letterSpacing: '-0.3px' } }, item.title),
+                        e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, color: 'var(--text)' } }, item.desc)
+                    )
+                )
+            )
+        ),
+        // --- LOGO MAKER: 5 IMAGES & DETAIL SECTION END ---
+        // --- UNZIP FILE: 5 IMAGES & DETAIL SECTION START ---
+        currentPage === 'unzip' && e('div', { style: { width: '100%', maxWidth: '1400px', margin: '60px auto', padding: '0 40px', paddingBottom: '60px', boxSizing: 'border-box' } },
+            e('h2', { style: { textAlign: 'center', fontSize: '38px', fontWeight: '900', marginBottom: '60px', color: 'var(--accent)', letterSpacing: '-0.5px' } }, 'High-Speed Secure File Decompression'),
+            
+            [
+                { 
+                    img: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&q=80', 
+                    title: 'Instant Multi-Format Extraction', 
+                    desc: 'Unzip your packages effortlessly. Our system handles ZIP, RAR, 7Z, and major compressed formats smoothly without needing any external software installation.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1600132806608-231446b2e7af?w=800&q=80', 
+                    title: 'Smart Directory Structuring', 
+                    desc: 'Preserve your complete folder hierarchy perfectly. Extracted files retain their original naming conventions, subfolders, and internal systemic architecture.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80', 
+                    title: 'Zero-Wait Browser Processing', 
+                    desc: 'Experience lightning-fast processing speeds. Files are handled directly within your browser pipeline, ensuring instantaneous unzipping regardless of the package load.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80', 
+                    title: 'Advanced Encrypted Security', 
+                    desc: 'Your critical data remains private. Since the unpacking runs client-side inside your safe system layer, your archive payloads are never uploaded onto external databases.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80', 
+                    title: 'Selective File Downloads', 
+                    desc: 'No need to download the entire bulk archive. Browse through the unzipped manifest directly on-screen and extract only the specific assets you actually require.' 
+                }
+            ].map((item, index) => 
+                e('div', { 
+                    key: index, 
+                    style: { 
+                        display: 'flex', 
+                        flexWrap: 'wrap', 
+                        flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', // Premium Zig-zag pattern
+                        alignItems: 'center', 
+                        gap: '50px', 
+                        marginBottom: '50px', 
+                        background: 'var(--card-bg)', 
+                        padding: '40px', 
+                        borderRadius: '24px', 
+                        border: '1px solid var(--border)', 
+                        boxShadow: '0 15px 40px rgba(0,0,0,0.06)' 
+                    } 
+                },
+                    e('div', { style: { flex: '1 1 500px' } }, 
+                        e('img', { 
+                            src: item.img, 
+                            style: { 
+                                width: '100%', 
+                                height: '380px', 
+                                objectFit: 'cover', 
+                                borderRadius: '18px',
+                                boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
+                            } 
+                        })
+                    ),
+                    e('div', { style: { flex: '1 1 500px', padding: '20px' } },
+                        e('h3', { style: { fontSize: '28px', fontWeight: '800', marginBottom: '16px', color: 'var(--text)', letterSpacing: '-0.3px' } }, item.title),
+                        e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, color: 'var(--text)' } }, item.desc)
+                    )
+                )
+            )
+        ),
+        // --- UNZIP FILE: 5 IMAGES & DETAIL SECTION END ---
+        // --- MAKE ZIP: 5 IMAGES & DETAIL SECTION START ---
+        currentPage === 'makeZip' && e('div', { style: { width: '100%', maxWidth: '1400px', margin: '60px auto', padding: '0 40px', paddingBottom: '60px', boxSizing: 'border-box' } },
+            e('h2', { style: { textAlign: 'center', fontSize: '38px', fontWeight: '900', marginBottom: '60px', color: 'var(--accent)', letterSpacing: '-0.5px' } }, 'Optimize Storage with Smart File Compression'),
+            
+            [
+                { 
+                    img: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&q=80', 
+                    title: 'High-Ratio Bulk Compression', 
+                    desc: 'Pack heavy images, documents, and code-bases into a single streamlined archive. Reduce overall file sizes significantly for faster sharing and storage management.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80', 
+                    title: 'Instant Client-Side Archiving', 
+                    desc: 'No server delays or file size limits. The compression algorithm builds your ZIP archives directly inside your browser pipeline, delivering instant results.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80', 
+                    title: 'Maintain Folder Hierarchies', 
+                    desc: 'Keep your projects organized. Drop multiple folders or nested directory paths into the tool, and your structural logic will be preserved flawlessly inside the ZIP.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1600132806608-231446b2e7af?w=800&q=80', 
+                    title: 'Secure & Private Packaging', 
+                    desc: 'Your data security is absolute. Since all file archiving runs purely client-side locally, your private payloads are never uploaded or exposed to external servers.' 
+                },
+                { 
+                    img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80', 
+                    title: 'Universal Archive Compatibility', 
+                    desc: 'Generate standard `.zip` files that are universally supported across macOS, Windows, Linux, Android, and iOS ecosystems right out of the box.' 
+                }
+            ].map((item, index) => 
+                e('div', { 
+                    key: index, 
+                    style: { 
+                        display: 'flex', 
+                        flexWrap: 'wrap', 
+                        flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', // Slick Zig-zag pattern
+                        alignItems: 'center', 
+                        gap: '50px', 
+                        marginBottom: '50px', 
+                        background: 'var(--card-bg)', 
+                        padding: '40px', 
+                        borderRadius: '24px', 
+                        border: '1px solid var(--border)', 
+                        boxShadow: '0 15px 40px rgba(0,0,0,0.06)' 
+                    } 
+                },
+                    e('div', { style: { flex: '1 1 500px' } }, 
+                        e('img', { 
+                            src: item.img, 
+                            style: { 
+                                width: '100%', 
+                                height: '380px', 
+                                objectFit: 'cover', 
+                                borderRadius: '18px',
+                                boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
+                            } 
+                        })
+                    ),
+                    e('div', { style: { flex: '1 1 500px', padding: '20px' } },
+                        e('h3', { style: { fontSize: '28px', fontWeight: '800', marginBottom: '16px', color: 'var(--text)', letterSpacing: '-0.3px' } }, item.title),
+                        e('p', { style: { fontSize: '17px', lineHeight: '1.8', opacity: 0.8, color: 'var(--text)' } }, item.desc)
+                    )
+                )
+            )
+        ),
+        // --- MAKE ZIP: 5 IMAGES & DETAIL SECTION END ---
 
         e('footer', { 
     className: 'footer', 
