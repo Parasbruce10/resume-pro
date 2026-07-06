@@ -795,6 +795,207 @@ const App = () => {
                         e('p', { style: { opacity: 0.6, fontSize: '15px', lineHeight: '1.7' } }, 'Seamlessly compile your formatted Word documents into crisp, print-ready PDFs securely.')
                     )
                 ),
+                // ========================================================
+                // 🌟 ULTRA-PREMIUM MANIFESTO SECTION (ABOVE FOOTER CTA)
+                // ========================================================
+                currentPage === 'landing' && e('div', { 
+                    className: 'animate-slide-up delay-2', 
+                    style: { width: '100%', margin: '110px 0 70px 0', boxSizing: 'border-box', textAlign: 'left' } 
+                }, [
+                    // Top Micro Tag Accent
+                    e('div', { style: { display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' } }, [
+                        e('div', { style: { width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 12px var(--accent)' } }),
+                        e('span', { style: { fontSize: '11px', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '3px', color: 'var(--accent)' } }, 'Platform Manifesto')
+                    ]),
+                    
+                    // Main Title with Gradient Setup
+                    e('h2', { 
+                        style: { 
+                            fontSize: 'clamp(32px, 5vw, 48px)', 
+                            fontWeight: '950', 
+                            marginBottom: '55px', 
+                            color: 'var(--text)', 
+                            letterSpacing: '-1.5px',
+                            lineHeight: '1.15'
+                        } 
+                    }, [
+                        'Redefining the Modern ',
+                        e('span', { className: 'text-gradient' }, 'Digital Workspace')
+                    ]),
+                    
+                    // High-End Paragraph Cards Stack
+                    e('div', { style: { display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '1000px', width: '100%' } }, 
+                        [
+                            {
+                                num: '01',
+                                title: 'Unified Ecosystem Convergence',
+                                text: 'The arbitrary boundaries between separate desktop utilities are rapidly dissolving in modern workflows. This ecosystem stands at the forefront of this convergence, unifying high-fidelity vectorized graphic design, robust text compilation, structured document layout engines, and native directory compression utilities into a singular, highly cohesive interface. By systematically removing the friction of switching environments, users can seamlessly transition from crafting elite professional profiles to deploying production-ready brand assets within a unified browser state.'
+                            },
+                            {
+                                num: '02',
+                                title: 'Absolute Sovereign Cryptography',
+                                text: 'Data security should never be a premium add-on or an afterthought—it is treated here as an absolute prerequisite. Every execution matrix, image rendering pass, and sensitive text serialization occurs exclusively inside your hardware’s local runtime memory. By discarding server-side data pipelines entirely, the architecture guarantees that your intellectual property, financial layout structures, and personal identity data remain entirely within your sovereign custody, safe from external cloud data harvesting.'
+                            },
+                            {
+                                num: '03',
+                                title: 'Concurrent Low-Overhead Threading',
+                                text: 'Engineered specifically to accommodate high-velocity digital operators, the performance core leverages advanced client-side threading models. Whether you are refining granular layouts for social networks, executing deep multi-tier academic history mappings, or packing local directories, the processing layers run concurrently. This optimization ensures instant execution cycles without compromising the physical system stability or causing heavy browser overhead.'
+                            },
+                            {
+                                num: '04',
+                                title: 'Micro-Rendering Geometric Engine',
+                                text: 'The localized typographical engine translates complex abstract parameters into pristine visual assets with strict geometric precision. Every exported template, vector block, or rich text layout undergo micro-rendering optimization cycles automatically. This ensures that whatever you build remains fully compliant with automated corporate screening algorithms, global layout standards, and elite web application presentations out of the box.'
+                            },
+                            {
+                                num: '05',
+                                title: 'Subscription-Free Core Paradigm',
+                                text: 'Ultimately, this platform represents a philosophical departure from bloated software subscriptions, intrusive account registrations, and predatory paywalls. It stands as a pure utility playground built explicitly to respect your time, secure your identity data, and empower your creative output—giving you professional-grade execution capacity entirely on your own terms.'
+                            }
+                        ].map((item, index) => (
+                            e('div', { 
+                                key: index,
+                                style: { 
+                                    display: 'flex', 
+                                    flexDirection: window.innerWidth < 768 ? 'column' : 'row',
+                                    gap: '24px', 
+                                    background: 'linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.003) 100%)', 
+                                    padding: '32px', 
+                                    borderRadius: '20px', 
+                                    border: '1px solid rgba(255,255,255,0.03)',
+                                    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.03)',
+                                    alignItems: 'flex-start'
+                                } 
+                            }, [
+                                // Left Side: Number & Minimal Line Design
+                                e('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '45px' } }, [
+                                    e('span', { style: { fontSize: '14px', fontWeight: '900', color: 'var(--accent)', background: 'rgba(56, 189, 248, 0.08)', padding: '6px 10px', borderRadius: '8px', fontFamily: 'monospace', letterSpacing: '0.5px' } }, item.num)
+                                ]),
+                                // Right Side: Content Area
+                                e('div', { style: { flex: 1 } }, [
+                                    e('h4', { style: { margin: '0 0 10px 0', fontSize: '18px', fontWeight: '800', color: 'var(--text)', letterSpacing: '-0.3px' } }, item.title),
+                                    e('p', { style: { fontSize: '15.5px', lineHeight: '1.8', opacity: 0.7, margin: 0, fontWeight: '400' } }, item.text)
+                                ])
+                            ])
+                        ))
+                    )
+                ]),
+                // ========================================================
+                // 📸 VISUAL FEATURE SHOWCASE SECTION (5-ROW ELITE LAYOUT)
+                // ========================================================
+                currentPage === 'landing' && e('div', { 
+                    className: 'animate-slide-up delay-3', 
+                    style: { width: '100%', margin: '90px 0 70px 0', boxSizing: 'border-box' } 
+                }, [
+                    // Section Main Title
+                    e('div', { style: { textAlign: 'center', marginBottom: '80px' } }, [
+                        e('span', { style: { fontSize: '11px', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '3px', color: 'var(--accent)' } }, 'Interactive Preview'),
+                        e('h2', { style: { fontSize: 'clamp(28px, 4.5vw, 42px)', fontWeight: '950', marginTop: '10px', color: 'var(--text)', letterSpacing: '-1.5px' } }, 'Inside the Production Engine')
+                    ]),
+
+                    // Core Feature Grid Dataset Mapping
+                    ...[
+                        {
+                            tag: 'Visual Builder Pipeline',
+                            tagBg: 'rgba(56, 189, 248, 0.1)',
+                            tagColor: 'var(--accent)',
+                            glow: 'radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%)',
+                            title: 'Real-Time Vector Layout Controls',
+                            desc: 'Experience absolute fluidity with our sub-millisecond layout refresh system. Adjust typography metrics, swap border-radii properties, and configure structured content layers inside a highly adaptive visual grid built specifically for high-density document rendering.',
+                            subtext: 'System auto-generates localized cache structures, ensuring you never lose active work matrices during deep multi-layer edits.',
+                            imgUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80'
+                        },
+                        {
+                            tag: 'Local Core Processing',
+                            tagBg: 'rgba(168, 85, 247, 0.1)',
+                            tagColor: '#a855f7',
+                            glow: 'radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)',
+                            title: 'Zero-Latency File Serializer',
+                            desc: 'Compressing system directories and packing complex data nodes happens natively without touching single remote APIs. Our fully sandboxed pipeline executes complex archival commands entirely within web-assembly wrappers, rendering heavy actions flawlessly while respecting full system privacy.',
+                            subtext: 'Optimized execution layers yield a complete processing overhead reduction compared to old cloud-dependent solutions.',
+                            imgUrl: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1000&q=80'
+                        },
+                        {
+                            tag: 'Typographical Engine',
+                            tagBg: 'rgba(236, 72, 153, 0.1)',
+                            tagColor: '#ec4899',
+                            glow: 'radial-gradient(circle, rgba(236,72,153,0.08) 0%, transparent 70%)',
+                            title: 'Advanced Micro-Rasterization Matrix',
+                            desc: 'Manage intricate layout alignments with a localized rendering stack designed for absolute typographical alignment. From balancing tracking values to handling custom font glyph subsets, the engine passes vectors directly into the canvas context, yielding pixel-perfect readability at any viewport scale.',
+                            subtext: 'Built-in anti-aliasing filters preserve structural rendering weights across modern high-DPI monitor displays.',
+                            imgUrl: 'https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?auto=format&fit=crop&w=1000&q=80'
+                        },
+                        {
+                            tag: 'Asset Compilers',
+                            tagBg: 'rgba(16, 185, 129, 0.1)',
+                            tagColor: '#10b981',
+                            glow: 'radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)',
+                            title: 'Multi-Threaded Directory Packaging',
+                            desc: 'Bundle production-ready elements into structured distributions instantly. By isolating compilation processes into specialized secondary worker threads, you can execute deep binary packaging and media exports without encountering single UI-thread blocks or frame degradation.',
+                            subtext: 'Maintains lightning-fast application speeds even when processing heavily populated workspace assets.',
+                            imgUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80'
+                        },
+                        {
+                            tag: 'Sovereign Storage',
+                            tagBg: 'rgba(245, 158, 11, 0.1)',
+                            tagColor: '#f59e0b',
+                            glow: 'radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%)',
+                            title: 'Cryptographic State Persistence',
+                            desc: 'Your application states are entirely your own. Workspace snapshots, history registers, and profile structural variables are committed directly to high-capacity local indexed collections. This architecture eliminates credential reliance, account mandates, and corporate tracking networks entirely.',
+                            subtext: 'Guarantees indefinite application operational capacity and complete security offline or online.',
+                            imgUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1000&q=80'
+                        }
+                    ].map((feat, idx) => {
+                        const isEven = idx % 2 === 0;
+                        
+                        // Core Row Layout Generator
+                        return e('div', { 
+                            key: idx,
+                            style: { 
+                                display: 'flex', 
+                                flexDirection: window.innerWidth < 900 ? (isEven ? 'column' : 'column-reverse') : 'row', 
+                                gap: '60px', 
+                                alignItems: 'center', 
+                                marginBottom: idx === 4 ? '20px' : '110px',
+                                width: '100%',
+                                boxSizing: 'border-box'
+                            } 
+                        }, [
+                            // Left Render Block (Image on Even, Text on Odd)
+                            isEven ? 
+                            e('div', { style: { flex: 1, width: '100%', position: 'relative' } }, [
+                                e('div', { style: { position: 'absolute', top: '-10px', left: '-10px', right: '-10px', bottom: '-10px', background: feat.glow, filter: 'blur(20px)', zIndex: -1 } }),
+                                e('img', { 
+                                    src: feat.imgUrl, 
+                                    alt: feat.title,
+                                    style: { width: '100%', height: 'auto', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.08)', boxShadow: '0 30px 60px rgba(0,0,0,0.4)', display: 'block' }
+                                })
+                            ]) : 
+                            e('div', { style: { flex: 1, width: '100%', textAlign: 'left' } }, [
+                                e('div', { style: { background: feat.tagBg, color: feat.tagColor, padding: '6px 14px', borderRadius: '100px', fontSize: '12px', fontWeight: '800', display: 'inline-block', marginBottom: '20px' } }, feat.tag),
+                                e('h3', { style: { fontSize: '28px', fontWeight: '900', margin: '0 0 15px 0', color: 'var(--text)', letterSpacing: '-0.5px' } }, feat.title),
+                                e('p', { style: { fontSize: '16px', lineHeight: '1.8', opacity: 0.7, margin: '0 0 20px 0' } }, feat.desc),
+                                e('p', { style: { fontSize: '15px', lineHeight: '1.7', opacity: 0.5, margin: 0, fontStyle: 'italic' } }, feat.subtext)
+                            ]),
+
+                            // Right Render Block (Text on Even, Image on Odd)
+                            isEven ? 
+                            e('div', { style: { flex: 1, width: '100%', textAlign: 'left' } }, [
+                                e('div', { style: { background: feat.tagBg, color: feat.tagColor, padding: '6px 14px', borderRadius: '100px', fontSize: '12px', fontWeight: '800', display: 'inline-block', marginBottom: '20px' } }, feat.tag),
+                                e('h3', { style: { fontSize: '28px', fontWeight: '900', margin: '0 0 15px 0', color: 'var(--text)', letterSpacing: '-0.5px' } }, feat.title),
+                                e('p', { style: { fontSize: '16px', lineHeight: '1.8', opacity: 0.7, margin: '0 0 20px 0' } }, feat.desc),
+                                e('p', { style: { fontSize: '15px', lineHeight: '1.7', opacity: 0.5, margin: 0, fontStyle: 'italic' } }, feat.subtext)
+                            ]) :
+                            e('div', { style: { flex: 1, width: '100%', position: 'relative' } }, [
+                                e('div', { style: { position: 'absolute', top: '-10px', left: '-10px', right: '-10px', bottom: '-10px', background: feat.glow, filter: 'blur(20px)', zIndex: -1 } }),
+                                e('img', { 
+                                    src: feat.imgUrl, 
+                                    alt: feat.title,
+                                    style: { width: '100%', height: 'auto', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.08)', boxShadow: '0 30px 60px rgba(0,0,0,0.4)', display: 'block' }
+                                })
+                            ])
+                        ]);
+                    })
+                ]),
 
                 // 4. MASSIVE FOOTER CTA
                 e('div', { className: 'heavy-glow', style: { width: '100%', margin: '20px 0 60px 0', background: 'linear-gradient(135deg, rgba(56,189,248,0.1), rgba(168,85,247,0.1))', padding: '80px 20px', borderRadius: '40px', border: '1px solid rgba(255,255,255,0.08)', position: 'relative', overflow: 'hidden', boxSizing: 'border-box', textAlign: 'center' } },
@@ -807,6 +1008,7 @@ const App = () => {
                     }, 'Start Building Now')
                 )
             ),
+            
             // =========================================
             // 🌟 ULTRA-WIDE FLUID PREMIUM LANDING PAGE END
             // =========================================
