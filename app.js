@@ -315,7 +315,11 @@ const App = () => {
         }
 
         body { 
-            background: var(--bg); 
+            background-image: linear-gradient(rgba(10, 10, 10, 0.85), rgba(8, 8, 8, 0.93)), url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             color: var(--text); 
             font-family: 'Inter', system-ui, sans-serif; 
             margin: 0; 
