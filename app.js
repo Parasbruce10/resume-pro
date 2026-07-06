@@ -2715,8 +2715,59 @@ e('textarea', {
 ),
         // --- MAKE ZIP: 5 IMAGES & DETAIL SECTION END ---
 
-     e('footer', { 
-    className: 'footer glowprism-container', 
+// 🏠 BACK TO HOME PREMIUM BUTTON (Har page par footer se upar dikhega)
+    currentPage !== 'landing' && currentPage !== 'home' && e('div', {
+        style: {
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
+            marginTop: '60px',
+            marginBottom: '-40px', // Footer ke sath adjust karne ke liye
+            position: 'relative',
+            zIndex: 10
+        }
+    },
+        e('button', {
+            style: {
+                background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9))',
+                color: 'var(--accent)',
+                border: '1px solid rgba(56, 189, 248, 0.2)',
+                padding: '12px 28px',
+                borderRadius: '50px',
+                fontSize: '14px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(56, 189, 248, 0.1)',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+            },
+            onClick: () => {
+                // Agar aapke navigation function ka naam 'setCurrentPage' hai ya 'navigate' hai:
+                if (typeof navigate === 'function') navigate('landing');
+                else if (typeof setCurrentPage === 'function') setCurrentPage('landing');
+            },
+            // Hover effect inject karne ke liye inline logic ya simple transitions
+            onMouseEnter: (e) => {
+                e.target.style.transform = 'translateY(-3px)';
+                e.target.style.borderColor = 'var(--accent)';
+                e.target.style.boxShadow = '0 15px 30px rgba(56, 189, 248, 0.2)';
+            },
+            onMouseLeave: (e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.borderColor = 'rgba(56, 189, 248, 0.2)';
+                e.target.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(56, 189, 248, 0.1)';
+            }
+        }, 
+            e('span', { style: { fontSize: '16px' } }, '✨'), // Chota sa icon
+            'Back to Home'
+        )
+    ),
+
+    // Aapka purana footer block yahan se shuru hoga 👇
+    e('footer', { 
+        className: 'footer glowprism-container',
     style: { 
         padding: '70px 20px 40px', 
         marginTop: '120px', 
