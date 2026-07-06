@@ -2711,117 +2711,197 @@ e('textarea', {
 ),
         // --- MAKE ZIP: 5 IMAGES & DETAIL SECTION END ---
 
-        e('footer', { 
-    className: 'footer', 
+     e('footer', { 
+    className: 'footer glowprism-container', 
     style: { 
-        padding: '60px 20px 30px', 
-        marginTop: '100px', 
-        background: 'var(--card-bg)', 
-        borderTop: '1px solid var(--border)',
+        padding: '70px 20px 40px', 
+        marginTop: '120px', 
+        background: 'linear-gradient(to bottom, rgba(15, 15, 15, 0.75), rgba(8, 8, 8, 0.96))', 
+        backdropFilter: 'blur(24px)',
+        WebkitBackdropFilter: 'blur(24px)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.03)',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        boxShadow: '0 -25px 60px rgba(0, 0, 0, 0.5)',
+        transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+        cursor: 'pointer'
     } 
-},
-    // Background Glow Effect
-    e('div', { style: { position: 'absolute', bottom: '-50px', right: '-50px', width: '200px', height: '200px', background: 'rgba(59, 130, 246, 0.05)', filter: 'blur(80px)', borderRadius: '50%', zIndex: 0 } }),
+}, [
+    // ⚡ SELF-CONTAINED CSS ARCHITECTURE FOR ADVANCED ANIMATIONS
+    e('style', { key: 'glowprism-core-effects' }, `
+        @keyframes glowprism-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .glowprism-bar {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #10b981, #3b82f6);
+            background-size: 200% auto;
+            animation: glowprism-shift 4s linear infinite;
+        }
+        /* Hover Effect: Border Intensifies & Brightens */
+        .glowprism-container:hover .glowprism-bar {
+            height: 3.5px !important;
+            filter: brightness(1.25);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.7);
+        }
+        /* Click State: Line thickens, colors flash super-fast & glow explodes */
+        .glowprism-container:active .glowprism-bar {
+            height: 5.5px !important;
+            filter: brightness(1.5);
+            box-shadow: 0 0 30px rgba(236, 72, 153, 1);
+            animation-duration: 1.2s !important;
+        }
+        /* Smooth Link Interactions */
+        .footer-premium-link {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .footer-premium-link:hover {
+            color: var(--accent) !important;
+            transform: translateX(5px);
+            opacity: 1 !important;
+        }
+    `),
 
-    e('div', { style: { maxWidth: '1100px', margin: '0 auto', position: 'relative', zIndex: 1 } },
-        // Top Section: Brand & Links
+    // 🌟 THE RUNNING GLOWPRISM LINE (TOP BORDER)
+    e('div', { 
+        className: 'glowprism-bar', 
+        style: { 
+            position: 'absolute', 
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            height: '2.5px', 
+            zIndex: 10,
+            transition: 'all 0.3s ease'
+        } 
+    }),
+
+    // Ambient Deep Glow Spheres (Background Details)
+    e('div', { style: { position: 'absolute', bottom: '-80px', right: '-80px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(56,189,248,0.06) 0%, transparent 70%)', filter: 'blur(70px)', borderRadius: '50%', zIndex: 0 } }),
+    e('div', { style: { position: 'absolute', top: '-40px', left: '-40px', width: '250px', height: '250px', background: 'radial-gradient(circle, rgba(139,92,246,0.04) 0%, transparent 70%)', filter: 'blur(50px)', borderRadius: '50%', zIndex: 0 } }),
+
+    // Content Grid Wrapper
+    e('div', { style: { maxWidth: '1100px', margin: '0 auto', position: 'relative', zIndex: 1 } }, [
+        // Top Section: Brand & Links Grid Layout
         e('div', { 
             style: { 
                 display: 'grid', 
                 gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-                gap: '40px', 
-                textAlign: 'left',
-                marginBottom: '40px'
+                gap: '50px', 
+                textAlign: window.innerWidth < 768 ? 'center' : 'left',
+                marginBottom: '45px'
             } 
-        },
-            // Column 1: Brand Info
-            e('div', null,
+        }, [
+            // Column 1: Cyber Brand Typography
+            e('div', null, [
                 e('div', { 
-                    style: { fontWeight: '900', color: 'var(--accent)', fontSize: '22px', marginBottom: '15px', letterSpacing: '-1px', cursor: 'pointer' },
+                    style: { 
+                        fontWeight: '950', 
+                        color: 'var(--text)', 
+                        fontSize: '24px', 
+                        marginBottom: '16px', 
+                        letterSpacing: '-1.5px', 
+                        cursor: 'pointer',
+                        background: 'linear-gradient(to right, #ffffff, rgba(255,255,255,0.75))',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        display: 'inline-block'
+                    },
                     onClick: () => navigate('landing') 
                 }, 'RESUME.PRO'),
-                e('p', { style: { fontSize: '13px', opacity: 0.6, lineHeight: '1.6', maxWidth: '300px' } }, 
-                    'Empowering professionals with next-gen career tools. Build, design, and export with ease.'
+                e('p', { style: { fontSize: '13.5px', opacity: 0.5, lineHeight: '1.7', maxWidth: '320px', margin: window.innerWidth < 768 ? '0 auto' : '0' } }, // 🔥 Mobile par auto-center 
+                    'Empowering high-velocity digital operators with next-generation visual systems. Build, render, layout, and compile in absolute data custody.'
                 )
-            ),
+            ]),
 
-            // Column 2: Quick Explore
-            e('div', null,
-                e('h4', { style: { fontSize: '14px', fontWeight: '800', marginBottom: '20px', textTransform: 'uppercase', letterSpacing: '1px' } }, 'Explore'),
-                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px' } },
+            // Column 2: Core Matrix Navigation Links
+            e('div', null, [
+                e('h4', { style: { fontSize: '11px', fontWeight: '900', marginBottom: '22px', textTransform: 'uppercase', letterSpacing: '2.5px', color: 'var(--accent)' } }, 'Platform Core'),
+                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
                     ['home', 'banner', 'wordEditor', 'logo'].map(item => 
                         e('span', { 
                             key: item,
-                            className: 'nav-link', 
-                            style: { fontSize: '13px', cursor: 'pointer', display: 'block', textTransform: 'capitalize' }, 
+                            className: 'footer-premium-link', 
+                            style: { fontSize: '13.5px', cursor: 'pointer', display: 'block', textTransform: 'capitalize', color: 'var(--text)', opacity: 0.55, fontWeight: '500' }, 
                             onClick: () => navigate(item) 
                         }, item.replace(/([A-Z])/g, ' $1'))
                     )
                 )
+            ]),
+
+            // Column 3: Architecture Protocols (Legal)
+            e('div', null, [
+                e('h4', { style: { fontSize: '11px', fontWeight: '900', marginBottom: '22px', textTransform: 'uppercase', letterSpacing: '2.5px', color: 'var(--text)', opacity: 0.4 } }, 'System Integrity'),
+                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } }, [
+                    e('span', { className: 'footer-premium-link', style: { fontSize: '13.5px', cursor: 'pointer', color: 'var(--text)', opacity: 0.55, fontWeight: '500' }, onClick: () => navigate('privacy') }, 'Privacy Architecture'),
+                    e('span', { className: 'footer-premium-link', style: { fontSize: '13.5px', cursor: 'pointer', color: 'var(--text)', opacity: 0.55, fontWeight: '500' }, onClick: () => navigate('terms') }, 'Terms of Protocol'),
+                    e('span', { className: 'footer-premium-link', style: { fontSize: '13.5px', cursor: 'pointer', color: 'var(--accent)', fontWeight: '600' }, onClick: () => navigate('contact') }, 'Contact Gateway')
+                ])
+            ])
+        ]),
+
+        // High-End Micro Divider Line
+        e('div', { style: { height: '1px', background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0) 100%)', width: '100%', marginBottom: '35px' } }),
+
+        // Bottom Area: Sovereign Metrics & Credits
+        e('div', { 
+            style: { 
+                display: 'flex', 
+                flexDirection: window.innerWidth < 768 ? 'column' : 'row',
+                justifyContent: 'space-between', 
+                alignItems: 'center', 
+                width: '100%',
+                gap: window.innerWidth < 768 ? '16px' : '20px',
+                textAlign: 'center'
+            } 
+        }, [
+            // Left Side: Copyright Meta
+            e('p', { 
+                style: { 
+                    fontSize: '12.5px', 
+                    opacity: 0.4, 
+                    margin: '0', 
+                    padding: '0',
+                    fontWeight: '400',
+                    letterSpacing: '0.3px',
+                    lineHeight: window.innerWidth < 768 ? '1.4' : '1.5' 
+                } 
+            }, 
+                `© ${new Date().getFullYear()} Resume Pro Labs. All Rights Sovereign Locally.`
             ),
-
-            // Column 3: Legal & Support
-            e('div', null,
-                e('h4', { style: { fontSize: '14px', fontWeight: '800', marginBottom: '20px', textTransform: 'uppercase', letterSpacing: '1px' } }, 'Support'),
-                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px' } },
-                    e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('privacy') }, 'Privacy Policy'),
-                    e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer' }, onClick: () => navigate('terms') }, 'Terms of Service'),
-                    e('span', { className: 'nav-link', style: { fontSize: '13px', cursor: 'pointer', color: 'var(--accent)' }, onClick: () => navigate('contact') }, 'Contact Us')
-                )
-            )
-        ),
-
-        // Divider
-        e('div', { style: { height: '1px', background: 'var(--border)', width: '100%', marginBottom: '30px', opacity: 0.5 } }),
-
-        // Bottom Bar: Copyright & Credit
-       e('div', { 
-    style: { 
-        display: 'flex', 
-        // Mobile par column aur desktop par row
-        flexDirection: window.innerWidth < 768 ? 'column' : 'row',
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        width: '100%',
-        // Mobile par gaps bilkul 0 kar diye
-        gap: window.innerWidth < 768 ? '0px' : '20px',
-        textAlign: 'center'
-    } 
-},
-    e('p', { 
-        style: { 
-            fontSize: '12px', 
-            opacity: 0.5, 
-            margin: '0', 
-            padding: '0',
-            // Line height 1 rakhne se vertical space khatam ho jayegi
-            lineHeight: window.innerWidth < 768 ? '1' : '1.5' 
-        } 
-    }, 
-        `© ${new Date().getFullYear()} Resume Pro. All Rights Reserved.`
-    ),
-    e('div', { 
-        style: { 
-            fontSize: '13px', 
-            fontWeight: '500', 
-            opacity: 0.8, 
-            margin: '0', 
-            padding: '0',
-            // Iska bhi line height fix kiya taake gap na aaye
-            lineHeight: window.innerWidth < 768 ? '0' : '1'
-        } 
-    },
-        'Created with ',
-        e('span', { style: { color: '#ff4d4d' } }, '❤️'),
-        ' by ',
-        e('span', { style: { color: 'var(--accent)', fontWeight: '700' } }, 'Paras')
-    )
-
-            )
-        )
-    )
+            
+            // Right Side: Kinetic Paras Branding
+            e('div', { 
+                style: { 
+                    fontSize: '13px', 
+                    fontWeight: '500', 
+                    color: 'var(--text)',
+                    opacity: 0.85, 
+                    margin: '0', 
+                    padding: '0',
+                    letterSpacing: '0.3px',
+                    lineHeight: window.innerWidth < 768 ? '1.4' : '1'
+                } 
+            }, [
+                'Engineered with ',
+                e('span', { style: { color: '#ef4444', display: 'inline-block', transform: 'scale(1.15)', margin: '0 4px' } }, '❤️'),
+                ' by ',
+                e('span', { 
+                    style: { 
+                        background: 'linear-gradient(90deg, var(--accent), #ec4899, #3b82f6)', 
+                        backgroundSize: '200% auto',
+                        animation: 'glowprism-shift 3s linear infinite',
+                        WebkitBackgroundClip: 'text', 
+                        WebkitTextFillColor: 'transparent',
+                        fontWeight: '950',
+                        letterSpacing: '0.8px'
+                    } 
+                }, 'PARAS')
+            ])
+        ])
+    ])
+])
 )
     
 };
