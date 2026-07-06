@@ -1027,80 +1027,112 @@ e('textarea', {
                 }, '📥 Download .docx File')
             ),
 
-            currentPage === 'about' && e('div', { style: { textAlign: 'left', maxWidth: '800px', margin: '0 auto', padding: '50px 20px', minHeight: '60vh', lineHeight: '1.6' } },
-                e('h1', { style: { textAlign: 'center', color: 'var(--accent)' } }, 'Welcome to Resume Pro'),
-                e('p', null, 'Your all-in-one solution for professional career branding. We believe that a great career starts with a great first impression, and we are here to help you make it count.'),
-                e('h3', { style: { marginTop: '30px', color: 'var(--accent)' } }, 'What We Offer:'),
-                e('ul', null,
-                    e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Instant Resume Builder: '), 'No more struggling with formatting. Simply fill out our intuitive form, and our system will generate a polished, professional CV tailored to industry standards.'),
-                    e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Seamless File Conversion: '), 'We provide a built-in Word-to-PDF converter, ensuring your documents are always in the right format for any job application.'),
-                    e('li', { style: { marginBottom: '10px' } },
-                        e('strong', null, 'LinkedIn Banner Designer: '),
-                        'Elevate your professional profile with our high-impact banner maker. Create custom, high-definition LinkedIn covers with modern patterns and gradients to stand out to recruiters.'
-                    ),
-                    e('li', { style: { marginBottom: '10px' } },
-                        e('strong', null, 'Logo Designer: '),
-                        'Build your personal brand from scratch. Our intuitive logo maker allows you to design minimalist and professional logos with custom icons, fonts, and color schemes in seconds.'
-                    ),
-                    e('li', { style: { marginBottom: '10px' } },
-                        e('strong', null, 'Advanced Zip Creator: '),
-                        'Effortlessly bundle multiple documents and images into a single compressed ZIP file for easier sharing and organization.'
-                    ),
-                    e('li', { style: { marginBottom: '10px' } },
-                        e('strong', null, 'Professional Word Editor: '),
-                        'Write articles, essays, or any document using our built-in MS Word-style editor. Customize fonts, formatting, and download your work directly as a .docx file.'
-                    ),
+         currentPage === 'about' && e('div', { style: { maxWidth: '850px', margin: '0 auto', padding: '40px 20px', minHeight: '70vh', lineHeight: '1.7' } },
+    e('h1', { style: { color: 'var(--accent)', textAlign: 'center', marginBottom: '10px', fontWeight: '800' } }, 'About RESUME.PRO'),
+    e('p', { style: { textAlign: 'center', opacity: 0.6, marginBottom: '30px', fontSize: '14px' } }, 'Empowering Your Professional Journey, Completely Serverless'),
 
-                    e('li', { style: { marginBottom: '10px' } },
-                        e('strong', null, 'Instant File Unzipper: '),
-                        'Extract and view files from any ZIP archive directly in your browser with high-speed, local processing that keeps your data secure.'
-                    ),
-                    e('li', { style: { marginBottom: '10px' } }, e('strong', null, 'Professional Templates: '), 'Choose from a variety of layouts designed to catch the eye of recruiters and hiring managers.')
-                ),
-                e('h3', { style: { marginTop: '30px', color: 'var(--accent)' } }, 'Our Vision:'),
-                e('p', null, 'At Resume Pro, we are constantly evolving. While we currently focus on making resume creation easy and efficient, we are committed to adding more advanced features in the future to help you navigate your professional journey with confidence.')
-            )
+    e('div', { style: { background: 'var(--card-bg)', padding: '35px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' } },
+
+        e('p', { style: { marginBottom: '20px' } }, 'Welcome to ', e('strong', { style: { color: 'var(--accent)' } }, 'RESUME.PRO'), '. We are dedicated to providing an all-in-one, highly optimized browser-based workspace designed to elevate your professional digital footprint. Built on the same advanced, radical privacy-first principles as our legal framework, RESUME.PRO guarantees that your corporate and creative data stays completely in your hands.'),
+
+        // Section 1
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '1. Our Operational Philosophy'),
+        e('p', { style: { marginBottom: '15px' } }, 'We believe that creating modern, high-impact career branding shouldn\'t require dealing with heavy desktop software, tracking pixels, or mandatory subscription portals. RESUME.PRO delivers lightning-fast, production-ready document configuration tools instantly to anyone navigating today\'s competitive digital ecosystem.'),
+
+        // Section 2
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '2. Core Technology Stack & Performance'),
+        e('p', { style: { marginBottom: '10px' } }, 'By eliminating backend data server architectures, our architecture relies entirely on native browser runtime environments:'),
+        e('ul', { style: { paddingLeft: '20px', marginBottom: '15px' } },
+            e('li', { style: { marginBottom: '5px' } }, e('strong', null, '100% Secure Processing: '), 'Your text files, uploaded images, and design configurations live strictly inside your local device memory sandbox.'),
+            e('li', null, e('strong', null, 'Zero Data Friction: '), 'Because no data packets are transmitted to a database network, rendering and file compiling happen at exceptional speeds without server load.')
         ),
+
+        // Section 3
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '3. A Complete Professional Suite'),
+        e('p', { style: { marginBottom: '10px' } }, 'Our platform provides a comprehensive suite of unified tools tailored for developers, creators, and professionals:'),
+        e('ul', { style: { paddingLeft: '20px', marginBottom: '15px' } },
+            e('li', { style: { marginBottom: '8px' } }, e('strong', null, 'Smart Resume Builder: '), 'Instantly generate clean, ATS-friendly resumes across comprehensive academic tracking stages including Matric, Intermediate, Graduation, Masters, and PhD tiers.'),
+            e('li', { style: { marginBottom: '8px' } }, e('strong', null, 'Word to PDF Converter: '), 'Transform standard .docx formats into crisp, print-ready PDF assets locally without third-party server uploads.'),
+            e('li', { style: { marginBottom: '8px' } }, e('strong', null, 'Banner Studio Pro: '), 'Design custom, ultra-high-definition LinkedIn covers and website headers with modern geometric layers and glassmorphism.'),
+            e('li', { style: { marginBottom: '8px' } }, e('strong', null, 'Advanced Logo Maker: '), 'Construct minimalist personal branding, corporate layouts, and vectorized 4K icons within seconds.'),
+            e('li', { style: { marginBottom: '8px' } }, e('strong', null, 'Professional Word Editor: '), 'Draft long-form documentation or articles via an embedded rich-text editor and download your assets directly as clean Word files.'),
+            e('li', null, e('strong', null, 'Local Archive Utilities: '), 'Pack multi-file projects into compressed ZIP folders or unpack directories directly inside your active browser tab.')
+        ),
+
+        // Section 4
+        e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '4. Continuous Innovation'),
+        e('p', { style: { marginBottom: '15px' } }, 'At RESUME.PRO, we are continuously refining our open-source script configurations and canvas tools. While our immediate priority is delivering zero-friction file transformation and automated CV layouts, we are fully committed to expanding our browser architecture with even more advanced productivity modules.'),
+
+        e('p', { style: { textAlign: 'center', marginTop: '30px', fontWeight: '700', fontSize: '15px', borderTop: '1px solid var(--border)', paddingTop: '20px' } }, 
+            'Have feedback or technical inquiries? Connect with us: ', 
+            e('a', { href: 'mailto:resumeprohub1@gmail.com', style: { color: 'var(--accent)', textDecoration: 'none' } }, 'resumeprohub1@gmail.com')
+        )
+    )
+)
+     ),
         // --- UPDATED PRIVACY POLICY SECTION (Manually Replace This Block) ---
         currentPage === 'privacy' && e('div', { style: { maxWidth: '850px', margin: '0 auto', padding: '40px 20px', minHeight: '70vh', lineHeight: '1.7' } },
             e('h1', { style: { color: 'var(--accent)', textAlign: 'center', marginBottom: '10px', fontWeight: '800' } }, 'Privacy Policy for RESUME.PRO'),
-            e('p', { style: { textAlign: 'center', opacity: 0.6, marginBottom: '30px', fontSize: '14px' } }, 'Latest Update'),
+            e('p', { style: { textAlign: 'center', opacity: 0.6, marginBottom: '30px', fontSize: '14px' } }, 'Effective Date: July 6, 2026'),
 
             e('div', { style: { background: 'var(--card-bg)', padding: '35px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' } },
 
-                e('p', { style: { marginBottom: '20px' } }, 'At ', e('strong', { style: { color: 'var(--accent)' } }, 'RESUME.PRO'), ', we prioritize the privacy of our visitors. This policy explains that we do not collect your personal data and how we process information locally.'),
+                e('p', { style: { marginBottom: '20px' } }, 'Welcome to ', e('strong', { style: { color: 'var(--accent)' } }, 'RESUME.PRO'), '. We are deeply committed to protecting your personal privacy. Unlike traditional web applications that capture, harvest, and monetize user inputs, RESUME.PRO is engineered on a radical privacy-first principle: ', e('strong', null, 'What is yours stays completely yours.'), ' This policy details how data is handled across our multi-module web utility.'),
 
                 // Section 1
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '1. No Data Collection (Server-Side)'),
-                e('p', null, 'Unlike traditional platforms, RESUME.PRO does not have a backend server or database.'),
-                e('ul', { style: { paddingLeft: '20px', marginTop: '10px' } },
-                    e('li', null, 'We do not collect, store, or share any personal information you enter.'),
-                    e('li', null, 'All data stays within your own web browser and is cleared once you refresh or close the page.')
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '1. Core Architecture & The "Zero-Storage" Principle'),
+                e('p', { style: { marginBottom: '10px' } }, 'Unlike traditional platforms that rely on backend servers and cloud-hosted databases to process your information, RESUME.PRO does not feature a backend database, user account portal, or login system.'),
+                e('ul', { style: { paddingLeft: '20px', marginBottom: '15px' } },
+                    e('li', { style: { marginBottom: '5px' } }, e('strong', null, '100% Client-Side Processing: '), 'All text generation, document rendering, file compression, and visual exports are computed locally inside your device\'s web browser engine using React and HTML5.'),
+                    e('li', null, e('strong', null, 'Zero Server Retention: '), 'Your data is never transmitted to, processed by, or stored on an external platform server. Data breaches and server-side tracking are fundamentally impossible.')
                 ),
 
                 // Section 2
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '2. Client-Side Processing'),
-                e('p', null, 'Your personal details (Name, Email, Experience, etc.) and uploaded images remain on your device. We use JavaScript and HTML5 to process files locally. Your files are ', e('strong', null, 'never uploaded'), ' to our servers.'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '2. Granular Data Processing Breakdown'),
+                e('p', { style: { marginBottom: '10px' } }, 'Specific categories of data are processed temporarily within your browser\'s runtime memory state depending on the tool utilized:'),
+                e('ul', { style: { paddingLeft: '20px', marginBottom: '15px' } },
+                    e('li', { style: { marginBottom: '8px' } }, e('strong', null, 'Profile & Resume Builder: '), 'Processes identity details, contact info, and comprehensive academic matrices across all tiers (Matriculation, Intermediate, Graduation, Masters, PhD) along with references. All metrics remain purely in local state.'),
+                    e('li', { style: { marginBottom: '8px' } }, e('strong', null, 'Word Article Editor: '), 'Drafts, rich text attributes, and layout configurations are strictly constrained to local React state variables and built directly into local document assets.'),
+                    e('li', { style: { marginBottom: '8px' } }, e('strong', null, 'File Conversion Engines (Word to PDF): '), 'Uploaded files are broken down using modular client-side layout parsers and transformed into PDF assets using local graphic containers (html2canvas, jsPDF). Your files are never uploaded to our servers.'),
+                    e('li', { style: { marginBottom: '8px' } }, e('strong', null, 'Banner Studio & Logo Designer: '), 'Brand texts, typography alignments, and geometry variables are layered directly into an HTML5 canvas and rendered locally into high-definition downloads.'),
+                    e('li', null, e('strong', null, 'Archive Utilities (Zip/Unzip): '), 'The compression tools unpack and package archives asynchronously using javascript file systems entirely within your browser sandbox.')
+                ),
 
                 // Section 3
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '3. Third-Party Libraries & Services'),
-                e('p', null, 'We utilize trusted open-source libraries (such as html2pdf, html2canvas, and mammoth.js) to provide design features. These libraries operate entirely within your browser.'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '3. Local Browser Storage Mechanics'),
+                e('p', { style: { marginBottom: '10px' } }, 'To improve your interface navigation and user experience, our platform utilizes your browser\'s persistent configurations:'),
+                e('ul', { style: { paddingLeft: '20px', marginBottom: '15px' } },
+                    e('li', { style: { marginBottom: '5px' } }, e('strong', null, 'Theme Preferences: '), 'We utilize your browser\'s native "Local Storage" container to track and remember your interface configuration (Dark Mode or Light Mode). No tracking identifiers are integrated with this token.'),
+                    e('li', null, e('strong', null, 'Session Lifecycle Management: '), 'All input text values, document drafts, and canvas configurations exist strictly in volatile session memory. Refreshing or closing the tab permanently erases all data.')
+                ),
 
                 // Section 4
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '4. Hosting & Analytics'),
-                e('p', null, 'Our website is hosted on Vercel. Vercel may collect standard log files (like IP addresses and browser types) for security monitoring, which is not linked to your personal data.'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '4. Third-Party Libraries & Communication'),
+                e('p', { style: { marginBottom: '10px' } }, 'To deliver advanced client-side features, RESUME.PRO relies on highly specific web configurations:'),
+                e('ul', { style: { paddingLeft: '20px', marginBottom: '15px' } },
+                    e('li', { style: { marginBottom: '5px' } }, e('strong', null, 'Open-Source Sandbox Libraries: '), 'We utilize trusted libraries like Quill, JSZip, mammoth.js, and html2canvas operating entirely within your browser.'),
+                    e('li', null, e('strong', null, 'Contact Form Protocols: '), 'If you explicitly choose to interact with our "Get In Touch" feature, your message data is securely transmitted via Formspree solely to route your inquiry straight to our support team.')
+                ),
 
                 // Section 5
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '5. Cookies'),
-                e('p', null, 'We do not use cookies for tracking. Your browser may only use "Local Storage" to remember your theme preference (Dark/Light mode).'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '5. Hosting & Infrastructure Log Monitoring'),
+                e('p', { style: { marginBottom: '15px' } }, 'Our front-end client is hosted on Vercel. To maintain web security standards and mitigate server attacks, Vercel infrastructure may automatically record default technical network metadata (like IP addresses, user-agent details, and timestamps). This log tracking is separated from your personal platform usage data.'),
 
                 // Section 6
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '6. Children’s Information'),
-                e('p', null, 'RESUME.PRO is safe for all age groups. We do not knowingly solicit or store any information from minors.'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '6. Absolute Data Sovereignty (GDPR & CCPA Compliant)'),
+                e('p', { style: { marginBottom: '15px' } }, 'Because RESUME.PRO chooses not to capture, store, or index any of your documents or metrics on any server network, global privacy protection requirements are naturally fulfilled. You retain absolute control over your records. Clearing your device\'s browser cache instantly removes all footprints.'),
 
-                // Section 7 & 8
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '7. Contact Us'),
-                e('p', null, 'If you have any questions about our Privacy Policy, do not hesitate to contact us through our Email [resumeprohub1@gmail.com].')
+                // Section 7
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '7. Children\'s Information Protection'),
+                e('p', { style: { marginBottom: '15px' } }, 'RESUME.PRO is completely safe for all age demographics. We do not knowingly solicit, harvest, or monitor any information from minors. Since zero data packets reach external servers, our software represents an entirely secure sandbox free from online surveillance risks.'),
+
+                // Section 8
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '10px' } }, '8. Operational Amendments & Contact'),
+                e('p', { style: { marginBottom: '15px' } }, 'If a future upgrade requires a cloud database setup, this Privacy Policy will be revised transparently. If you have questions regarding our localized architecture, do not hesitate to reach us through our official email address:'),
+                e('p', { style: { textAlign: 'center', marginTop: '20px', fontWeight: '700', fontSize: '16px' } }, 
+                    'Support Email: ', 
+                    e('a', { href: 'mailto:resumeprohub1@gmail.com', style: { color: 'var(--accent)', textDecoration: 'none' } }, 'resumeprohub1@gmail.com')
+                )
             )
         ),
 
@@ -1108,7 +1140,7 @@ e('textarea', {
             style: {
                 maxWidth: '850px',
                 margin: '0 auto',
-                padding: '20px 15px', // Mobile ke liye padding kam kar di
+                padding: '20px 15px', // Mobile ke liye optimized padding
                 minHeight: '80vh',
                 color: 'var(--text)'
             }
@@ -1117,7 +1149,7 @@ e('textarea', {
                 style: {
                     color: 'var(--accent)',
                     textAlign: 'center',
-                    fontSize: '24px', // Mobile par 32px bahut bada lagta tha, 24px sahi hai
+                    fontSize: '24px', // Clean and compact mobile typography
                     fontWeight: '800',
                     marginBottom: '10px'
                 }
@@ -1130,83 +1162,229 @@ e('textarea', {
                     marginBottom: '25px',
                     fontSize: '13px'
                 }
-            }, 'Last Updated: March 20, 2026'),
+            }, 'Last Updated: July 6, 2026'),
 
             e('div', {
                 style: {
                     background: 'var(--card-bg)',
-                    padding: '20px', // Card ki padding 40 se 20 kar di taake text ko jagah mile
-                    borderRadius: '16px', // Zyada rounded corners mobile par ajeeb lagte hain
+                    padding: '20px', // Card padding balanced for extra copy space
+                    borderRadius: '16px',
                     border: '1px solid var(--border)',
                     lineHeight: '1.6',
                     boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                    fontSize: '14px' // Text size mobile readable rakha hai
+                    fontSize: '14px' // Highly readable baseline layout
                 }
             },
-                e('p', { style: { marginBottom: '15px' } }, 'Welcome to ResumePro (https://resumepro.theglobalhubb.com/). By accessing and using this website, you agree to the following terms:'),
+                e('p', { style: { marginBottom: '15px' } }, 'Welcome to RESUME.PRO (https://resumepro.it.com/). Please read these Terms and Conditions carefully before using our website and application modules. By accessing or using any part of the Platform, you agree to be bound by these Terms.'),
 
                 // Section 1
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '1. Nature of Service'),
-                e('p', null, 'ResumePro is a client-side, browser-based tool built with React/JavaScript. It is designed to help users generate resumes for personal use.'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '8px' } }, '1. Acceptance of Terms & Nature of Service'),
+                e('p', { style: { marginBottom: '12px' } }, 'RESUME.PRO operates as a 100% client-side, browser-based multi-utility workspace designed for professional content creation, document processing, and branding design. The Platform is engineered as an account-free software environment with no registration portals, subscription parameters, or server-side databases. All visual rendering and archive packaging are completed locally on your individual device runtime environment.'),
 
                 // Section 2
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '2. No User Data Collection'),
-                e('p', null, e('strong', null, 'Privacy First: '), 'We do not have a backend or database. We do not require users to create accounts or log in.'),
-                e('p', null, e('strong', null, 'Local Processing: '), 'All information you enter into the resume builder is processed locally in your browser. We do not store, save, or track any personal data or the content of the resumes you create.'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '8px' } }, '2. Granular Scope of Platform Modules'),
+                e('p', { style: { marginBottom: '12px' } }, 'By utilizing the Platform, you are granted access to a specific suite of local client-side software applications. Your use must align with their designated operational boundaries:'),
+                e('p', { style: { marginBottom: '8px', paddingLeft: '5px' } }, [e('strong', null, '• Smart Resume Builder: '), 'Generates personal resume layouts across multiple academic progress states (Matriculation, Intermediate, Graduation, Masters, PhD) along with reference metrics.']),
+                e('p', { style: { marginBottom: '8px', paddingLeft: '5px' } }, [e('strong', null, '• Word to PDF Conversion Engine: '), 'Processes .docx document formats locally into portable graphic containers using open-source web standard parsers.']),
+                e('p', { style: { marginBottom: '8px', paddingLeft: '5px' } }, [e('strong', null, '• Word Article Editor: '), 'Provides a text compilation window configured via rich text engines to draft work directly into a downloadable localized .docx asset.']),
+                e('p', { style: { marginBottom: '8px', paddingLeft: '5px' } }, [e('strong', null, '• Banner Studio Pro: '), 'Uses HTML5 canvas environments to arrange fonts, patterns, and custom alignment models to render custom Ultra-HD LinkedIn headers.']),
+                e('p', { style: { marginBottom: '8px', paddingLeft: '5px' } }, [e('strong', null, '• Advanced Logo Designer: '), 'Offers a standalone graphic composition box to build individual brand marks and download high-resolution 4K text-and-icon assets.']),
+                e('p', { style: { marginBottom: '12px', paddingLeft: '5px' } }, [e('strong', null, '• Archive Utility (Zip & Unzip): '), 'Uses asynchronous client-side file-system scripts to pack or extract .zip archival structures without asset transfers to an external environment.']),
 
                 // Section 3
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '3. Intellectual Property'),
-                e('p', null, 'All website design, code, and templates provided on ResumePro are the intellectual property of the site owner. You are granted a license to use the templates to create your personal resume. You may not copy the source code or redistribute our templates for commercial sale.'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '8px' } }, '3. Client-Side Processing & Data Volatility'),
+                e('p', { style: { marginBottom: '10px' } }, [e('strong', null, 'Zero-Storage Principle: '), 'The Platform features no cloud network or data center persistence layer. All metrics, image buffers, configuration state arrays, text objects, and document parameters exist strictly within your browser’s volatile runtime state memory.']),
+                e('p', { style: { marginBottom: '10px' } }, [e('strong', null, 'Volatile Session States: '), 'Closing, refreshing, crashing, or navigating away from your active browser window tab will result in the immediate and irreversible erasure of all unsaved drafts, data inputs, and design canvases. You are solely responsible for executing downloads before ending your operational browsing session.']),
+                e('p', { style: { marginBottom: '12px' } }, [e('strong', null, 'Local Browser Preferences: '), 'The application records a single persistent token inside your web browser’s localStorage to remember your personal interface configuration choice (Dark Mode vs Light Mode). This tracking element contains zero personal identification records.']),
 
                 // Section 4
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '4. Limitation of Liability'),
-                e('p', null, e('strong', null, '"As-Is" Basis: '), 'This website is provided "as-is" without any warranties. While we strive for accuracy, ResumePro is not responsible for any errors in the final resume or for your employment results.'),
-                e('p', null, e('strong', null, 'No Responsibility for Data Loss: '), 'Since we do not store your data, if you refresh the page or clear your browser cache, your progress may be lost. We are not responsible for any such data loss.'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '8px' } }, '4. Open-Source Infrastructure Dependencies'),
+                e('p', { style: { marginBottom: '12px' } }, 'The Platform operates by coordinating multiple client-side script structures, open-source assets, and infrastructure environments. By using this software, you acknowledge the functional integration of these modular building blocks, including React, HTML5 Core, Quill Text Engine (Word Article Editor), JSZip Compression Framework, Mammoth.js Component (DOCX Parser), Html2canvas, JsPDF, Vercel Web Hosting, and Formspree API (Contact Form).'),
 
                 // Section 5
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '5. Third-Party Links'),
-                e('p', null, 'Our website may contain links to external sites. We are not responsible for the content or privacy practices of those third-party websites.'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '8px' } }, '5. Intellectual Property & Permitted Usage'),
+                e('p', { style: { marginBottom: '10px' } }, 'The system layout architecture, custom styling properties, interface designs, unique design templates, and logic routines provided within RESUME.PRO remain the exclusive intellectual property of the Platform developers.'),
+                e('p', { style: { marginBottom: '12px' } }, [e('strong', null, 'Usage License & Constraints: '), 'You are granted a limited license to build your personal portfolios, professional resumes, career documentation, corporate banners, and brand logos for commercial employment matching or personal marketing. However, you are strictly prohibited from reverse-engineering the codebase core, harvesting system logic scripts, or redistributing our templates for commercial sale or white-labeling.']),
 
                 // Section 6
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '6. Changes to Terms'),
-                e('p', null, 'We reserve the right to update these terms at any time. Any changes will be posted on this page.'),
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '8px' } }, '6. Limitation of Liability & Absolute Disclaimers'),
+                e('p', { style: { marginBottom: '10px' } }, [e('strong', null, '"As-Is" Service Standard: '), 'RESUME.PRO is deployed strictly on an "As-Is" and "As-Available" technical baseline without structural warranties, compliance assurances, or explicit error-free processing guarantees.']),
+                e('p', { style: { marginBottom: '10px' } }, [e('strong', null, 'No Responsibility for Data Loss: '), 'The Platform owners, web maintainers, and infrastructure hosts shall not be held liable for any data losses, browser memory crashes, canvas rendering glitches, or unexpected session resets.']),
+                e('p', { style: { marginBottom: '12px' } }, [e('strong', null, 'No Employment Endorsement: '), 'We do not guarantee that your resume compilation, ATS compatibility scoring, logo style alignment, or document transformation layout will yield specific professional outcomes, financial contracts, or corporate interviews.']),
 
                 // Section 7
-                e('h3', { style: { color: 'var(--accent)', marginTop: '25px' } }, '7. Contact Information'),
-                e('p', null, 'If you have any questions about these terms, you can reach out to us at:'),
-                e('p', { style: { marginTop: '10px' } }, 'Website: https://resumepro.theglobalhubb.com/'),
-                e('p', null, 'Email: [resumeprohub1@gmail.com]') // Yahan apni email likh dena
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '8px' } }, '7. Links to Third-Party Web Portals'),
+                e('p', { style: { marginBottom: '12px' } }, 'Our layout may feature hyperlinked destinations guiding users to external internet nodes or partner websites. We assert zero regulatory authority over the privacy strategies, content accuracy, cookie architectures, or structural terms deployed across third-party networks. Following an outbound redirect is completed entirely at your own discretion.'),
+
+                // Section 8
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '8px' } }, '8. Amendments & Operational Variations'),
+                e('p', { style: { marginBottom: '12px' } }, 'We reserve the absolute right to modify, patch, adjust, or completely replace these Terms and Conditions at any moment to reflect module features or operational ecosystem upgrades. Continued interaction with our interface parameters constitutes your explicit acceptance of those changes.'),
+
+                // Section 9
+                e('h3', { style: { color: 'var(--accent)', marginTop: '25px', marginBottom: '8px' } }, '9. Direct Inquiries & Contact Details'),
+                e('p', { style: { marginBottom: '10px' } }, 'If you require technical clarification regarding the client-side processing architecture, local script libraries, data handling boundaries, or these operational rules, you can reach out to us at:'),
+                e('p', { style: { marginTop: '10px', fontWeight: '600' } }, 'Website: https://resumepro.it.com/'),
+                e('p', { style: { marginTop: '4px', fontWeight: '600' } }, 'Email: resumeprohub1@gmail.com')
             )
         ),
 
-        currentPage === 'contact' && e('div', { style: { maxWidth: '600px', margin: '0 auto', padding: '60px 20px', minHeight: '80vh' } },
-            e('h1', { style: { color: 'var(--accent)', textAlign: 'center', fontWeight: '800', marginBottom: '10px' } }, 'Get In Touch'),
-            e('p', { style: { textAlign: 'center', opacity: 0.7, marginBottom: '30px' } }, 'Send us a message and we will get back to you soon.'),
+        currentPage === 'contact' && e('div', { style: { textAlign: 'center', maxWidth: '1000px', margin: '0 auto', padding: '20px 15px 100px' } },
 
-            e('div', {
-                style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '24px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }
-            },
-                // FIX: Yahan action mein aapki ID 'myknvklo' add kar di hai
-                e('form', { action: "https://formspree.io/f/myknvklo", method: "POST" },
-                    e('div', { style: { marginBottom: '15px' } },
-                        e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Name'),
-                        e('input', { type: 'text', name: 'name', placeholder: 'Your Name', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
-                    ),
-                    e('div', { style: { marginBottom: '15px' } },
-                        e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Email'),
-                        e('input', { type: 'email', name: 'email', placeholder: 'your@email.com', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
-                    ),
-                    e('div', { style: { marginBottom: '20px' } },
-                        e('label', { style: { display: 'block', fontSize: '12px', marginBottom: '5px', fontWeight: '600' } }, 'Message'),
-                        e('textarea', { name: 'message', rows: 5, placeholder: 'How can we help you?', required: true, style: { width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)' } })
-                    ),
-                    e('button', {
-                        type: 'submit',
-                        style: { width: '100%', background: 'var(--accent)', color: '#fff', padding: '15px', border: 'none', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer', transition: '0.3s' }
-                    }, '🚀 Send Message')
+    // 1. Premium Hub Header
+    e('div', { style: { marginBottom: '40px' } },
+        e('h2', {
+            style: {
+                background: 'linear-gradient(to right, #3b82f6, #8b5cf6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                marginBottom: '10px', fontSize: window.innerWidth < 768 ? '32px' : '40px', fontWeight: '900', letterSpacing: '-1px'
+            }
+        }, 'Communications Hub Pro'),
+        e('p', { style: { fontSize: '16px', color: '#64748b', letterSpacing: '0.5px' } }, 'Connect with our specialized engineering and growth branches instantly.')
+    ),
+
+    // 2. Main Studio Container
+    e('div', {
+        style: {
+            display: 'flex', flexDirection: 'column', gap: '35px',
+            background: 'rgba(255, 255, 255, 0.03)',
+            backdropFilter: 'blur(20px)',
+            padding: window.innerWidth < 768 ? '20px' : '40px',
+            borderRadius: '24px',
+            border: '1px solid rgba(100, 116, 139, 0.2)',
+            boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)'
+        }
+    },
+
+        // 3. Live Support Presentation Stage (Mirrors the Canvas Stage Architecture)
+        e('div', { style: { position: 'relative', padding: '20px', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border)' } },
+            e('div', { style: { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '85%', height: '70%', background: 'var(--accent)', filter: 'blur(80px)', opacity: '0.1', zIndex: 0 } }),
+            
+            e('div', { style: { position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', gap: '15px' } },
+                e('div', null,
+                    e('div', { style: { fontSize: '20px', fontWeight: '900', color: 'var(--accent)' } }, '⏱️ < 48 Hours'),
+                    e('p', { style: { margin: 0, fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', color: '#64748b', marginTop: '4px' } }, 'Avg Response Time')
+                ),
+                e('div', { style: { width: '1px', background: 'var(--border)', height: '30px', display: window.innerWidth < 768 ? 'none' : 'block' } }),
+                e('div', null,
+                    e('div', { style: { fontSize: '20px', fontWeight: '900', color: '#22c55e' } }, '🟢 Systems Online'),
+                    e('p', { style: { margin: 0, fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', color: '#64748b', marginTop: '4px' } }, 'Desk Availability')
                 )
             )
         ),
+
+        // Form element wrapper to handle submission across the structured layout
+        e('form', { action: "https://formspree.io/f/myknvklo", method: "POST", style: { display: 'flex', flexDirection: 'column', gap: '35px', margin: 0 } },
+            
+            // 4. Advanced Communications Grid (2-Column Setup)
+            e('div', { style: { display: 'grid', gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '1.3fr 1fr', gap: '30px', textAlign: 'left' } },
+
+                // --- LEFT COLUMN: DIRECT SECURE DISPATCH (Form Fields) ---
+                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px' } },
+                    e('div', null,
+                        e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Identity / Name'),
+                        e('input', {
+                            type: 'text', name: 'name', placeholder: 'Your Name', required: true,
+                            style: { width: '100%', padding: '15px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)', fontSize: '15px', outline: 'none', boxSizing: 'border-box' }
+                        })
+                    ),
+                    e('div', null,
+                        e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Secure Alias / Email Address'),
+                        e('input', {
+                            type: 'email', name: 'email', placeholder: 'your@email.com', required: true,
+                            style: { width: '100%', padding: '15px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)', fontSize: '15px', outline: 'none', boxSizing: 'border-box' }
+                        })
+                    ),
+                    e('div', null,
+                        e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', display: 'block' } }, 'Project Context / Message'),
+                        e('textarea', {
+                            name: 'message', rows: 5, placeholder: 'How can we optimize your ecosystem?', required: true,
+                            style: { width: '100%', padding: '15px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--input-bg)', color: 'var(--text)', fontSize: '15px', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }
+                        })
+                    )
+                ),
+
+                // --- RIGHT COLUMN: ROUTING MATRIX (Core Departments Stack) ---
+                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '15px', background: 'var(--card-bg)', padding: '25px', borderRadius: '16px', border: '1px solid var(--border)' } },
+                    e('label', { style: { fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#64748b', marginBottom: '5px', display: 'block' } }, 'Operational Routing Sectors'),
+
+                    // Item 1: General Support
+                    e('div', { style: { display: 'flex', alignItems: 'center', gap: '15px', paddingBottom: '10px', borderBottom: '1px solid var(--border)' } },
+                        e('img', { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=150&q=80', style: { width: '45px', height: '45px', objectFit: 'cover', borderRadius: '8px' } }),
+                        e('div', null,
+                            e('h4', { style: { margin: '0 0 2px 0', color: 'var(--accent)', fontSize: '14px', fontWeight: '600' } }, 'General Inquiries'),
+                            e('p', { style: { margin: 0, fontSize: '12px', opacity: 0.6 } }, 'Collaborations & business sorting.')
+                        )
+                    ),
+
+                    // Item 2: Web Development
+                    e('div', { style: { display: 'flex', alignItems: 'center', gap: '15px', paddingBottom: '10px', borderBottom: '1px solid var(--border)' } },
+                        e('img', { src: 'https://images.unsplash.com/photo-1605379399642-870262d3d051?w=150&q=80', style: { width: '45px', height: '45px', objectFit: 'cover', borderRadius: '8px' } }),
+                        e('div', null,
+                            e('h4', { style: { margin: '0 0 2px 0', color: 'var(--accent)', fontSize: '14px', fontWeight: '600' } }, 'Technical Support'),
+                            e('p', { style: { margin: 0, fontSize: '12px', opacity: 0.6 } }, 'Web architecture & custom scripts.')
+                        )
+                    ),
+
+                    // Item 3: Content & SEO
+                    e('div', { style: { display: 'flex', alignItems: 'center', gap: '15px', paddingBottom: '10px', borderBottom: '1px solid var(--border)' } },
+                        e('img', { src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=150&q=80', style: { width: '45px', height: '45px', objectFit: 'cover', borderRadius: '8px' } }),
+                        e('div', null,
+                            e('h4', { style: { margin: '0 0 2px 0', color: 'var(--accent)', fontSize: '14px', fontWeight: '600' } }, 'SEO Hub'),
+                            e('p', { style: { margin: 0, fontSize: '12px', opacity: 0.6 } }, 'Performance metrics & keywords.')
+                        )
+                    ),
+
+                    // Item 4: Marketing
+                    e('div', { style: { display: 'flex', alignItems: 'center', gap: '15px', paddingBottom: '10px', borderBottom: '1px solid var(--border)' } },
+                        e('img', { src: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=150&q=80', style: { width: '45px', height: '45px', objectFit: 'cover', borderRadius: '8px' } }),
+                        e('div', null,
+                            e('h4', { style: { margin: '0 0 2px 0', color: 'var(--accent)', fontSize: '14px', fontWeight: '600' } }, 'Social Media & Growth'),
+                            e('p', { style: { margin: 0, fontSize: '12px', opacity: 0.6 } }, 'Profile design & marketing funnels.')
+                        )
+                    ),
+
+                    // Item 5: Urgent Care
+                    e('div', { style: { display: 'flex', alignItems: 'center', gap: '15px' } },
+                        e('img', { src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=150&q=80', style: { width: '45px', height: '45px', objectFit: 'cover', borderRadius: '8px' } }),
+                        e('div', null,
+                            e('h4', { style: { margin: '0 0 2px 0', color: 'var(--accent)', fontSize: '14px', fontWeight: '600' } }, 'Urgent Client Desk'),
+                            e('p', { style: { margin: 0, fontSize: '12px', opacity: 0.6 } }, 'Active deployments & rapid fixes.')
+                        )
+                    )
+                )
+            ),
+
+            // 5. Ultimate Dispatch Button (Matches Export Ultra-HD Theme)
+            e('button', {
+                type: 'submit',
+                style: {
+                    marginTop: '15px', background: 'linear-gradient(135deg, #2563eb, #7c3aed)', color: '#fff',
+                    padding: '20px', border: 'none', borderRadius: '14px', fontWeight: '900', fontSize: '16px',
+                    letterSpacing: '1px', textTransform: 'uppercase', cursor: 'pointer',
+                    boxShadow: '0 10px 30px rgba(37, 99, 235, 0.4)'
+                }
+            }, '⚡ Dispatch Premium Message')
+        ),
+
+        // 🌟 SECTION: Beautiful English Paragraph at the bottom
+        e('p', { 
+            style: { 
+                marginTop: '10px', 
+                textAlign: 'center', 
+                fontSize: '14px', 
+                lineHeight: '1.7', 
+                opacity: 0.75,
+                fontStyle: 'italic',
+                borderTop: '1px solid var(--border)',
+                paddingTop: '25px',
+                color: 'var(--text)'
+            } 
+        },
+            'At our core, we believe that great communication breeds exceptional digital innovation. Whether you are aiming to build a scalable web ecosystem, polish your search presence, or completely optimize your digital workflow, our dedicated experts span across distinct operational sectors to bring you premium support. Reach out through any of our channels, and let us shape your digital horizon together.'
+        )
+    )
+),
         currentPage === 'banner' && e('div', { style: { textAlign: 'center', maxWidth: '1000px', margin: '0 auto', padding: '20px 15px 100px' } },
 
             // 1. Premium Studio Header
