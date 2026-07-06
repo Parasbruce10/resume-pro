@@ -2868,7 +2868,7 @@ e('textarea', {
                     lineHeight: window.innerWidth < 768 ? '1.4' : '1.5' 
                 } 
             }, 
-                `© ${new Date().getFullYear()} Resume Pro Labs. All Rights Sovereign Locally.`
+                `© ${new Date().getFullYear()} Resume Pro All Rights Reserved.`
             ),
             
             // Right Side: Kinetic Paras Branding
@@ -2884,7 +2884,7 @@ e('textarea', {
                     lineHeight: window.innerWidth < 768 ? '1.4' : '1'
                 } 
             }, [
-                'Engineered with ',
+                'Created with ',
                 e('span', { style: { color: '#ef4444', display: 'inline-block', transform: 'scale(1.15)', margin: '0 4px' } }, '❤️'),
                 ' by ',
                 e('span', { 
