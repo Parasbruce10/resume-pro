@@ -627,9 +627,30 @@ const App = () => {
         ),
 
         // --- UNZIP PAGE UI ---
-        currentPage === 'unzip' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
-            e('h2', { style: { color: 'var(--accent)', marginBottom: '10px', fontWeight: '800' } }, 'Zip to Unzip Extractor'),
-            e('p', { style: { fontSize: '14px', opacity: 0.7, marginBottom: '20px' } }, 'Extract files instantly without any server upload.'),
+        currentPage === 'unzip' && e('div', { style: { maxWidth: '800px', margin: '0 auto', padding: '20px 15px 100px', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+
+            // --- Consistent Modern Header ---
+            e('div', { style: { marginBottom: '40px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+                e('h2', {
+                    style: {
+                        color: 'var(--accent)',
+                        fontSize: 'clamp(28px, 5vw, 42px)', // Baki pages jaisa responsive size
+                        fontWeight: '900',                  // Weight ko 800 se barha kar 900 kiya
+                        marginBottom: '12px',
+                        letterSpacing: '-0.5px'
+                    }
+                }, 'Zip to Unzip Extractor'),
+                e('p', {
+                    style: {
+                        fontSize: '16px',
+                        opacity: 0.75, // Standard professional opacity
+                        lineHeight: '1.6',
+                        margin: '0',
+                        maxWidth: '650px'
+                    }
+                }, 'Extract your compressed ZIP archives instantly and securely right inside your browser. With zero server uploads required, your data remains 100% private, safe, and lightning-fast to access.')
+            ),
+            // ---------------------------------
 
             e('div', { style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
 
@@ -655,9 +676,30 @@ const App = () => {
             )
         ),
         // --- MAKE ZIP PAGE UI ---
-        currentPage === 'makeZip' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
-            e('h2', { style: { color: 'var(--accent)', marginBottom: '10px', fontWeight: '800' } }, 'Create Zip File'),
-            e('p', { style: { fontSize: '14px', opacity: 0.7, marginBottom: '20px' } }, 'Select multiple files to compress them into a single ZIP.'),
+        currentPage === 'makeZip' && e('div', { style: { maxWidth: '800px', margin: '0 auto', padding: '20px 15px 100px', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+
+            // --- Consistent Modern Header ---
+            e('div', { style: { marginBottom: '40px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+                e('h2', {
+                    style: {
+                        color: 'var(--accent)',
+                        fontSize: 'clamp(28px, 5vw, 42px)', // Baki pages jaisa responsive size
+                        fontWeight: '900',                  // Weight ko 800 se barha kar 900 kiya
+                        marginBottom: '12px',
+                        letterSpacing: '-0.5px'
+                    }
+                }, 'Create ZIP File'),
+                e('p', {
+                    style: {
+                        fontSize: '16px',
+                        opacity: 0.75, // Standard professional opacity
+                        lineHeight: '1.6',
+                        margin: '0',
+                        maxWidth: '650px'
+                    }
+                }, 'Compress multiple files or entire folders into a single, optimized ZIP archive instantly. Process everything securely right inside your browser with maximum privacy and zero server wait times.')
+            ),
+            // ---------------------------------
 
             e('div', { style: { background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
 
@@ -1150,21 +1192,40 @@ e('textarea', {
             ),
 
             currentPage === 'wordToPdf' && e('div', {
-                style: {
-                    textAlign: 'center',
-                    padding: '20px 15px', // Top padding mobile ke hisab se set ki
-                    minHeight: '70vh',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '20px' // Sab items ke darmiyan barabar gap rakhega
-                }
-            },
+            style: {
+                textAlign: 'center',
+                padding: '20px 15px', // Top padding mobile ke hisab se set ki
+                minHeight: '70vh',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center', // Is se text block screen ke bilkul beech mein rahega
+                gap: '20px' // Sab items ke darmiyan barabar gap rakhega
+            }
+        },
+            // --- NAYI HEADING AUR DESCRIPTION ---
+            e('div', { style: { maxWidth: '800px', marginBottom: '10px' } },
                 e('h2', {
                     style: {
-                        marginTop: '20px', // Heading ko header se thora neechay kiya
-                        marginBottom: '10px'
+                        color: 'var(--accent)', // Resume maker jaisa color
+                        fontSize: 'clamp(28px, 5vw, 42px)', // Responsive size
+                        fontWeight: '900',
+                        marginTop: '20px', // Header se thora neechay kiya
+                        marginBottom: '12px'
                     }
                 }, 'Convert Word to PDF'),
+                e('p', {
+                    style: {
+                        fontSize: '16px',
+                        opacity: 0.75,
+                        lineHeight: '1.6',
+                        margin: '0'
+                    }
+                }, 'Convert your Microsoft Word documents (.docx) to high-quality PDF files instantly. Our secure tool ensures that your fonts, margins, and original formatting remain perfectly intact.')
+            ),
+            // ------------------------------------
+
+            // Iske neechay aapka baqi ka converter code (file uploader button wagaira) chalega, 
+            // usme koi tabdeeli nahi karni.
 
                 // 1. Upar Wala Dabba (Ab spacing ke sath)
                 e('label', {
@@ -1225,9 +1286,30 @@ e('textarea', {
                     )
                 )
             ),
-            currentPage === 'wordEditor' && e('div', { style: { maxWidth: '800px', margin: '0 auto', padding: '20px' } },
-                e('h2', { style: { color: 'var(--accent)', textAlign: 'center', marginBottom: '10px' } }, 'Word Article Editor'),
-                e('p', { style: { textAlign: 'center', opacity: 0.6, fontSize: '14px', marginBottom: '20px' } }, 'Write your essay or article and download it as a Word file.'),
+            currentPage === 'wordEditor' && e('div', { style: { maxWidth: '800px', margin: '0 auto', padding: '20px 15px 100px', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+
+            // --- Consistent Modern Header ---
+            e('div', { style: { marginBottom: '40px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+                e('h2', {
+                    style: {
+                        color: 'var(--accent)',
+                        fontSize: 'clamp(28px, 5vw, 42px)', // Baki pages jaisa responsive size
+                        fontWeight: '900',
+                        marginBottom: '12px',
+                        letterSpacing: '-0.5px'
+                    }
+                }, 'Word Article Editor'),
+                e('p', {
+                    style: {
+                        fontSize: '16px',
+                        opacity: 0.75, // Standard professional opacity
+                        lineHeight: '1.6',
+                        margin: '0',
+                        maxWidth: '650px'
+                    }
+                }, 'Create, edit, and format your essays, blogs, or professional articles effortlessly. Write your content in our rich editor and download it instantly as a fully compatible Microsoft Word (.docx) document.')
+            ),
+            // ---------------------------------
 
                 // Editor ka dabba
                 e('div', { style: { background: '#fff', color: '#000', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border)' } },
@@ -1241,10 +1323,56 @@ e('textarea', {
                     style: { margin: '30px auto', display: 'block', background: '#3b82f6', color: '#fff', padding: '12px 30px', borderRadius: '8px' }
                 }, '📥 Download .docx File')
             ),
+currentPage === 'about' && e('div', { 
+    style: { 
+        maxWidth: '850px', 
+        margin: '0 auto', 
+        padding: '30px 16px 80px', // Mobile optimized padding
+        minHeight: '70vh', 
+        lineHeight: '1.7', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center',
+        width: '100%',             // Mobile responsive layout guard
+        boxSizing: 'border-box'
+    } 
+},
 
-         currentPage === 'about' && e('div', { style: { maxWidth: '850px', margin: '0 auto', padding: '40px 20px', minHeight: '70vh', lineHeight: '1.7' } },
-    e('h1', { style: { color: 'var(--accent)', textAlign: 'center', marginBottom: '10px', fontWeight: '800' } }, 'About RESUME.PRO'),
-    e('p', { style: { textAlign: 'center', opacity: 0.6, marginBottom: '30px', fontSize: '14px' } }, 'Empowering Your Professional Journey, Completely Serverless'),
+    // --- Fully Mobile-Responsive About Header ---
+    e('div', { 
+        style: { 
+            marginBottom: '35px', 
+            textAlign: 'center', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center',
+            width: '100%'
+        } 
+    },
+        e('h1', {
+            style: {
+                color: 'var(--accent)',
+                fontSize: 'clamp(24px, 5.5vw, 40px)', // Mobile par perfectly scale hoga
+                fontWeight: '900',                  // Solid look ke liye font weight 900
+                marginBottom: '12px',
+                letterSpacing: '-0.5px',
+                lineHeight: '1.2',
+                overflowWrap: 'break-word',   // Text ko screen se bahar bhagne nahi dega
+                width: '100%'
+            }
+        }, 'About RESUME.PRO'),
+        
+        e('p', {
+            style: {
+                fontSize: 'clamp(14px, 4vw, 16px)', // Fluid body copy
+                opacity: 0.75,
+                lineHeight: '1.6',
+                margin: '0',
+                maxWidth: '720px'
+            }
+        }, 'Empowering your professional journey through high-performance, serverless utilities. RESUME.PRO is engineered to provide premium tools for resume architecture, document conversion, and brand design—running entirely inside your browser for maximum execution speed and absolute data privacy.')
+    ),
+    // ---------------------------------------------
 
     e('div', { style: { background: 'var(--card-bg)', padding: '35px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' } },
 
@@ -1286,9 +1414,65 @@ e('textarea', {
 )
      ),
         // --- UPDATED PRIVACY POLICY SECTION (Manually Replace This Block) ---
-        currentPage === 'privacy' && e('div', { style: { maxWidth: '850px', margin: '0 auto', padding: '40px 20px', minHeight: '70vh', lineHeight: '1.7' } },
-            e('h1', { style: { color: 'var(--accent)', textAlign: 'center', marginBottom: '10px', fontWeight: '800' } }, 'Privacy Policy for RESUME.PRO'),
-            e('p', { style: { textAlign: 'center', opacity: 0.6, marginBottom: '30px', fontSize: '14px' } }, 'Effective Date: July 6, 2026'),
+        currentPage === 'privacy' && e('div', { 
+    style: { 
+        maxWidth: '850px', 
+        margin: '0 auto', 
+        padding: '30px 16px 80px', // Mobile ke liye balanced padding
+        minHeight: '70vh', 
+        lineHeight: '1.7', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center',
+        width: '100%',             // Mobile par width bound rakhne ke liye
+        boxSizing: 'border-box'
+    } 
+},
+
+    // --- Fully Mobile-Responsive Header ---
+    e('div', { 
+        style: { 
+            marginBottom: '35px', 
+            textAlign: 'center', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center',
+            width: '100%'
+        } 
+    },
+        e('h1', {
+            style: {
+                color: 'var(--accent)',
+                fontSize: 'clamp(24px, 5.5vw, 40px)', // Mobile par 24px se shuru hoga aur desktop par 40px tak jayega
+                fontWeight: '900',
+                marginBottom: '12px',
+                letterSpacing: '-0.5px',
+                lineHeight: '1.2',            // Mobile par jab text break ho toh lines juri hui na laghein
+                overflowWrap: 'break-word',   // Kisi bhi choti screen par text boundary se baahar nahi niklega
+                width: '100%'
+            }
+        }, 'Privacy Policy for RESUME.PRO'),
+        
+        e('p', {
+            style: {
+                fontSize: 'clamp(14px, 4vw, 16px)', // Text size mobile ke mutabiq khud adjust hoga
+                opacity: 0.75,
+                lineHeight: '1.6',
+                margin: '0',
+                maxWidth: '700px'
+            }
+        }, 'Your privacy is paramount to us. At RESUME.PRO, we are committed to absolute transparency and data sovereignty, ensuring your personal information and uploaded files never leave your local device.'),
+        
+        e('p', {
+            style: {
+                fontSize: '13px',
+                opacity: 0.5,
+                marginTop: '14px',
+                fontWeight: '500'
+            }
+        }, 'Effective Date: July 6, 2026')
+    ),
+    // ---------------------------------
 
             e('div', { style: { background: 'var(--card-bg)', padding: '35px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' } },
 
@@ -1350,34 +1534,65 @@ e('textarea', {
                 )
             )
         ),
+currentPage === 'terms' && e('div', { 
+    style: { 
+        maxWidth: '850px', 
+        margin: '0 auto', 
+        padding: '30px 16px 80px', // Mobile responsive padding
+        minHeight: '80vh',
+        color: 'var(--text)',
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center',
+        width: '100%',             // Horizontal scroll se bachane ke liye
+        boxSizing: 'border-box'
+    } 
+},
 
-        currentPage === 'terms' && e('div', {
+    // --- Fully Mobile-Responsive Terms Header ---
+    e('div', { 
+        style: { 
+            marginBottom: '35px', 
+            textAlign: 'center', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center',
+            width: '100%'
+        } 
+    },
+        e('h1', {
             style: {
-                maxWidth: '850px',
-                margin: '0 auto',
-                padding: '20px 15px', // Mobile ke liye optimized padding
-                minHeight: '80vh',
-                color: 'var(--text)'
+                color: 'var(--accent)',
+                fontSize: 'clamp(24px, 5.5vw, 40px)', // Mobile par adjust hone wala typography size
+                fontWeight: '900',                  // Solid aur bold premium look
+                marginBottom: '12px',
+                letterSpacing: '-0.5px',
+                lineHeight: '1.2',
+                overflowWrap: 'break-word',
+                width: '100%'
             }
-        },
-            e('h1', {
-                style: {
-                    color: 'var(--accent)',
-                    textAlign: 'center',
-                    fontSize: '24px', // Clean and compact mobile typography
-                    fontWeight: '800',
-                    marginBottom: '10px'
-                }
-            }, 'Terms and Conditions'),
-
-            e('p', {
-                style: {
-                    textAlign: 'center',
-                    opacity: 0.6,
-                    marginBottom: '25px',
-                    fontSize: '13px'
-                }
-            }, 'Last Updated: July 6, 2026'),
+        }, 'Terms and Conditions'),
+        
+        e('p', {
+            style: {
+                fontSize: 'clamp(14px, 4vw, 16px)', // Fluid description size
+                opacity: 0.75,
+                lineHeight: '1.6',
+                margin: '0',
+                maxWidth: '720px'
+            }
+        }, 'Welcome to RESUME.PRO. By accessing or using our serverless architecture, document utilities, and design services, you agree to comply with and be bound by the following legal terms. Please read these guidelines carefully before using our platform.'),
+        
+        e('p', {
+            style: {
+                fontSize: '13px',
+                opacity: 0.5,
+                marginTop: '14px',
+                fontWeight: '500'
+            }
+        }, 'Last Updated: July 6, 2026')
+    ),
+    // ---------------------------------------------
 
             e('div', {
                 style: {
@@ -1600,19 +1815,28 @@ e('textarea', {
         )
     )
 ),
-        currentPage === 'banner' && e('div', { style: { textAlign: 'center', maxWidth: '1000px', margin: '0 auto', padding: '20px 15px 100px' } },
+        currentPage === 'banner' && e('div', { style: { textAlign: 'center', maxWidth: '1000px', margin: '0 auto', padding: '20px 15px 100px', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
 
-            // 1. Premium Studio Header
-            e('div', { style: { marginBottom: '40px' } },
+            // 1. Premium Studio Header (Ab Resume Maker jaisa professional look)
+            e('div', { style: { marginBottom: '40px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
                 e('h2', {
                     style: {
-                        background: 'linear-gradient(to right, #3b82f6, #8b5cf6)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        marginBottom: '10px', fontSize: '40px', fontWeight: '900', letterSpacing: '-1px'
+                        color: 'var(--accent)', // Gradient hata kar consistent theme color lagaya
+                        fontSize: 'clamp(28px, 5vw, 42px)', // Responsive dynamic sizing
+                        fontWeight: '900',
+                        marginBottom: '12px',
+                        letterSpacing: '-0.5px'
                     }
                 }, 'Banner Studio Pro'),
-                e('p', { style: { fontSize: '16px', color: '#64748b', letterSpacing: '0.5px' } }, 'Design ultra-HD, high-impact LinkedIn banners instantly.')
+                e('p', { 
+                    style: { 
+                        fontSize: '16px', 
+                        opacity: 0.75, // Standard opacity for description text
+                        lineHeight: '1.6',
+                        maxWidth: '700px',
+                        margin: '0 auto'
+                    } 
+                }, 'Design ultra-HD, high-impact LinkedIn banners instantly. Elevate your professional profile, capture recruiters attention, and stand out from the crowd with perfectly sized, premium header templates.')
             ),
 
             // 2. Main Studio Container
@@ -1747,9 +1971,30 @@ e('textarea', {
             )
         ), // <-- YAHAN BANNER WALA BLOCK CLOSE HO GAYA HAI (Jo pehle open reh gaya tha)
 
-        currentPage === 'logo' && e('div', { style: { textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 15px 100px' } },
-            e('h2', { style: { color: 'var(--accent)', marginBottom: '10px' } }, 'Advanced Logo Designer'),
-            e('p', { style: { fontSize: '13px', opacity: 0.7, marginBottom: '20px' } }, 'Design professional brand icons in seconds'),
+        currentPage === 'logo' && e('div', { style: { maxWidth: '800px', margin: '0 auto', padding: '20px 15px 100px', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+
+            // --- Consistent Modern Header ---
+            e('div', { style: { marginBottom: '40px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+                e('h2', {
+                    style: {
+                        color: 'var(--accent)',
+                        fontSize: 'clamp(28px, 5vw, 42px)', // Baki pages jaisa responsive size
+                        fontWeight: '900',
+                        marginBottom: '12px',
+                        letterSpacing: '-0.5px'
+                    }
+                }, 'Advanced Logo Designer'),
+                e('p', {
+                    style: {
+                        fontSize: '16px',
+                        opacity: 0.75, // Standard professional opacity
+                        lineHeight: '1.6',
+                        margin: '0',
+                        maxWidth: '650px'
+                    }
+                }, 'Design professional, high-impact brand icons and unique logos in seconds. Create a distinctive identity for your business, startup, or personal project with our intuitive customization tools and premium export options.')
+            ),
+            // ---------------------------------
 
             e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', background: 'var(--card-bg)', padding: '30px', borderRadius: '20px', border: '1px solid var(--border)', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' } },
 
