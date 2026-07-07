@@ -7,7 +7,12 @@ const App = () => {
     const [bannerFontFamily, setBannerFontFamily] = useState('Inter, sans-serif');
     const [bannerTheme, setBannerTheme] = useState('modern'); // 'modern' or 'minimal'
     const [bannerGlass, setBannerGlass] = useState(true);     // Glass effect toggle
-    const [currentPage, setCurrentPage] = useState('landing');
+    const getInitialPage = () => {
+    const path = window.location.pathname.replace('/', '');
+    // Agar path khali hai (matlab home/root url) toh 'landing' page dikhao
+    return path || 'landing'; 
+};
+const [currentPage, setCurrentPage] = useState(getInitialPage());
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState('modern');
     const [typewriterText, setTypewriterText] = useState('');
@@ -32,6 +37,7 @@ const App = () => {
     };
 
     // AB YAHAN TYPEWRITER WALA EFFECT RAKHEIN
+
     useEffect(() => {
         const phrases = [
             "Resume Pro: Build. Apply. Succeed.",
@@ -58,6 +64,15 @@ const App = () => {
 
         return () => clearTimeout(timer);
     }, [typewriterText, isDeleting, phraseIndex]);
+    useEffect(() => {
+    const handlePopState = () => {
+        const path = window.location.pathname.replace('/', '');
+        setCurrentPage(path || 'landing');
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+}, []);
 
     useEffect(() => {
         if (currentPage === 'wordEditor') {
@@ -498,9 +513,13 @@ const App = () => {
     `;
 
     const navigate = (page) => {
-        setCurrentPage(page);
-        setIsMenuOpen(false);
-    };
+    setCurrentPage(page);
+    setIsMenuOpen(false);
+    
+    // URL bar mein naya path add karega bina page reload kiye
+    const newPath = page === 'landing' ? '/' : `/${page}`;
+    window.history.pushState({}, '', newPath);
+};
 
     return e('div', { style: { display: 'flex', flexDirection: 'column', minHeight: '100vh' } },
         e('style', null, styles),
