@@ -1052,7 +1052,7 @@ const App = () => {
                     e('button', {
                         onClick: () => navigate('home'),
                         style: { background: '#fff', color: '#000', border: 'none', padding: '22px 60px', borderRadius: '100px', fontWeight: '900', cursor: 'pointer', fontSize: '18px', textTransform: 'uppercase', letterSpacing: '1px' }
-                    }, 'Start Building Now')
+                    }, 'Start')
                 )
             ),
 
