@@ -392,7 +392,8 @@ const App = () => {
             padding: 20px; 
             border-radius: 15px; 
             border: 1px solid var(--border); 
-            max-height: 85vh; 
+            max-height: 600vh; 
+            margin-bottom:100px;
             overflow-y: auto; 
         }
 
@@ -1017,7 +1018,15 @@ const App = () => {
             // 🌟 ULTRA-WIDE FLUID PREMIUM LANDING PAGE END
             // =========================================
 
-            currentPage === 'home' && e('div', { className: 'main-layout' },
+            currentPage === 'home' && e('div', { style: { width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+    
+    // 1. HEADING AUR TEXT (Ab ye dono columns ke bilkul upar aur screen ke center mi aayega)
+    e('div', { style: { textAlign: 'center', marginBottom: '40px', marginTop: '30px', padding: '0 15px', maxWidth: '800px' } },
+        e('h2', { style: { color: 'var(--accent)', fontSize: 'clamp(28px, 5vw, 42px)', fontWeight: '900', marginBottom: '12px' } }, 'Resume Maker'),
+        e('p', { style: { fontSize: '16px', opacity: 0.75, lineHeight: '1.6', margin: '0' } }, 
+            'Craft a professional, ATS-friendly resume in minutes. Simply fill out your academic history, skills, and experience below. Choose from our premium templates to instantly generate and download your high-quality PDF.'
+        )
+    ),
                 e('div', { className: 'form-side' },
                     e('div', { className: 'section-title' }, 'Photo'),
                     e('div', { className: 'file-upload-wrapper' },
