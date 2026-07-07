@@ -484,7 +484,7 @@ const App = () => {
         .resume-header { display: flex; gap: 20px; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
 
         @media print {
-            .header-wrapper, .form-side, .footer, .hamburger, .mobile-menu, .template-selector, .btn-primary, .typewriter-container { display: none !important; }
+            .header-wrapper, .form-side, .footer, .hamburger, .mobile-menu, .template-selector, .btn-primary, .typewriter-container, .resume-intro, .mobile-container { display: none !important; }
             .preview-side { width: 100%; border: none; box-shadow: none; padding: 0; position: static; margin: 0; }
             .main-layout { display: block; }
             body { background: white; }
@@ -1021,7 +1021,7 @@ const App = () => {
             currentPage === 'home' && e('div', { style: { width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
     
     // 1. HEADING AUR TEXT (Ab ye dono columns ke bilkul upar aur screen ke center mi aayega)
-    e('div', { style: { textAlign: 'center', marginBottom: '40px', marginTop: '30px', padding: '0 15px', maxWidth: '800px' } },
+    e('div', { className: 'resume-intro', style: { textAlign: 'center', marginBottom: '40px', marginTop: '30px', padding: '0 15px', maxWidth: '800px' } },
         e('h2', { style: { color: 'var(--accent)', fontSize: 'clamp(28px, 5vw, 42px)', fontWeight: '900', marginBottom: '12px' } }, 'Resume Maker'),
         e('p', { style: { fontSize: '16px', opacity: 0.75, lineHeight: '1.6', margin: '0' } }, 
             'Craft a professional, ATS-friendly resume in minutes. Simply fill out your academic history, skills, and experience below. Choose from our premium templates to instantly generate and download your high-quality PDF.'
