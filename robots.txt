@@ -1,9 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-   <url>
-      <loc>https://resumepro.it.com/</loc>
-      <lastmod>2026-04-21</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>1.0</priority>
-   </url>
-</urlset>
+# robots.txt for RESUME.PRO
+# Domain: https://resumepro.it.com/
+
+User-agent: *
+Allow: /
+Allow: /home
+Allow: /wordToPdf
+Allow: /wordEditor
+Allow: /banner
+Allow: /logo
+Allow: /unzip
+Allow: /makeZip
+Allow: /about
+Allow: /privacy
+Allow: /terms
+
+# Disallow any specific folders if you add them in the future (e.g., /api/ or /admin/)
+# Disallow: /admin/
+
+# Link to your sitemap for better indexing (agar aap ne sitemap.xml banaya hai)
+Sitemap: https://resumepro.it.com/sitemap.xml
