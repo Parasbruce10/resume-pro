@@ -3126,28 +3126,43 @@ currentPage === 'terms' && e('div', {
 
             // Column 2: Core Matrix Navigation Links
             e('div', null, [
-                e('h4', { style: { fontSize: '11px', fontWeight: '900', marginBottom: '22px', textTransform: 'uppercase', letterSpacing: '2.5px', color: 'var(--accent)' } }, 'Platform Core'),
-                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
-                    ['home', 'banner', 'wordEditor', 'logo'].map(item => 
-                        e('span', { 
-                            key: item,
-                            className: 'footer-premium-link', 
-                            style: { fontSize: '13.5px', cursor: 'pointer', display: 'block', textTransform: 'capitalize', color: 'var(--text)', opacity: 0.55, fontWeight: '500' }, 
-                            onClick: () => navigate(item) 
-                        }, item.replace(/([A-Z])/g, ' $1'))
-                    )
-                )
-            ]),
+    e('h4', { style: { fontSize: '11px', fontWeight: '900', marginBottom: '22px', textTransform: 'uppercase', letterSpacing: '2.5px', color: 'var(--accent)' } }, 'Platform Core'),
+    e('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
+        ['landing', 'home', 'wordToPdf', 'banner', 'wordEditor', 'logo', 'unzip', 'makeZip'].map(item => {
+            // Yahan hum conditionally naam change kar rahe hain
+            let displayLabel = item.replace(/([A-Z])/g, ' $1');
+            if (item === 'landing') displayLabel = 'Home';
+            if (item === 'home') displayLabel = 'Resume Maker';
+
+            return e('span', { 
+                key: item,
+                className: 'footer-premium-link', 
+                style: { 
+                    fontSize: '13.5px', 
+                    cursor: 'pointer', 
+                    display: 'block', 
+                    textTransform: 'capitalize', 
+                    color: 'var(--text)', 
+                    opacity: 0.55, 
+                    fontWeight: '500' 
+                }, 
+                onClick: () => navigate(item) 
+            }, displayLabel);
+        })
+    )
+]),
 
             // Column 3: Architecture Protocols (Legal)
             e('div', null, [
-                e('h4', { style: { fontSize: '11px', fontWeight: '900', marginBottom: '22px', textTransform: 'uppercase', letterSpacing: '2.5px', color: 'var(--text)', opacity: 0.4 } }, 'System Integrity'),
-                e('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } }, [
-                    e('span', { className: 'footer-premium-link', style: { fontSize: '13.5px', cursor: 'pointer', color: 'var(--text)', opacity: 0.55, fontWeight: '500' }, onClick: () => navigate('privacy') }, 'Privacy Architecture'),
-                    e('span', { className: 'footer-premium-link', style: { fontSize: '13.5px', cursor: 'pointer', color: 'var(--text)', opacity: 0.55, fontWeight: '500' }, onClick: () => navigate('terms') }, 'Terms of Protocol'),
-                    e('span', { className: 'footer-premium-link', style: { fontSize: '13.5px', cursor: 'pointer', color: 'var(--accent)', fontWeight: '600' }, onClick: () => navigate('contact') }, 'Contact Gateway')
-                ])
-            ])
+    // System Integrity ko blue kar diya hai
+    e('h4', { style: { fontSize: '11px', fontWeight: '900', marginBottom: '22px', textTransform: 'uppercase', letterSpacing: '2.5px', color: '#007bff' } }, 'System Integrity'),
+    e('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } }, [
+        e('span', { className: 'footer-premium-link', style: { fontSize: '13.5px', cursor: 'pointer', color: 'var(--text)', opacity: 0.55, fontWeight: '500' }, onClick: () => navigate('privacy') }, 'Privacy Architecture'),
+        e('span', { className: 'footer-premium-link', style: { fontSize: '13.5px', cursor: 'pointer', color: 'var(--text)', opacity: 0.55, fontWeight: '500' }, onClick: () => navigate('terms') }, 'Terms of Protocol'),
+        // Contact Gateway ko bilkul privacy wale span jaisa same to same kar diya hai
+        e('span', { className: 'footer-premium-link', style: { fontSize: '13.5px', cursor: 'pointer', color: 'var(--text)', opacity: 0.55, fontWeight: '500' }, onClick: () => navigate('contact') }, 'Contact Gateway')
+    ])
+])
         ]),
 
         // High-End Micro Divider Line
