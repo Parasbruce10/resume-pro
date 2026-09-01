@@ -3240,7 +3240,7 @@ const [currentPage, setCurrentPage] = useState(getInitialPage());
                                 fontWeight: '950',
                                 letterSpacing: '0.8px'
                             }
-                        }, 'PARAS')
+                        }, 'Apex Code Software Agency')
                     ])
                 ])
             ])
